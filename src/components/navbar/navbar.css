@@ -6,7 +6,7 @@
      background: none!important;
 }
 
-.settings-icon:hover .setting:hover{
+.settings-icon:hover .setting{
   animation: settings-icon-spin infinite 5s linear;
 }
 
