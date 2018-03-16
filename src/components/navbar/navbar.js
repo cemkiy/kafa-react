@@ -24,7 +24,7 @@ export default class Navbar extends Component {
                 <Dropdown.Item text='Profile' />
                 <Dropdown.Item text='Account Settings' />
                 <Dropdown.Divider />
-                <Dropdown.Item icon='external' text='Logout' />
+                <Dropdown.Item icon='sign out' text='Logout' />
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>
