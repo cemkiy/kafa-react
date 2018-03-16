@@ -1,0 +1,21 @@
+.search-input {
+  width: 100%;
+}
+
+.ui.menu .item:before {
+     background: none!important;
+}
+
+.settings-icon:hover .setting:hover{
+  animation: settings-icon-spin infinite 5s linear;
+}
+
+@keyframes settings-icon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.navbar-label {
+  background-color: #eef3f9!important;
+  color: #362b72!important;
+}

@@ -1,4 +1,17 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #eef3f9!important;
 }
+
+#sidebar {
+  width: 262.85px;
+  position: absolute;
+  top: 66px;
+  bottom: 0;
+  background-color: #362b72!important;
+}
+
+#main {
+  margin-left: 262.85px;
+ }

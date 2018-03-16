@@ -4,6 +4,13 @@
   margin-bottom: 30px;
 }
 
+.sidebar-style {
+  width: 262.85px!important;
+}
+
 .menu-items {
-  text-align: center; 
+  text-align: center;
+  color: white!important;
+  padding-top: 20px!important;
+  padding-bottom: 40px!important;
 }
