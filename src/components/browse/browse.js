@@ -87,7 +87,7 @@ export default class Browse extends Component {
                         <Label ribbon>Battlefield x</Label>
                      </Table.Cell>
                      <Table.Cell>14 GB</Table.Cell>
-                     <Table.Cell>78/800</Table.Cell>
+                     <Table.Cell><Icon name='long arrow down' />78/800<Icon name='long arrow up' /></Table.Cell>
                      <Table.Cell>Game/Action</Table.Cell>
                      <Table.Cell>564</Table.Cell>
                      <Table.Cell>
