@@ -17,7 +17,7 @@ export default class Sidebar extends Component {
         <Menu.Item name='Browse Torrents' active={activeItem === 'Browse Torrents'} onClick={this.handleItemClick} className='menu-items' />
         <Menu.Item name='Recent Torrents' active={activeItem === 'Recent Torrents'} onClick={this.handleItemClick} className='menu-items' />
         <Menu.Item name='Populer Torrents' active={activeItem === 'Populer Torrents'} onClick={this.handleItemClick} className='menu-items' />
-        <Menu.Item name='TV Shows' active={activeItem === 'TV Shows'} onClick={this.handleItemClick} className='menu-items' />
+        <Menu.Item name='Support Us' active={activeItem === 'Support Us'} onClick={this.handleItemClick} className='menu-items' />
       </Menu>
     )
   }
