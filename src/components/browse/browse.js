@@ -12,49 +12,49 @@ export default class Browse extends Component {
             <div className='pretty p-icon p-curve p-tada p-plain'>
                <input type='checkbox' className='checkbox-style'/>
                <div className='state'>
-                  <Icon name='music' color='green' />
+                  <Icon name='music' />
                   <label>Music</label>
                </div>
             </div>
             <div className='pretty p-icon p-curve p-tada p-plain'>
                <input type='checkbox' />
                <div className='state'>
-                  <Icon name='bug' color='brown' />
+                  <Icon name='bug' />
                   <label>Applications</label>
                </div>
             </div>
             <div className='pretty p-icon p-curve p-tada p-plain'>
                <input type='checkbox' />
                <div className='state'>
-                  <Icon name='film' color='olive' />
+                  <Icon name='film' />
                   <label>Movies</label>
                </div>
             </div>
             <div className='pretty p-icon p-curve p-tada p-plain'>
                <input type='checkbox' />
                <div className='state'>
-                  <Icon name='tv' color='purple' />
+                  <Icon name='tv' />
                   <label>TV/Shows</label>
                </div>
             </div>
             <div className='pretty p-icon p-curve p-tada p-plain'>
                <input type='checkbox' />
                <div className='state'>
-                  <Icon name='game' color='teal' />
+                  <Icon name='game' />
                   <label>Games</label>
                </div>
             </div>
             <div className='pretty p-icon p-curve p-tada p-plain'>
                <input type='checkbox' />
                <div className='state'>
-                  <Icon name='spy' color='black' />
+                  <Icon name='spy' />
                   <label>Documents</label>
                </div>
             </div>
             <div className='pretty p-icon p-curve p-tada p-plain'>
                <input type='checkbox' />
                <div className='state'>
-                  <Icon name='image' color='yellow' />
+                  <Icon name='image' />
                   <label>Pictures</label>
                </div>
             </div>

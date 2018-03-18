@@ -7,12 +7,14 @@ export default class Navbar extends Component {
     return (
         <Menu attached='top' className="navbar">
           <Menu.Item className="navbar-label">
-            <Label className="navbar-label" size="massive">Search Torrents</Label>
+            <Label className="navbar-label" size="massive">
+              Search Torrents
+            </Label>
           </Menu.Item>
           <Menu.Menu className="search-input">
             <div className='ui aligned category search item search-input'>
               <div className='ui transparent icon input'>
-                <input className='prompt' type='text' placeholder='Search...'/>
+                <input className='prompt' type='text' placeholder='Search Here...'/>
                 <i className='search link icon' />
               </div>
               <div className='results' />
