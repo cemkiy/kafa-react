@@ -6,6 +6,7 @@ body {
 
 #sidebar {
   width: 262.85px;
+  height: 100vh;
   position: absolute;
   top: 66px;
   bottom: 0;
