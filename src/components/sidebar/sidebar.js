@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './sidebar.css';
-import logo from '../../logo.svg';
+import logo from '../../logo.png';
 import { Menu, Image } from 'semantic-ui-react'
 
 export default class Sidebar extends Component {
