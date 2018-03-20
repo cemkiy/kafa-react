@@ -9,9 +9,22 @@
 }
 
 .detail-card-div {
-  padding-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 5px;
 }
 
 .detail-buttons {
     padding-top: 10px;
+}
+
+.detail-link {
+  color: #fbbd08;
+}
+
+.detail-link:hover{
+  color: #fbbd08;
+}
+
+.detail-link:visited{
+  color: #fbbd08;
 }

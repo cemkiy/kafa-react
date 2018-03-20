@@ -6,10 +6,10 @@ body {
 
 #sidebar {
   width: 262.85px;
-  height: 100vh;
   position: absolute;
-  top: 66px;
-  bottom: 0;
+  overflow: hidden; 
+  margin-bottom: -5000px; /* any large number will do */
+  padding-bottom: 5000px;
   background-color: black!important;
 }
 
