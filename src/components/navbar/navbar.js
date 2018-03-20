@@ -15,7 +15,7 @@ export default class Navbar extends Component {
             <div className='ui aligned category search item search-input'>
               <div className='ui transparent icon input'>
                 <input className='prompt' type='text' placeholder='Search Here...'/>
-                <i className='search link icon' />
+                <i className='search icon' />
               </div>
               <div className='results' />
             </div>

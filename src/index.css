@@ -7,7 +7,7 @@ body {
 #sidebar {
   width: 262.85px;
   position: absolute;
-  overflow: hidden; 
+  overflow: hidden;
   margin-bottom: -5000px; /* any large number will do */
   padding-bottom: 5000px;
   background-color: black!important;
@@ -15,4 +15,16 @@ body {
 
 #main {
   margin-left: 262.85px;
+ }
+
+ .link {
+   color: #fbbd08;
+ }
+
+ .link:hover{
+   color: #fbbd08;
+ }
+
+ .link:visited{
+   color: #fbbd08;
  }

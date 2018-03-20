@@ -69,7 +69,7 @@ export default class Detail extends Component {
                       <List.Item icon='image' content={
                         <Popup
                            trigger={
-                             <a className='detail-link' href='http://www.semantic-ui.com'>semantic-ui.com</a>
+                             <a className='link' href='http://www.semantic-ui.com'>semantic-ui.com</a>
                            }
                            flowing
                            hoverable>
@@ -79,7 +79,7 @@ export default class Detail extends Component {
                        <List.Item icon='image' content={
                          <Popup
                             trigger={
-                              <a className='detail-link' href='http://www.semantic-ui.com'>semantic-ui.com</a>
+                              <a className='link' href='http://www.semantic-ui.com'>semantic-ui.com</a>
                             }
                             flowing
                             hoverable>
@@ -89,7 +89,7 @@ export default class Detail extends Component {
                         <List.Item icon='image' content={
                           <Popup
                              trigger={
-                               <a className='detail-link' href='http://www.semantic-ui.com'>semantic-ui.com</a>
+                               <a className='link' href='http://www.semantic-ui.com'>semantic-ui.com</a>
                              }
                              flowing
                              hoverable>
