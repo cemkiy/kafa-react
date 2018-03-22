@@ -7,6 +7,8 @@ import Filter from './components/filter/filter';
 import Navbar from './components/navbar/navbar';
 import Sidebar from './components/sidebar/sidebar';
 import UserLabel from './components/user-label/user-label';
+import AccountSettings from './components/account-settings/account-settings';
+import Deck from './components/deck/deck';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -17,5 +19,7 @@ it('renders without crashing', () => {
   ReactDOM.render(<Navbar />, div);
   ReactDOM.render(<Sidebar />, div);
   ReactDOM.render(<UserLabel />, div);
+  ReactDOM.render(<AccountSettings />, div);
+  ReactDOM.render(<Deck />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

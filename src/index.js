@@ -8,9 +8,10 @@ import Browse from './components/browse/browse';
 import Detail from './components/detail/detail';
 import Profile from './components/profile/profile';
 import AccountSettings from './components/account-settings/account-settings';
+import Deck from './components/deck/deck';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<Navbar />, document.getElementById('navbar'));
 ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
-ReactDOM.render(<Browse />, document.getElementById('main'));
+ReactDOM.render(<Deck />, document.getElementById('main'));
 registerServiceWorker();

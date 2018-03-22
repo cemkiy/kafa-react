@@ -1,0 +1,19 @@
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    padding-top: 80px;
+}
+
+.deck-button-group {
+  margin-top: 10px;
+}
+
+.description-table {
+  padding-top: 50px!important;
+  padding-bottom: 50px!important;
+}
+
+.description-table-element {
+  padding-bottom: 15px;
+}
