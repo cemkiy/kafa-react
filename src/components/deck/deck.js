@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './deck.css';
 import logo from '../../logo.png';
-import info_logo from '../../assets/img/inf.png';
 import we_need_you from '../../assets/img/weneedyou.png';
 import { Icon, Grid, Image, Button, Form, Header, Message, List } from 'semantic-ui-react'
 
@@ -125,7 +124,10 @@ export default class Deck extends Component {
           </Grid.Row>
           <Grid.Row className='description-table'>
             <Grid.Column width={2}>
-              <Icon name='checkmark' size='big'/>
+              <Icon.Group size='big'>
+                <Icon name='file code outline' />
+                <Icon corner name='dont' />
+              </Icon.Group>
             </Grid.Column>
             <Grid.Column width={6} className='description-table-element'>
               <div>
@@ -135,7 +137,10 @@ export default class Deck extends Component {
               </div>
             </Grid.Column>
             <Grid.Column width={2}>
-              <Icon name='puzzle' size='big'/>
+              <Icon.Group size='big'>
+                <Icon name='puzzle' />
+                <Icon corner name='puzzle' />
+              </Icon.Group>
             </Grid.Column>
             <Grid.Column width={6} className='description-table-element'>
               <div>

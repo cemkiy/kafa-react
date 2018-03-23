@@ -14,7 +14,7 @@ export default class Detail extends Component {
         <Header as='h2'>Torrent Details</Header>
         <div>
           <Message icon color='black' className='torrent-description'>
-            <Icon name='paw notched' />
+            <Icon name='paw' />
             <Message.Content>
               <Message.Header>Battlefield X</Message.Header>
               This is a action game.
