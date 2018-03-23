@@ -9,9 +9,10 @@ import Detail from './components/detail/detail';
 import Profile from './components/profile/profile';
 import AccountSettings from './components/account-settings/account-settings';
 import Deck from './components/deck/deck';
+import Share from './components/share/share';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<Navbar />, document.getElementById('navbar'));
 ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
-ReactDOM.render(<Deck />, document.getElementById('main'));
+ReactDOM.render(<Share />, document.getElementById('main'));
 registerServiceWorker();

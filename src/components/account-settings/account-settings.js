@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './account-settings.css';
-import satellite from '../../assets/img/satellite.gif';
 import { Card, Form, Input, TextArea, Button, Message } from 'semantic-ui-react'
 import UserLabel from '../../components/user-label/user-label';
 
