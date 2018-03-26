@@ -9,22 +9,22 @@ export default class Deck extends Component {
     super(props);
     this.state = {
       joinUsFormDisplay: "none",
-      signinFormDisplay: "none",
+      signInFormDisplay: "none",
       joinUsFormData: {
         username:'',
         email:'',
         password: '',
         birthday: ''
       },
-      signinFormData: {
+      signInFormData: {
         usernameOrEmail:'',
         password:''
       }
     };
     this.joinUsFormHandleChange = this.joinUsFormHandleChange.bind(this);
-    this.signinFormHandleChange = this.signinFormHandleChange.bind(this);
-    this.createUser = this.createUser.bind(this);
-    this.signin = this.signin.bind(this);
+    this.signInFormHandleChange = this.signInFormHandleChange.bind(this);
+    this.joinUs = this.joinUs.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
 
   joinUsFormHandleChange(event, data) {
@@ -32,29 +32,30 @@ export default class Deck extends Component {
     this.setState({joinUsFormData:this.state.joinUsFormData});
   }
 
-  signinFormHandleChange(event, data) {
-    this.state.signinFormData[data.name] = event.target.value;
-    this.setState({signinFormData:this.state.signinFormData});
+  signInFormHandleChange(event, data) {
+    this.state.signInFormData[data.name] = event.target.value;
+    this.setState({signInFormData:this.state.signInFormData});
   }
 
   joinUsClick = () => {
     this.setState({joinUsFormDisplay: "block"});
-    this.setState({signinFormDisplay: "none"});
+    this.setState({signInFormDisplay: "none"});
   }
 
-  signinClick = () => {
-    this.setState({signinFormDisplay: "block"});
+  signInClick = () => {
+    this.setState({signInFormDisplay: "block"});
     this.setState({joinUsFormDisplay: "none"});
   }
 
-  createUser = (event) => {
+  joinUs = (event) => {
     console.log(this.state.joinUsFormData);
     event.preventDefault();
   }
 
-  signin = (event) => {
-    console.log(this.state.signinFormData);
+  signIn = (event) => {
+    console.log(this.state.signInFormData);
     event.preventDefault();
+    this.props.history.push("/browse");
   }
 
   render() {
@@ -84,7 +85,7 @@ export default class Deck extends Component {
                   <Icon name='group' />
                   Join us
                 </Button>
-                <Button onClick={this.signinClick} icon labelPosition='right' color='black'>
+                <Button onClick={this.signInClick} icon labelPosition='right' color='black'>
                   Sign in
                   <Icon name='sign in' />
                 </Button>
@@ -93,7 +94,7 @@ export default class Deck extends Component {
           </Grid.Row>
           <Grid.Row style={{display: this.state.joinUsFormDisplay }}>
             <Grid.Column width={16}>
-              <Form onSubmit={this.createUser}>
+              <Form onSubmit={this.joinUs}>
                 <Form.Group widths='equal'>
                   <Form.Input fluid name="username" label='username' value={this.state.joinUsFormData.username} onChange={this.joinUsFormHandleChange} placeholder='captainjack' />
                   <Form.Input fluid name='email' label='email' value={this.state.joinUsFormData.email} onChange={this.joinUsFormHandleChange} placeholder='jacksparrow@blackpearl.com' />
@@ -111,12 +112,12 @@ export default class Deck extends Component {
               </Form>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row style={{display: this.state.signinFormDisplay }}>
+          <Grid.Row style={{display: this.state.signInFormDisplay }}>
             <Grid.Column width={16}>
-              <Form onSubmit={this.signin}>
+              <Form onSubmit={this.signIn}>
                 <Form.Group widths='equal'>
-                  <Form.Input fluid name='usernameOrEmail' label='username or email' value={this.state.signinFormData.usernameOrEmail} onChange={this.signinFormHandleChange} placeholder='captainjack or jacksparrow@blackpearl.com' />
-                  <Form.Input fluid name='password' label='password' value={this.state.signinFormData.password} onChange={this.signinFormHandleChange} placeholder='********' />
+                  <Form.Input fluid name='usernameOrEmail' label='username or email' value={this.state.signInFormData.usernameOrEmail} onChange={this.signInFormHandleChange} placeholder='captainjack or jacksparrow@blackpearl.com' />
+                  <Form.Input fluid name='password' label='password' value={this.state.signInFormData.password} onChange={this.signInFormHandleChange} placeholder='********' />
                 </Form.Group>
                 <Form.Button>Sign in</Form.Button>
               </Form>

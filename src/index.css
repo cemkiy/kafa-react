@@ -8,7 +8,7 @@ body {
   width: 262.85px;
   position: absolute;
   overflow: hidden;
-  margin-bottom: -5000px; /* any large number will do */
+  margin-bottom: -5000px;
   padding-bottom: 5000px;
   background-color: black!important;
 }
