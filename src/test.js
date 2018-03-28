@@ -9,6 +9,7 @@ import Sidebar from './components/sidebar/sidebar';
 import UserLabel from './components/user-label/user-label';
 import AccountSettings from './components/account-settings/account-settings';
 import Deck from './components/deck/deck';
+import Share from './components/share/share';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -21,5 +22,6 @@ it('renders without crashing', () => {
   ReactDOM.render(<UserLabel />, div);
   ReactDOM.render(<AccountSettings />, div);
   ReactDOM.render(<Deck />, div);
+  ReactDOM.render(<Share />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

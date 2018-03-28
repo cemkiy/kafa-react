@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './browse.css';
 import satellite from '../../assets/img/satellite.gif';
 import { Icon, Table, Label, Button, Image, Pagination } from 'semantic-ui-react'
@@ -6,6 +7,15 @@ import UserLabel from '../../components/user-label/user-label';
 import Filter from '../../components/filter/filter';
 
 export default class Browse extends Component {
+  constructor(props) {
+    super(props);
+    this.goToDetail = this.goToDetail.bind(this);
+  }
+
+  goToDetail(event, data) {
+    this.props.history.push("/detail");
+  }
+
   render() {
     return (
       <div>
@@ -28,8 +38,8 @@ export default class Browse extends Component {
                <Table.Body>
                   <Table.Row>
                      <Table.Cell>
-                        <Label ribbon className='torrent-name'>Battlefield x</Label><br />
-                        <UserLabel />
+                         <UserLabel />
+                         <Link to='/detail' className='link'> Battlefield x</Link>
                      </Table.Cell>
                      <Table.Cell>14 GB</Table.Cell>
                      <Table.Cell><Icon name='long arrow down' />78/800<Icon name='long arrow up' /></Table.Cell>

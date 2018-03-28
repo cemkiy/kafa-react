@@ -1,21 +1,19 @@
 import React, { Component } from 'react'
-import { Router, Link } from 'react-router-dom'
-import satellite from '../../assets/img/satellite.gif';
+import { Link } from 'react-router-dom'
 import { Label, Popup, Card, Image, Icon } from 'semantic-ui-react'
 
 export default class UserLabel extends Component {
-
   render() {
     return (
       <Popup
          trigger={
-             <a href='/profile'>
-               <Label color='yellow' image>
-                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3AHJGuP0nmqfIv4Z0lWketAX7Q1KF21RXSWo2CkIOq6DSep2Y' />
-                 CaptainJack
-                 <Label.Detail>User</Label.Detail>
-               </Label>
-             </a>
+           <Link to='/profile'>
+             <Label image>
+               <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3AHJGuP0nmqfIv4Z0lWketAX7Q1KF21RXSWo2CkIOq6DSep2Y' />
+               Jack
+               <Label.Detail>Captain</Label.Detail>
+             </Label>
+           </Link>
          }
          flowing
          hoverable>
