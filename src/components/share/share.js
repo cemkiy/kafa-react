@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './share.css';
-import { Icon, Step, Card, Form, Input, TextArea, Button } from 'semantic-ui-react'
+import { Icon, Step, Card, Form, Input, Button } from 'semantic-ui-react'
 
 export default class UploadTorrent extends Component {
   state = {}

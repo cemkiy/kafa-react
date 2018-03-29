@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './account-settings.css';
-import { Card, Form, Input, TextArea, Button, Message } from 'semantic-ui-react'
-import UserLabel from '../../components/user-label/user-label';
+import { Card, Form, Button, Message } from 'semantic-ui-react'
 
 export default class Filter extends Component {
   render() {

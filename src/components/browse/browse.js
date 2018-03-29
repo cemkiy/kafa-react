@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './browse.css';
 import satellite from '../../assets/img/satellite.gif';
-import { Icon, Table, Label, Button, Image, Pagination } from 'semantic-ui-react'
+import { Icon, Table, Button, Image, Pagination } from 'semantic-ui-react'
 import UserLabel from '../../components/user-label/user-label';
 import Filter from '../../components/filter/filter';
 

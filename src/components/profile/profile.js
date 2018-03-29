@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './profile.css';
-import satellite from '../../assets/img/satellite.gif';
 import { Image, Card, Icon, Grid, Tab, Header } from 'semantic-ui-react'
 import Browse from '../../components/browse/browse';
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './detail.css';
-import { Header, Message, Icon, Label, Card, Popup, Image, Grid, Button, List,
-  Comment } from 'semantic-ui-react'
+import { Header, Message, Icon, Card, Popup, Image, Grid, Button, List } from 'semantic-ui-react'
 import UserLabel from '../../components/user-label/user-label';
 import CommentSection from '../../components/comment-section/comment-section';
 

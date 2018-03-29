@@ -28,13 +28,15 @@ export default class Deck extends Component {
   }
 
   joinUsFormHandleChange(event, data) {
-    this.state.joinUsFormData[data.name] = event.target.value;
-    this.setState({joinUsFormData:this.state.joinUsFormData});
+    let mockJoinUsFormData = this.state.joinUsFormData;
+    mockJoinUsFormData[data.name] = event.target.value;
+    this.setState({joinUsFormData: mockJoinUsFormData});
   }
 
   signInFormHandleChange(event, data) {
-    this.state.signInFormData[data.name] = event.target.value;
-    this.setState({signInFormData:this.state.signInFormData});
+    let mockSignInFormData = this.state.signInFormData;
+    mockSignInFormData[data.name] = event.target.value;
+    this.setState({signInFormData: mockSignInFormData});
   }
 
   joinUsClick = () => {
