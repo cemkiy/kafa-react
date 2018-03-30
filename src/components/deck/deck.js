@@ -3,6 +3,7 @@ import './deck.css';
 import logo from '../../logo.png';
 import we_need_you from '../../assets/img/weneedyou.png';
 import { Icon, Grid, Image, Button, Form, Header, Message, List } from 'semantic-ui-react'
+import { CreateToken } from '../../api/token';
 
 export default class Deck extends Component {
   constructor(props) {
@@ -57,6 +58,7 @@ export default class Deck extends Component {
   signIn = (event) => {
     console.log(this.state.signInFormData);
     event.preventDefault();
+    CreateToken("asd", "asd");
     this.props.history.push("/browse");
   }
 

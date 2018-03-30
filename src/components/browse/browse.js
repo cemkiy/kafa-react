@@ -16,6 +16,14 @@ export default class Browse extends Component {
     this.props.history.push("/detail");
   }
 
+  componentDidMount() {
+    this.ListTorrent();
+  }
+
+  ListTorrent() {
+    console.log("asdasdasd");
+  }
+
   render() {
     return (
       <div>
