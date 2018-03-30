@@ -3,7 +3,7 @@ import './deck.css';
 import logo from '../../logo.png';
 import we_need_you from '../../assets/img/weneedyou.png';
 import { Icon, Grid, Image, Button, Form, Header, Message, List } from 'semantic-ui-react'
-import { CreateToken } from '../../api/token';
+import { CreateToken, CreateUser } from '../../api/token';
 
 export default class Deck extends Component {
   constructor(props) {
@@ -11,6 +11,12 @@ export default class Deck extends Component {
     this.state = {
       joinUsFormDisplay: "none",
       signInFormDisplay: "none",
+      formResultDisplay: "none",
+      formResultType: 'green',
+      formResultHeader: '',
+      formResultDescription: '',
+      joinUsFormButtonDisabled: true,
+      joinUsFormTermsAgree: false,
       joinUsFormData: {
         username:'',
         email:'',
@@ -29,6 +35,7 @@ export default class Deck extends Component {
   }
 
   joinUsFormHandleChange(event, data) {
+    //TODO: Checkbox terms
     let mockJoinUsFormData = this.state.joinUsFormData;
     mockJoinUsFormData[data.name] = event.target.value;
     this.setState({joinUsFormData: mockJoinUsFormData});
@@ -41,25 +48,54 @@ export default class Deck extends Component {
   }
 
   joinUsClick = () => {
-    this.setState({joinUsFormDisplay: "block"});
-    this.setState({signInFormDisplay: "none"});
+    this.setState({
+      joinUsFormDisplay: "block",
+      signInFormDisplay: "none",
+      formResultDisplay: "none"
+    });
   }
 
   signInClick = () => {
-    this.setState({signInFormDisplay: "block"});
-    this.setState({joinUsFormDisplay: "none"});
+    this.setState({
+      signInFormDisplay: "block",
+      joinUsFormDisplay: "none",
+      formResultDisplay: "none"
+    });
   }
 
   joinUs = (event) => {
-    console.log(this.state.joinUsFormData);
+    CreateUser(this.state.joinUsFormData).then(data => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'green',
+        formResultHeader: 'Register Successfull',
+        formResultDescription: 'Before login, go to your email and click the activation button.'
+      });
+    })
+    .catch(err => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'red',
+        formResultHeader: 'Register Failed',
+        formResultDescription: err.response.errors[0].message
+      });
+    })
     event.preventDefault();
   }
 
   signIn = (event) => {
-    console.log(this.state.signInFormData);
+    CreateToken(this.state.signInFormData).then(data => {
+      this.props.history.push("/browse");
+    })
+    .catch(err => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'red',
+        formResultHeader: 'Sign in Failed',
+        formResultDescription: err.response.errors[0].message
+      });
+    })
     event.preventDefault();
-    CreateToken("asd", "asd");
-    this.props.history.push("/browse");
   }
 
   render() {
@@ -109,10 +145,10 @@ export default class Deck extends Component {
                 </Form.Group>
                 <Message>
                     <div>The reason we do want your birthday, verify your age is 18 or bigger.</div>
-                    <Form.Input fluid name='birthday' label='birthday' value={this.state.joinUsFormData.birthday}  onChange={this.joinUsFormHandleChange} placeholder='dd/mm/YYYY exp:22/03/1993' />
+                    <Form.Input fluid name='birthday' label='birthday' value={this.state.joinUsFormData.birthday}  onChange={this.joinUsFormHandleChange} placeholder='YYYY-mm-dd exp:1993-03-22' />
                 </Message>
-                <Form.Checkbox label='I agree to the Terms and Conditions' />
-                <Form.Button>Register</Form.Button>
+                <Form.Checkbox checked={this.state.joinUsFormTermsAgree} onChange={this.joinUsFormHandleChange} label='I agree to the Terms and Conditions' />
+                <Form.Button disabled={this.state.joinUsFormButtonDisabled}>Register</Form.Button>
               </Form>
             </Grid.Column>
           </Grid.Row>
@@ -125,6 +161,14 @@ export default class Deck extends Component {
                 </Form.Group>
                 <Form.Button>Sign in</Form.Button>
               </Form>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row style={{display: this.state.formResultDisplay }}>
+            <Grid.Column width={16}>
+            <Message color={this.state.formResultType}>
+              <Message.Header>{ this.state.formResultHeader }</Message.Header>
+              <p>{ this.state.formResultDescription }</p>
+            </Message>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row className='description-table'>
