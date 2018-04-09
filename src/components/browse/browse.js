@@ -21,7 +21,7 @@ export default class Browse extends Component {
   }
 
   ListTorrent() {
-    console.log("asdasdasd");
+    console.log("list");
   }
 
   render() {

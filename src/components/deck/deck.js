@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './deck.css';
 import logo from '../../logo.png';
 import we_need_you from '../../assets/img/weneedyou.png';
-import { Icon, Grid, Image, Button, Form, Header, Message, List } from 'semantic-ui-react'
+import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox } from 'semantic-ui-react'
 import { CreateToken, CreateUser } from '../../api/token';
 
 export default class Deck extends Component {
@@ -15,8 +15,7 @@ export default class Deck extends Component {
       formResultType: 'green',
       formResultHeader: '',
       formResultDescription: '',
-      joinUsFormButtonDisabled: true,
-      joinUsFormTermsAgree: false,
+      joinUsFormTermsAgree: 0,
       joinUsFormData: {
         username:'',
         email:'',
@@ -85,6 +84,7 @@ export default class Deck extends Component {
 
   signIn = (event) => {
     CreateToken(this.state.signInFormData).then(data => {
+      localStorage.setItem('token', JSON.stringify(data.createToken));
       this.props.history.push("/browse");
     })
     .catch(err => {
@@ -136,19 +136,21 @@ export default class Deck extends Component {
             <Grid.Column width={16}>
               <Form onSubmit={this.joinUs}>
                 <Form.Group widths='equal'>
-                  <Form.Input fluid name="username" label='username' value={this.state.joinUsFormData.username} onChange={this.joinUsFormHandleChange} placeholder='captainjack' />
-                  <Form.Input fluid name='email' label='email' value={this.state.joinUsFormData.email} onChange={this.joinUsFormHandleChange} placeholder='jacksparrow@blackpearl.com' />
+                  <Form.Input fluid name="username" label='username' value={this.state.joinUsFormData.username} onChange={this.joinUsFormHandleChange} placeholder='captainjack' required />
+                  <Form.Input fluid name='email' label='email' value={this.state.joinUsFormData.email} onChange={this.joinUsFormHandleChange} placeholder='jacksparrow@blackpearl.com' required />
                 </Form.Group>
                 <Form.Group widths='equal'>
-                  <Form.Input fluid name='password' label='password' value={this.state.joinUsFormData.password} onChange={this.joinUsFormHandleChange} placeholder='min 8, have a number' />
-                  <Form.Input fluid label='password again' placeholder='********' />
+                  <Form.Input fluid type='password' name='password' label='password' value={this.state.joinUsFormData.password} onChange={this.joinUsFormHandleChange} placeholder='min 8, have a number' required />
+                  <Form.Input fluid type='password' label='password again' placeholder='********' required />
                 </Form.Group>
                 <Message>
                     <div>The reason we do want your birthday, verify your age is 18 or bigger.</div>
-                    <Form.Input fluid name='birthday' label='birthday' value={this.state.joinUsFormData.birthday}  onChange={this.joinUsFormHandleChange} placeholder='YYYY-mm-dd exp:1993-03-22' />
+                    <Form.Input fluid name='birthday' label='birthday' value={this.state.joinUsFormData.birthday}  onChange={this.joinUsFormHandleChange} placeholder='YYYY-mm-dd exp:1993-03-22' required />
                 </Message>
-                <Form.Checkbox checked={this.state.joinUsFormTermsAgree} onChange={this.joinUsFormHandleChange} label='I agree to the Terms and Conditions' />
-                <Form.Button disabled={this.state.joinUsFormButtonDisabled}>Register</Form.Button>
+                <Form.Field required>
+                  <Checkbox value={this.state.joinUsFormTermsAgree} onChange={this.joinUsFormHandleChange} label='I agree to the Terms and Conditions' />
+                </Form.Field>
+                <Form.Button>Register</Form.Button>
               </Form>
             </Grid.Column>
           </Grid.Row>
@@ -156,8 +158,8 @@ export default class Deck extends Component {
             <Grid.Column width={16}>
               <Form onSubmit={this.signIn}>
                 <Form.Group widths='equal'>
-                  <Form.Input fluid name='usernameOrEmail' label='username or email' value={this.state.signInFormData.usernameOrEmail} onChange={this.signInFormHandleChange} placeholder='captainjack or jacksparrow@blackpearl.com' />
-                  <Form.Input fluid name='password' label='password' value={this.state.signInFormData.password} onChange={this.signInFormHandleChange} placeholder='********' />
+                  <Form.Input fluid name='usernameOrEmail' label='username or email' value={this.state.signInFormData.usernameOrEmail} onChange={this.signInFormHandleChange} placeholder='captainjack or jacksparrow@blackpearl.com' required />
+                  <Form.Input fluid type='password' name='password' label='password' value={this.state.signInFormData.password} onChange={this.signInFormHandleChange} placeholder='********' required />
                 </Form.Group>
                 <Form.Button>Sign in</Form.Button>
               </Form>
