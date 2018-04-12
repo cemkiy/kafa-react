@@ -1,10 +1,4 @@
-import { GraphQLClient  } from 'graphql-request'
-
-const client = new GraphQLClient('http://localhost:3000/graphql/token', {
-  headers: {
-
-  },
-})
+import { TokenClient  } from '../middleware/clients.js';
 
 const createTokenMutation = `mutation createToken($username: String, $email: String, $password: String!){
   createToken(input: {username: $username, email: $email, password: $password}) {
@@ -38,12 +32,12 @@ var CreateToken = function (variables) {
     variables['email'] = variables['usernameOrEmail'];
   }
   delete variables.usernameOrEmail;
-  return client.request(createTokenMutation, variables);
+  return TokenClient.request(createTokenMutation, variables);
 }
 
 var CreateUser = function (variables) {
   variables['birthday'] = new Date(variables['birthday']);
-  return client.request(createUserMutation, variables);
+  return TokenClient.request(createUserMutation, variables);
 }
 
 export { CreateToken, CreateUser };

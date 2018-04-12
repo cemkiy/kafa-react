@@ -4,6 +4,8 @@ import logo from '../../logo.png';
 import we_need_you from '../../assets/img/weneedyou.png';
 import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox } from 'semantic-ui-react'
 import { CreateToken, CreateUser } from '../../api/token';
+import { RoleByUserId } from '../../api/role';
+import { ErrorAnalysis } from '../../middleware/error-handler';
 
 export default class Deck extends Component {
   constructor(props) {
@@ -72,6 +74,7 @@ export default class Deck extends Component {
       });
     })
     .catch(err => {
+      ErrorAnalysis(err, this.props.history);
       this.setState({
         formResultDisplay: "block",
         formResultType: 'red',
@@ -83,9 +86,22 @@ export default class Deck extends Component {
   }
 
   signIn = (event) => {
-    CreateToken(this.state.signInFormData).then(data => {
-      localStorage.setItem('token', JSON.stringify(data.createToken));
-      this.props.history.push("/browse");
+    CreateToken(this.state.signInFormData).then(tokenData => {
+      localStorage.setItem('token', tokenData.createToken.token);
+      localStorage.setItem('user', JSON.stringify(tokenData.createToken.user));
+      RoleByUserId({user_id: tokenData.createToken.user.id}).then(roleData => {
+        localStorage.setItem('role', roleData.roleByUserId.type);
+        this.props.history.push("/browse");
+      })
+      .catch(err => {
+        ErrorAnalysis(err, this.props.history);
+        this.setState({
+          formResultDisplay: "block",
+          formResultType: 'red',
+          formResultHeader: 'Sign in Failed',
+          formResultDescription: err.response.errors[0].message
+        });
+      });
     })
     .catch(err => {
       this.setState({
