@@ -94,12 +94,13 @@ export default class Deck extends Component {
         this.props.history.push("/browse");
       })
       .catch(err => {
+        console.log(err);
         ErrorAnalysis(err, this.props.history);
         this.setState({
           formResultDisplay: "block",
           formResultType: 'red',
           formResultHeader: 'Sign in Failed',
-          formResultDescription: err.response.errors[0].message
+          formResultDescription: err.response.error
         });
       });
     })
@@ -108,7 +109,7 @@ export default class Deck extends Component {
         formResultDisplay: "block",
         formResultType: 'red',
         formResultHeader: 'Sign in Failed',
-        formResultDescription: err.response.errors[0].message
+        formResultDescription: err.response.error
       });
     })
     event.preventDefault();

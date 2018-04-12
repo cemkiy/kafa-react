@@ -30,6 +30,8 @@ export class Sidebar extends Component {
     return (
         <Menu className='sidebar-style' pointing secondary vertical>
           <Menu.Item className='menu-items'><Image src={logo} size='small' className ='sidebar-logo' circular /></Menu.Item>
+          {(this.state.role === 'captain' || this.state.role === 'privateer') && (
+            <Link to='/share'><Menu.Item name='share' active={activeItem === 'Share Torrents'} className='menu-items' /></Link>
           )}
           <Menu.Item name='browse' active={activeItem === 'Browse Torrents'} onClick={this.getTorrents} className='menu-items' />
           <Menu.Item name='recent' active={activeItem === 'Recent Torrents'} onClick={this.getTorrents} className='menu-items' />
