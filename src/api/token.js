@@ -1,6 +1,7 @@
 import { TokenClient  } from '../middleware/clients.js';
 
-const createTokenMutation = `mutation createToken($username: String, $email: String, $password: String!){
+const createTokenMutation = `mutation createToken($username: String,
+  $email: String, $password: String!){
   createToken(input: {username: $username, email: $email, password: $password}) {
       token
       user{
@@ -12,7 +13,8 @@ const createTokenMutation = `mutation createToken($username: String, $email: Str
   }
 `
 
-const createUserMutation = `mutation createUser($username: String!, $email: String!, $password: String!, $birthday: String!){
+const createUserMutation = `mutation createUser($username: String!,
+  $email: String!, $password: String!, $birthday: String!){
   createUser(input: {
     username: $username,
     email: $email,
@@ -21,6 +23,9 @@ const createUserMutation = `mutation createUser($username: String!, $email: Stri
   }) {
     id
     username
+    email
+    birthday
+    created_at
   }
 }
 `
