@@ -4,6 +4,8 @@ import { GraphQLClient  } from 'graphql-request'
 var api_url = 'https://api.kafa.io/graphql/';
 if (window.location.hostname === 'localhost') {
   api_url = 'http://localhost:3000/graphql/';
+} else if (window.location.hostname === 'herokuapp') {
+  api_url = 'https://kafa-react.herokuapp.com/graphql/';
 }
 
 
