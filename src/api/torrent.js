@@ -58,12 +58,13 @@ const torrentByIdQuery = `query torrentById($id: String!) {
   }
 }`
 
-const createTorrentMutation = `mutation updateTorrent($name: String, $user_id: String,
+const createTorrentMutation = `mutation createTorrent($name: String, $user_id: String,
   $info_link: String, $info_hash: String, $tag: String, $categories: [String],
   $audios: [String], $subtitles: [String]){
-  updateTorrent(name: $name, user_id: $user_id, info_link: $info_link,
+  createTorrent(input: {
+    name: $name, user_id: $user_id, info_link: $info_link,
     info_hash: $info_hash, tag: $tag, categories: $categories, audios: $audios,
-    subtitles: $subtitles) {
+    subtitles: $subtitles}) {
     id
     name
     user{
@@ -86,12 +87,13 @@ const createTorrentMutation = `mutation updateTorrent($name: String, $user_id: S
 }
 `
 
-const updateTorrentMutation = `mutation updateTorrent($name: String, $user_id: String,
+const updateTorrentMutation = `mutation updateTorrent($id: String!, $name: String, $user_id: String,
   $info_link: String, $info_hash: String, $tag: String, $categories: [String],
   $audios: [String], $subtitles: [String]){
-  updateTorrent(name: $name, user_id: $user_id, info_link: $info_link,
+  updateTorrent(id: $id, input: {
+    name: $name, user_id: $user_id, info_link: $info_link,
     info_hash: $info_hash, tag: $tag, categories: $categories, audios: $audios,
-    subtitles: $subtitles) {
+    subtitles: $subtitles}) {
     id
     name
     user{
