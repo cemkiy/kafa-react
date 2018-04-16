@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import './deck.css';
 import logo from '../../logo.png';
 import we_need_you from '../../assets/img/weneedyou.png';
-import { Icon, Grid, Image, Button, Form, Header, Message, List } from 'semantic-ui-react'
+import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox } from 'semantic-ui-react'
+import { CreateToken, CreateUser } from '../../api/token';
+import { RoleByUserId } from '../../api/role';
+import { ErrorAnalysis } from '../../middleware/error-handler';
 
 export default class Deck extends Component {
   constructor(props) {
@@ -10,6 +13,11 @@ export default class Deck extends Component {
     this.state = {
       joinUsFormDisplay: "none",
       signInFormDisplay: "none",
+      formResultDisplay: "none",
+      formResultType: 'green',
+      formResultHeader: '',
+      formResultDescription: '',
+      joinUsFormTermsAgree: 0,
       joinUsFormData: {
         username:'',
         email:'',
@@ -28,34 +36,83 @@ export default class Deck extends Component {
   }
 
   joinUsFormHandleChange(event, data) {
-    this.state.joinUsFormData[data.name] = event.target.value;
-    this.setState({joinUsFormData:this.state.joinUsFormData});
+    //TODO: Checkbox terms
+    let mockJoinUsFormData = this.state.joinUsFormData;
+    mockJoinUsFormData[data.name] = event.target.value;
+    this.setState({joinUsFormData: mockJoinUsFormData});
   }
 
   signInFormHandleChange(event, data) {
-    this.state.signInFormData[data.name] = event.target.value;
-    this.setState({signInFormData:this.state.signInFormData});
+    let mockSignInFormData = this.state.signInFormData;
+    mockSignInFormData[data.name] = event.target.value;
+    this.setState({signInFormData: mockSignInFormData});
   }
 
   joinUsClick = () => {
-    this.setState({joinUsFormDisplay: "block"});
-    this.setState({signInFormDisplay: "none"});
+    this.setState({
+      joinUsFormDisplay: "block",
+      signInFormDisplay: "none",
+      formResultDisplay: "none"
+    });
   }
 
   signInClick = () => {
-    this.setState({signInFormDisplay: "block"});
-    this.setState({joinUsFormDisplay: "none"});
+    this.setState({
+      signInFormDisplay: "block",
+      joinUsFormDisplay: "none",
+      formResultDisplay: "none"
+    });
   }
 
   joinUs = (event) => {
-    console.log(this.state.joinUsFormData);
+    CreateUser(this.state.joinUsFormData).then(data => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'green',
+        formResultHeader: 'Register Successfull',
+        formResultDescription: 'Before login, go to your email and click the activation button.'
+      });
+    })
+    .catch(err => {
+      ErrorAnalysis(err, this.props.history);
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'red',
+        formResultHeader: 'Register Failed',
+        formResultDescription: err.response.errors[0].message
+      });
+    })
     event.preventDefault();
   }
 
   signIn = (event) => {
-    console.log(this.state.signInFormData);
+    CreateToken(this.state.signInFormData).then(tokenData => {
+      localStorage.setItem('token', tokenData.createToken.token);
+      localStorage.setItem('user', JSON.stringify(tokenData.createToken.user));
+      RoleByUserId({user_id: tokenData.createToken.user.id}).then(roleData => {
+        localStorage.setItem('role', roleData.roleByUserId.type);
+        this.props.history.push("/browse");
+      })
+      .catch(err => {
+        console.log(err);
+        ErrorAnalysis(err, this.props.history);
+        this.setState({
+          formResultDisplay: "block",
+          formResultType: 'red',
+          formResultHeader: 'Sign in Failed',
+          formResultDescription: err.response.error
+        });
+      });
+    })
+    .catch(err => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'red',
+        formResultHeader: 'Sign in Failed',
+        formResultDescription: err.response.error
+      });
+    })
     event.preventDefault();
-    this.props.history.push("/browse");
   }
 
   render() {
@@ -96,18 +153,20 @@ export default class Deck extends Component {
             <Grid.Column width={16}>
               <Form onSubmit={this.joinUs}>
                 <Form.Group widths='equal'>
-                  <Form.Input fluid name="username" label='username' value={this.state.joinUsFormData.username} onChange={this.joinUsFormHandleChange} placeholder='captainjack' />
-                  <Form.Input fluid name='email' label='email' value={this.state.joinUsFormData.email} onChange={this.joinUsFormHandleChange} placeholder='jacksparrow@blackpearl.com' />
+                  <Form.Input fluid name="username" label='username' value={this.state.joinUsFormData.username} onChange={this.joinUsFormHandleChange} placeholder='captainjack' required />
+                  <Form.Input fluid name='email' label='email' value={this.state.joinUsFormData.email} onChange={this.joinUsFormHandleChange} placeholder='jacksparrow@blackpearl.com' required />
                 </Form.Group>
                 <Form.Group widths='equal'>
-                  <Form.Input fluid name='password' label='password' value={this.state.joinUsFormData.password} onChange={this.joinUsFormHandleChange} placeholder='min 8, have a number' />
-                  <Form.Input fluid label='password again' placeholder='********' />
+                  <Form.Input fluid type='password' name='password' label='password' value={this.state.joinUsFormData.password} onChange={this.joinUsFormHandleChange} placeholder='min 8, have a number' required />
+                  <Form.Input fluid type='password' label='password again' placeholder='********' required />
                 </Form.Group>
                 <Message>
                     <div>The reason we do want your birthday, verify your age is 18 or bigger.</div>
-                    <Form.Input fluid name='birthday' label='birthday' value={this.state.joinUsFormData.birthday}  onChange={this.joinUsFormHandleChange} placeholder='dd/mm/YYYY exp:22/03/1993' />
+                    <Form.Input fluid name='birthday' label='birthday' value={this.state.joinUsFormData.birthday}  onChange={this.joinUsFormHandleChange} placeholder='YYYY-mm-dd exp:1993-03-22' required />
                 </Message>
-                <Form.Checkbox label='I agree to the Terms and Conditions' />
+                <Form.Field required>
+                  <Checkbox value={this.state.joinUsFormTermsAgree} onChange={this.joinUsFormHandleChange} label='I agree to the Terms and Conditions' />
+                </Form.Field>
                 <Form.Button>Register</Form.Button>
               </Form>
             </Grid.Column>
@@ -116,11 +175,19 @@ export default class Deck extends Component {
             <Grid.Column width={16}>
               <Form onSubmit={this.signIn}>
                 <Form.Group widths='equal'>
-                  <Form.Input fluid name='usernameOrEmail' label='username or email' value={this.state.signInFormData.usernameOrEmail} onChange={this.signInFormHandleChange} placeholder='captainjack or jacksparrow@blackpearl.com' />
-                  <Form.Input fluid name='password' label='password' value={this.state.signInFormData.password} onChange={this.signInFormHandleChange} placeholder='********' />
+                  <Form.Input fluid name='usernameOrEmail' label='username or email' value={this.state.signInFormData.usernameOrEmail} onChange={this.signInFormHandleChange} placeholder='captainjack or jacksparrow@blackpearl.com' required />
+                  <Form.Input fluid type='password' name='password' label='password' value={this.state.signInFormData.password} onChange={this.signInFormHandleChange} placeholder='********' required />
                 </Form.Group>
                 <Form.Button>Sign in</Form.Button>
               </Form>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row style={{display: this.state.formResultDisplay }}>
+            <Grid.Column width={16}>
+            <Message color={this.state.formResultType}>
+              <Message.Header>{ this.state.formResultHeader }</Message.Header>
+              <p>{ this.state.formResultDescription }</p>
+            </Message>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row className='description-table'>

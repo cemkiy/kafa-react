@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './filter.css';
-import satellite from '../../assets/img/satellite.gif';
-import { Icon, Label } from 'semantic-ui-react'
-import UserLabel from '../../components/user-label/user-label';
+import { Icon } from 'semantic-ui-react'
 
 export default class Filter extends Component {
   render() {

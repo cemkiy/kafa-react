@@ -1,27 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Browse from './components/browse/browse';
-import CommentSection from './components/comment-section/comment-section';
-import Detail from './components/detail/detail';
-import Filter from './components/filter/filter';
-import Navbar from './components/navbar/navbar';
-import Sidebar from './components/sidebar/sidebar';
-import UserLabel from './components/user-label/user-label';
-import AccountSettings from './components/account-settings/account-settings';
-import Deck from './components/deck/deck';
-import Share from './components/share/share';
+import { BrowserRouter, Route } from 'react-router-dom'
+import App from './app';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Browse />, div);
-  ReactDOM.render(<CommentSection />, div);
-  ReactDOM.render(<Detail />, div);
-  ReactDOM.render(<Filter />, div);
-  ReactDOM.render(<Navbar />, div);
-  ReactDOM.render(<Sidebar />, div);
-  ReactDOM.render(<UserLabel />, div);
-  ReactDOM.render(<AccountSettings />, div);
-  ReactDOM.render(<Deck />, div);
-  ReactDOM.render(<Share />, div);
+  ReactDOM.render((
+    <BrowserRouter>
+      <Route path='/' component={App} />
+    </BrowserRouter>
+  ), div)
+
   ReactDOM.unmountComponentAtNode(div);
 });
