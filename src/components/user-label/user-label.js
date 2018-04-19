@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Label, Popup, Card, Image, Icon } from 'semantic-ui-react'
-import { RoleByUserId } from '../../api/role';
 import gravatar from 'gravatar'
 
 export default class UserLabel extends Component {
