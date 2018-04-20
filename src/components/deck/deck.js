@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './deck.css';
-import logo from '../../logo.png';
+import logo from '../../logo.gif';
 import we_need_you from '../../assets/img/weneedyou.png';
 import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox } from 'semantic-ui-react'
 import { CreateToken, CreateUser } from '../../api/token';
