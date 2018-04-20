@@ -11,6 +11,7 @@ const usersQuery = `query users($username: String, $email: String,
       id
       username
       email
+      about
       birthday
       created_at
   }
@@ -21,6 +22,7 @@ const userByIdQuery = `query userById($id: String!) {
     id
     username
     email
+    about
     birthday
     created_at
   }
@@ -31,6 +33,7 @@ const userByUsernameQuery = `query userByUsername($username: String!) {
     id
     username
     email
+    about
     birthday
     created_at
   }
@@ -41,6 +44,7 @@ const userByEmailQuery = `query userByEmail($email: String!) {
     id
     username
     email
+    about
     birthday
     created_at
   }
@@ -57,6 +61,7 @@ const updateUserMutation = `mutation updateUser($id: String!, $username: String,
     id
     username
     email
+    about
     birthday
     created_at
   }
@@ -96,4 +101,4 @@ var DeleteUser = function (variables) {
   return UsersClient.request(deleteUserMutation, variables);
 }
 
-export { UsersUserById, UserByUsername, UserByEmail, UpdateUser, DeleteUser };
+export { UserById, UserByUsername, UserByEmail, UpdateUser, DeleteUser };

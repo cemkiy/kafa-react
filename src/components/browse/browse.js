@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import './browse.css';
 import satellite from '../../assets/img/satellite.gif';
 import { Icon, Table, Button, Image, Pagination } from 'semantic-ui-react'
-import UserLabel from '../../components/user-label/user-label';
 import Filter from '../../components/filter/filter';
+import TorrentSummary from '../../components/torrent-summary/torrent-summary.js';
 
 export default class Browse extends Component {
   constructor(props) {
@@ -46,13 +45,19 @@ export default class Browse extends Component {
                <Table.Body>
                   <Table.Row>
                      <Table.Cell>
-                         <UserLabel />
-                         <Link to='/detail' className='link'> Battlefield x</Link>
+                      <TorrentSummary/>
                      </Table.Cell>
                      <Table.Cell>14 GB</Table.Cell>
                      <Table.Cell><Icon name='long arrow down' />78/800<Icon name='long arrow up' /></Table.Cell>
                      <Table.Cell>Game/Action</Table.Cell>
-                     <Table.Cell>564</Table.Cell>
+                     <Table.Cell>
+                       <Button
+                         content='Kafa'
+                         icon='hand spock'
+                         label={{ as: 'a', basic: true, pointing: 'right', content: '548' }}
+                         labelPosition='left'
+                       />
+                     </Table.Cell>
                      <Table.Cell>
                       <Button.Group>
                         <Button><Icon name='save' /></Button>
