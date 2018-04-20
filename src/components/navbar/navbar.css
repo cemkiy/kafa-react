@@ -19,3 +19,11 @@
   background-color: #eef3f9!important;
   color: black!important;
 }
+
+.avatar {
+  margin-right: .25em!important;
+  display: inline-block!important;
+  width: 2em!important;
+  height: 2em!important;
+  border-radius: 500rem!important;
+}

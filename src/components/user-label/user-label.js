@@ -1,23 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Label, Popup, Card, Image, Icon } from 'semantic-ui-react'
-import gravatar from 'gravatar'
+import Gravatar from 'react-gravatar'
 
 export default class UserLabel extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: JSON.parse(localStorage.getItem('user')),
-      gravatar_image: '',
       role: localStorage.getItem('role')
     }
-  }
-
-  componentDidMount() {
-    this.setState({gravatar_image: gravatar.url(
-      this.state.user.email,
-      {protocol: 'https', s: '100'}
-    )});
   }
 
   render() {
@@ -26,8 +18,8 @@ export default class UserLabel extends Component {
          trigger={
            <Link to='/profile'>
              <Label image>
-               <img alt="User Profile" src={this.state.gravatar_image} />
-               Jack
+               <Gravatar email={this.state.user.email} />
+               {this.state.user.username}
                <Label.Detail>{this.state.role}</Label.Detail>
              </Label>
            </Link>
