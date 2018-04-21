@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import './deck.css';
 import logo from '../../logo.gif';
 import we_need_you from '../../assets/img/weneedyou.png';
-import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox } from 'semantic-ui-react'
+import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox, Label, Item } from 'semantic-ui-react'
 import { CreateToken, CreateUser } from '../../api/token';
 import { RoleByUserId } from '../../api/role';
 import { ErrorAnalysis } from '../../middleware/error-handler';
+import Recaptcha from 'react-recaptcha';
+
 
 export default class Deck extends Component {
   constructor(props) {
@@ -17,7 +19,8 @@ export default class Deck extends Component {
       formResultType: 'green',
       formResultHeader: '',
       formResultDescription: '',
-      joinUsFormTermsAgree: 0,
+      joinUsFormTermsAgree: false,
+      joinUsFormCaptcha: false,
       joinUsFormData: {
         username:'',
         email:'',
@@ -35,8 +38,16 @@ export default class Deck extends Component {
     this.signIn = this.signIn.bind(this);
   }
 
+  termsAgreeChange(event, data){
+    this.setState({joinUsFormTermsAgree: data.checked});
+  }
+
+  // verify user callback function
+  verifyCallback(response) {
+    this.setState({joinUsFormCaptcha: true});
+  };
+
   joinUsFormHandleChange(event, data) {
-    //TODO: Checkbox terms
     let mockJoinUsFormData = this.state.joinUsFormData;
     mockJoinUsFormData[data.name] = event.target.value;
     this.setState({joinUsFormData: mockJoinUsFormData});
@@ -94,7 +105,6 @@ export default class Deck extends Component {
         this.props.history.push("/browse");
       })
       .catch(err => {
-        console.log(err);
         ErrorAnalysis(err, this.props.history);
         this.setState({
           formResultDisplay: "block",
@@ -165,9 +175,15 @@ export default class Deck extends Component {
                     <Form.Input fluid name='birthday' label='birthday' value={this.state.joinUsFormData.birthday}  onChange={this.joinUsFormHandleChange} placeholder='YYYY-mm-dd exp:1993-03-22' required />
                 </Message>
                 <Form.Field required>
-                  <Checkbox value={this.state.joinUsFormTermsAgree} onChange={this.joinUsFormHandleChange} label='I agree to the Terms and Conditions' />
+                  <Checkbox onChange={this.termsAgreeChange.bind(this)} label='I agree to the Terms and Conditions' />
                 </Form.Field>
-                <Form.Button>Register</Form.Button>
+                <Form.Field>
+                  <Recaptcha
+                    sitekey="6LcRq1QUAAAAAGsVoN2J52MW7C9dgkmhC1IY-Dxx"
+                    verifyCallback={this.verifyCallback.bind(this)}
+                  />
+                </Form.Field>
+                <Form.Button disabled={!this.state.joinUsFormTermsAgree || !this.state.joinUsFormCaptcha}>Register</Form.Button>
               </Form>
             </Grid.Column>
           </Grid.Row>
@@ -191,48 +207,60 @@ export default class Deck extends Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row className='description-table'>
-            <Grid.Column width={2}>
-              <Icon.Group size='big'>
-                <Icon name='file code outline' />
-                <Icon corner name='dont' />
-              </Icon.Group>
+            <Grid.Column width={8}>
+            <Item.Group>
+              <Item>
+                <Item.Content verticalAlign='middle'>
+                  <Item.Header>
+                    <Icon.Group>
+                      <Icon name='file code outline' />
+                      <Icon corner name='dont' />
+                    </Icon.Group>
+                    You do not need any program
+                  </Item.Header>
+                  <Item.Description>
+                    kafa.io is a bittorrent client.
+                    You can download/upload operations on this site.[coming soon]
+                  </Item.Description>
+                </Item.Content>
+              </Item>
+              <Item>
+                <Item.Content verticalAlign='middle'>
+                  <Item.Header>
+                    <Icon.Group>
+                      <Icon name='puzzle' />
+                      <Icon corner name='puzzle' />
+                    </Icon.Group>
+                    Modern Design
+                  </Item.Header>
+                  <Item.Description>
+                    You hate stupid adsense and complex design like puzzle?
+                  </Item.Description>
+                </Item.Content>
+              </Item>
+            </Item.Group>
             </Grid.Column>
-            <Grid.Column width={6} className='description-table-element'>
-              <div>
-                <Header as='h3'>You do not need any program</Header>
-                kafa.io is a bittorrent client.
-                You can download/upload operations on this site.
-              </div>
-            </Grid.Column>
-            <Grid.Column width={2}>
-              <Icon.Group size='big'>
-                <Icon name='puzzle' />
-                <Icon corner name='puzzle' />
-              </Icon.Group>
-            </Grid.Column>
-            <Grid.Column width={6} className='description-table-element'>
-              <div>
-                <Header as='h3'>Usable Design</Header>
-                You hate stupid adsense and complex design like puzzle?
-              </div>
-            </Grid.Column>
-            <Grid.Column width={2}>
-              <Icon name='plug' size='big'/>
-            </Grid.Column>
-            <Grid.Column width={6} className='description-table-element'>
-              <div>
-                <Header as='h3'>Take it easy</Header>
-                Populer applications will integrated our system.
-              </div>
-            </Grid.Column>
-            <Grid.Column width={2}>
-              <Icon name='code' size='big'/>
-            </Grid.Column>
-            <Grid.Column width={6} className='description-table-element'>
-              <div>
-                <Header as='h3'>Your turn</Header>
-                We have public api with running graphql. Use our api and build amazing things...
-              </div>
+            <Grid.Column width={8}>
+            <Item.Group>
+              <Item>
+                <Item.Content verticalAlign='middle'>
+                  <Item.Header><Icon name='code'/>Your turn</Item.Header>
+                  <Item.Description>
+                    We have public api with running graphql. Use our api and build amazing things...
+                  </Item.Description>
+                </Item.Content>
+              </Item>
+              <Item>
+                <Item.Content verticalAlign='middle'>
+                  <Item.Header>
+                    <Icon name='plug'/>Take it easy
+                  </Item.Header>
+                  <Item.Description>
+                    Populer applications will integrated our system.[coming soon]
+                  </Item.Description>
+                </Item.Content>
+              </Item>
+            </Item.Group>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
@@ -245,32 +273,51 @@ export default class Deck extends Component {
                 Kafa.io is started hobby project.
                 Our goal is to set up a platform to share files freely.
                 But we have some expenses.
-                We have to pay bills sended from <a href='https://digitalocean.com'>Digitalocean</a> and <a href='https://namecheap.com'>NameCheap</a>.
-                if you join us, you will be a great support.
+                We have to pay bills sended from&nbsp;
+                <a href='https://digitalocean.com' className='link'>
+                <Icon className="fab fa-digital-ocean"/>Digitalocean</a>&nbsp;and&nbsp;
+                <a href='https://namecheap.com' className='link'>NameCheap</a>.&nbsp;
+                If you join us, you will be a great support.
                 But we ask you to donate if there is a lot of money ;) <br />
                 <List>
                   <List.Item>
-                    <List.Icon name='bitcoin' color='yellow' />
-                    <List.Content>a3s2das32d1as32d1a3s2da3ds21</List.Content>
+                    <List.Content>
+                      <Label color='yellow'>
+                        <Icon className="fab fa-bitcoin"/>
+                        &nbsp;bitcoin
+                        <Label.Detail>32mLAFhCJ8m75jsGtdwWK6B4ScKtKn6Avb</Label.Detail>
+                      </Label>
+                    </List.Content>
                   </List.Item>
                   <List.Item>
-                    <List.Icon name='bitcoin' color='blue' />
-                    <List.Content>a3s2das32d1as32d1a3s2da3ds21</List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon name='bitcoin' color='blue' />
-                    <List.Content>a3s2das32d1as32d1a3s2da3ds21</List.Content>
+                    <List.Content>
+                      <Label color='grey'>
+                        <Icon className="fab fa-ethereum"/>
+                        &nbsp;ethereum
+                        <Label.Detail>0x8172Dd888EcBC9eBAF7dB95dB4e4b1Dc601E4B81</Label.Detail>
+                      </Label>
+                    </List.Content>
                   </List.Item>
                 </List><br />
                 <Header as='h1' size='huge'>Contribute Our Repos on Github</Header>
                 <List>
                   <List.Item>
-                    <List.Icon name='github' />
-                    <List.Content><a href='https://github.com/cemkiy/kafa-react'>kafa-react front-end repo</a></List.Content>
+                    <List.Content>
+                      <Label color='balck' as='a' href='https://github.com/cemkiy/kafa-react'>
+                        <Icon name="github"/>
+                        &nbsp;front-end
+                        <Label.Detail>github.com/cemkiy/kafa-react</Label.Detail>
+                      </Label>
+                    </List.Content>
                   </List.Item>
                   <List.Item>
-                    <List.Icon name='github' />
-                    <List.Content><a href='https://github.com/cemkiy/kafa-node'>kafa-node is back-end repo</a></List.Content>
+                  <List.Content>
+                    <Label color='balck' as='a' href='https://github.com/cemkiy/kafa-node'>
+                      <Icon name="github"/>
+                      &nbsp;back-end
+                      <Label.Detail>github.com/cemkiy/kafa-node</Label.Detail>
+                    </Label>
+                  </List.Content>
                   </List.Item>
                 </List>
               </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './navbar.css';
-import { Menu, Label, Image, Dropdown } from 'semantic-ui-react'
+import { Menu, Label, Dropdown } from 'semantic-ui-react'
 import Gravatar from 'react-gravatar'
 
 export default class Navbar extends Component {
