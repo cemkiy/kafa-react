@@ -4,7 +4,6 @@ import logo from '../../logo.gif';
 import we_need_you from '../../assets/img/weneedyou.png';
 import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox, Label, Item } from 'semantic-ui-react'
 import { CreateToken, CreateUser } from '../../api/token';
-import { RoleByUserId } from '../../api/role';
 import { ErrorAnalysis } from '../../middleware/error-handler';
 import Recaptcha from 'react-recaptcha';
 
@@ -28,8 +27,8 @@ export default class Deck extends Component {
         birthday: ''
       },
       signInFormData: {
-        usernameOrEmail:'',
-        password:''
+        usernameOrEmail: '',
+        password: ''
       }
     };
     this.joinUsFormHandleChange = this.joinUsFormHandleChange.bind(this);
@@ -102,19 +101,8 @@ export default class Deck extends Component {
     CreateToken(this.state.signInFormData).then(tokenData => {
       localStorage.setItem('token', tokenData.createToken.token);
       localStorage.setItem('user', JSON.stringify(tokenData.createToken.user));
-      RoleByUserId({user_id: tokenData.createToken.user.id}).then(roleData => {
-        localStorage.setItem('role', roleData.roleByUserId.type);
-        this.props.history.push("/browse");
-      })
-      .catch(err => {
-        ErrorAnalysis(err, this.props.history);
-        this.setState({
-          formResultDisplay: "block",
-          formResultType: 'red',
-          formResultHeader: 'Sign in Failed',
-          formResultDescription: err.response.error
-        });
-      });
+      localStorage.setItem('role', tokenData.createToken.user.role.type);
+      this.props.history.push("/browse");
     })
     .catch(err => {
       this.setState({

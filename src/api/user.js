@@ -23,6 +23,9 @@ const userByIdQuery = `query userById($id: String!) {
     username
     email
     about
+    role{
+      type
+    }
     birthday
     created_at
   }
@@ -34,6 +37,9 @@ const userByUsernameQuery = `query userByUsername($username: String!) {
     username
     email
     about
+    role{
+      type
+    }
     birthday
     created_at
   }
@@ -45,6 +51,9 @@ const userByEmailQuery = `query userByEmail($email: String!) {
     username
     email
     about
+    role{
+      type
+    }
     birthday
     created_at
   }
