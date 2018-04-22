@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import './user-label.css';
 import { Link } from 'react-router-dom'
-import { Label, Popup, Card, Image, Icon } from 'semantic-ui-react'
+import { Label, Popup, Card, Icon } from 'semantic-ui-react'
 import Gravatar from 'react-gravatar'
 
 export default class UserLabel extends Component {
@@ -15,6 +16,7 @@ export default class UserLabel extends Component {
   render() {
     return (
       <Popup
+         className='popup-wide'
          trigger={
            <Link to='/profile'>
              <Label image>
@@ -27,8 +29,9 @@ export default class UserLabel extends Component {
          flowing
          hoverable>
          <Card>
+            <Gravatar email={this.state.user.email} size={290}/>
            <Card.Content>
-             <Image floated='right' size='mini' src={this.state.gravatar_image} />
+
              <Card.Header>
                {this.state.user.username}
              </Card.Header>

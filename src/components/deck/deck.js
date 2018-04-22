@@ -36,6 +36,8 @@ export default class Deck extends Component {
     this.signInFormHandleChange = this.signInFormHandleChange.bind(this);
     this.joinUs = this.joinUs.bind(this);
     this.signIn = this.signIn.bind(this);
+    this.termsAgreeChange = this.termsAgreeChange.bind(this);
+    this.verifyCallback = this.verifyCallback.bind(this);
   }
 
   termsAgreeChange(event, data){
@@ -175,12 +177,12 @@ export default class Deck extends Component {
                     <Form.Input fluid name='birthday' label='birthday' value={this.state.joinUsFormData.birthday}  onChange={this.joinUsFormHandleChange} placeholder='YYYY-mm-dd exp:1993-03-22' required />
                 </Message>
                 <Form.Field required>
-                  <Checkbox onChange={this.termsAgreeChange.bind(this)} label='I agree to the Terms and Conditions' />
+                  <Checkbox onChange={this.termsAgreeChange} label='I agree to the Terms and Conditions' />
                 </Form.Field>
                 <Form.Field>
                   <Recaptcha
                     sitekey="6LcRq1QUAAAAAGsVoN2J52MW7C9dgkmhC1IY-Dxx"
-                    verifyCallback={this.verifyCallback.bind(this)}
+                    verifyCallback={this.verifyCallback}
                   />
                 </Form.Field>
                 <Form.Button disabled={!this.state.joinUsFormTermsAgree || !this.state.joinUsFormCaptcha}>Register</Form.Button>
@@ -303,7 +305,7 @@ export default class Deck extends Component {
                 <List>
                   <List.Item>
                     <List.Content>
-                      <Label color='balck' as='a' href='https://github.com/cemkiy/kafa-react'>
+                      <Label color='black' as='a' href='https://github.com/cemkiy/kafa-react'>
                         <Icon name="github"/>
                         &nbsp;front-end
                         <Label.Detail>github.com/cemkiy/kafa-react</Label.Detail>
@@ -312,7 +314,7 @@ export default class Deck extends Component {
                   </List.Item>
                   <List.Item>
                   <List.Content>
-                    <Label color='balck' as='a' href='https://github.com/cemkiy/kafa-node'>
+                    <Label color='black' as='a' href='https://github.com/cemkiy/kafa-node'>
                       <Icon name="github"/>
                       &nbsp;back-end
                       <Label.Detail>github.com/cemkiy/kafa-node</Label.Detail>

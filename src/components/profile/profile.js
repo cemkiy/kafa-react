@@ -1,19 +1,33 @@
 import React, { Component } from 'react'
 import './profile.css';
-import { Image, Card, Icon, Grid, Tab, Header } from 'semantic-ui-react'
+import { Card, Icon, Grid, Tab, Header } from 'semantic-ui-react'
 import Browse from '../../components/browse/browse';
+import Gravatar from 'react-gravatar'
 
 export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: JSON.parse(localStorage.getItem('user')),
+      role: localStorage.getItem('role')
+    }
+  }
 
+  getFormatDate(dateString){
+    var date = new Date(dateString);
+    return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+  }
 
   render() {
     const panes = [
       { menuItem: 'Info', render: () =>
       <Tab.Pane>
-        <Header as='h5'>E-mail:</Header><a className="link" href='mailto:jack@black.com'>jack@black.com</a>
-        <Header as='h5'>Type:</Header> Pirate
-        <Header as='h5'>Verified:</Header> Yes
-        <Header as='h5'>Joined in:</Header> 22/03/2018 18:03
+        <Header as='h5'>E-mail:</Header>
+          <a className="link" href={'mailto:' + this.state.user.email}>
+            {this.state.user.email}
+          </a>
+        <Header as='h5'>Type:</Header> {this.state.role}
+        <Header as='h5'>Joined in:</Header> {this.getFormatDate(this.state.user.created_at)}
       </Tab.Pane> },
       { menuItem: 'Torrents', render: () =>
       <Tab.Pane>
@@ -27,13 +41,13 @@ export default class Profile extends Component {
           <Grid.Row columns={2}>
             <Grid.Column width={3}>
               <Card className="profile-info">
-                <Image src='https://www.sideshowtoy.com/wp-content/uploads/2017/05/disney-pirates-of-the-caribbean-dead-men-tell-no-tales-jack-sparrow-sixth-scale-hot-toys-thumb-903044.jpg'/>
+                <Gravatar email={this.state.user.email} size={285}/>
                 <Card.Content>
                   <Card.Header>
-                    Captain Jack
+                    {this.state.user.username}
                   </Card.Header>
                   <Card.Description>
-                    He is a captain
+                    {this.state.user.about || 'nothing to show'}
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>

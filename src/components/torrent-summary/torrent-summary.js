@@ -11,6 +11,7 @@ export default class TorrentSummary extends Component {
   render() {
     return (
       <Popup
+          className='popup-wide'
           trigger={<Link to='/detail' className='link'>Battlefield x</Link>}
           hoverable >
           <Card>

@@ -8,6 +8,9 @@ const createTokenMutation = `mutation createToken($username: String,
         id
         username
         email
+        about
+        birthday
+        created_at
       }
     }
   }
