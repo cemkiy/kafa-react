@@ -1,48 +1,24 @@
 import { TokenClient  } from '../middleware/clients.js';
+import { MutationRequest } from '../middleware/graphql.js';
 
-const createTokenMutation = `mutation createToken($username: String,
-  $email: String, $password: String!){
-  createToken(input: {username: $username, email: $email, password: $password}) {
-      token
-      user{
-        id
-        username
-        email
-      }
-    }
-  }
-`
 
-const createUserMutation = `mutation createUser($username: String!,
-  $email: String!, $password: String!, $birthday: String!){
-  createUser(input: {
-    username: $username,
-    email: $email,
-    password: $password,
-    birthday: $birthday
-  }) {
-    id
-    username
-    email
-    birthday
-    created_at
-  }
-}
-`
-
-var CreateToken = function (variables) {
-	if (variables['usernameOrEmail'].indexOf('@') === -1) {
-    variables['username'] = variables['usernameOrEmail'];
+var CreateToken = function (input, returnedSchema) {
+	if (input['usernameOrEmail'].indexOf('@') === -1) {
+    input['username'] = input['usernameOrEmail'];
   }else {
-    variables['email'] = variables['usernameOrEmail'];
+    input['email'] = input['usernameOrEmail'];
   }
-  delete variables.usernameOrEmail;
-  return TokenClient.request(createTokenMutation, variables);
+  delete input.usernameOrEmail;
+  let variables = {'input': input};
+  let createTokenMutation = MutationRequest('createToken', variables, returnedSchema);
+  return TokenClient.request(createTokenMutation);
 }
 
-var CreateUser = function (variables) {
-  variables['birthday'] = new Date(variables['birthday']);
-  return TokenClient.request(createUserMutation, variables);
+var CreateUser = function (input, returnedSchema) {
+  input['birthday'] = new Date(input['birthday']).toString();
+  let variables = {'input': input};
+  let createUserMutation = MutationRequest('createUser', variables, returnedSchema);
+  return TokenClient.request(createUserMutation);
 }
 
 export { CreateToken, CreateUser };

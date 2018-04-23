@@ -4,7 +4,6 @@ import logo from '../../logo.gif';
 import we_need_you from '../../assets/img/weneedyou.png';
 import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox, Label, Item } from 'semantic-ui-react'
 import { CreateToken, CreateUser } from '../../api/token';
-import { RoleByUserId } from '../../api/role';
 import { ErrorAnalysis } from '../../middleware/error-handler';
 import Recaptcha from 'react-recaptcha';
 
@@ -28,14 +27,16 @@ export default class Deck extends Component {
         birthday: ''
       },
       signInFormData: {
-        usernameOrEmail:'',
-        password:''
+        usernameOrEmail: '',
+        password: ''
       }
     };
     this.joinUsFormHandleChange = this.joinUsFormHandleChange.bind(this);
     this.signInFormHandleChange = this.signInFormHandleChange.bind(this);
     this.joinUs = this.joinUs.bind(this);
     this.signIn = this.signIn.bind(this);
+    this.termsAgreeChange = this.termsAgreeChange.bind(this);
+    this.verifyCallback = this.verifyCallback.bind(this);
   }
 
   termsAgreeChange(event, data){
@@ -76,7 +77,9 @@ export default class Deck extends Component {
   }
 
   joinUs = (event) => {
-    CreateUser(this.state.joinUsFormData).then(data => {
+    CreateUser(this.state.joinUsFormData, [
+      'id', 'username', 'email', 'birthday', 'created_at'
+    ]).then(data => {
       this.setState({
         formResultDisplay: "block",
         formResultType: 'green',
@@ -97,22 +100,15 @@ export default class Deck extends Component {
   }
 
   signIn = (event) => {
-    CreateToken(this.state.signInFormData).then(tokenData => {
+    CreateToken(this.state.signInFormData, [
+      'token',
+      {'user':['id', 'username', 'email', 'about',{'role': ['type']}, 'birthday',
+      'created_at']},
+    ]).then(tokenData => {
       localStorage.setItem('token', tokenData.createToken.token);
       localStorage.setItem('user', JSON.stringify(tokenData.createToken.user));
-      RoleByUserId({user_id: tokenData.createToken.user.id}).then(roleData => {
-        localStorage.setItem('role', roleData.roleByUserId.type);
-        this.props.history.push("/browse");
-      })
-      .catch(err => {
-        ErrorAnalysis(err, this.props.history);
-        this.setState({
-          formResultDisplay: "block",
-          formResultType: 'red',
-          formResultHeader: 'Sign in Failed',
-          formResultDescription: err.response.error
-        });
-      });
+      localStorage.setItem('role', tokenData.createToken.user.role.type);
+      this.props.history.push("/browse");
     })
     .catch(err => {
       this.setState({
@@ -175,12 +171,12 @@ export default class Deck extends Component {
                     <Form.Input fluid name='birthday' label='birthday' value={this.state.joinUsFormData.birthday}  onChange={this.joinUsFormHandleChange} placeholder='YYYY-mm-dd exp:1993-03-22' required />
                 </Message>
                 <Form.Field required>
-                  <Checkbox onChange={this.termsAgreeChange.bind(this)} label='I agree to the Terms and Conditions' />
+                  <Checkbox onChange={this.termsAgreeChange} label='I agree to the Terms and Conditions' />
                 </Form.Field>
                 <Form.Field>
                   <Recaptcha
                     sitekey="6LcRq1QUAAAAAGsVoN2J52MW7C9dgkmhC1IY-Dxx"
-                    verifyCallback={this.verifyCallback.bind(this)}
+                    verifyCallback={this.verifyCallback}
                   />
                 </Form.Field>
                 <Form.Button disabled={!this.state.joinUsFormTermsAgree || !this.state.joinUsFormCaptcha}>Register</Form.Button>
@@ -303,7 +299,7 @@ export default class Deck extends Component {
                 <List>
                   <List.Item>
                     <List.Content>
-                      <Label color='balck' as='a' href='https://github.com/cemkiy/kafa-react'>
+                      <Label color='black' as='a' href='https://github.com/cemkiy/kafa-react'>
                         <Icon name="github"/>
                         &nbsp;front-end
                         <Label.Detail>github.com/cemkiy/kafa-react</Label.Detail>
@@ -312,7 +308,7 @@ export default class Deck extends Component {
                   </List.Item>
                   <List.Item>
                   <List.Content>
-                    <Label color='balck' as='a' href='https://github.com/cemkiy/kafa-node'>
+                    <Label color='black' as='a' href='https://github.com/cemkiy/kafa-node'>
                       <Icon name="github"/>
                       &nbsp;back-end
                       <Label.Detail>github.com/cemkiy/kafa-node</Label.Detail>

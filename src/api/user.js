@@ -1,104 +1,37 @@
 import { UsersClient } from '../middleware/clients.js';
+import { QueryRequest, MutationRequest } from '../middleware/graphql.js';
 
-const usersQuery = `query users($username: String, $email: String,
-  $created_at_from: String, $created_at_to: String, $updated_at_from: String,
-  $updated_at_to: String, $limit: Int, $skip: Int, $sort_field: String,
-  $sort_type: String) {
-  users(username: $username,email: $email,created_at_from: $created_at_from,
-    created_at_to: $created_at_to, updated_at_from: $updated_at_from,
-    updated_at_to: $updated_at_to, limit: $limit, skip: $skip,
-    sort_field: $sort_field, sort_type: $sort_type) {
-      id
-      username
-      email
-      about
-      birthday
-      created_at
-  }
-}`
 
-const userByIdQuery = `query userById($id: String!) {
-  userById(id: $id) {
-    id
-    username
-    email
-    about
-    birthday
-    created_at
-  }
-}`
-
-const userByUsernameQuery = `query userByUsername($username: String!) {
-  userByUsername(username: $username) {
-    id
-    username
-    email
-    about
-    birthday
-    created_at
-  }
-}`
-
-const userByEmailQuery = `query userByEmail($email: String!) {
-  userByEmail(email: $email) {
-    id
-    username
-    email
-    about
-    birthday
-    created_at
-  }
-}`
-
-const updateUserMutation = `mutation updateUser($id: String!, $username: String,
-  $email: String, $password: String, $birthday: String){
-  updateUser(id: $id, input: {
-    username: $username,
-    email: $email,
-    password: $password,
-    birthday: $birthday
-  }) {
-    id
-    username
-    email
-    about
-    birthday
-    created_at
-  }
-}
-`
-
-const deleteUserMutation = `mutation deleteUser($id: String!){
-  deleteUser(
-    id: $id
-  ) {
-    id
-  }
-}
-`
-
-var Users = function (variables) {
-  return UsersClient.request(usersQuery, variables);
+var Users = function (variables, returnedSchema) {
+  let usersQuery = QueryRequest("users", variables, returnedSchema);
+  return UsersClient.request(usersQuery);
 }
 
-var UserById = function (variables) {
-  return UsersClient.request(userByIdQuery, variables);
+var UserById = function (variables, returnedSchema) {
+  let userByIdQuery = QueryRequest("userById", variables, returnedSchema)
+  return UsersClient.request(userByIdQuery);
 }
 
-var UserByUsername = function (variables) {
-  return UsersClient.request(userByUsernameQuery, variables);
+var UserByUsername = function (variables, returnedSchema) {
+  let userByUsernameQuery = QueryRequest("userByUsername", variables, returnedSchema);
+  return UsersClient.request(userByUsernameQuery);
 }
 
-var UserByEmail = function (variables) {
-  return UsersClient.request(userByEmailQuery, variables);
+var UserByEmail = function (variables, returnedSchema) {
+  let userByEmailQuery = QueryRequest("userByEmail", variables, returnedSchema);
+  return UsersClient.request(userByEmailQuery);
 }
 
-var UpdateUser = function (variables) {
-  return UsersClient.request(updateUserMutation, variables);
+var UpdateUser = function (id, input, returnedSchema) {
+  let variables = {'id': id, 'input': input};
+  let updateUserMutation = MutationRequest("updateUser", variables, returnedSchema);
+  return UsersClient.request(updateUserMutation);
 }
 
-var DeleteUser = function (variables) {
-  return UsersClient.request(deleteUserMutation, variables);
+var DeleteUser = function (id, returnedSchema) {
+  let variables = {'id': id};
+  let deleteUserMutation = MutationRequest("deleteUser", variables, returnedSchema);
+  return UsersClient.request(deleteUserMutation);
 }
 
 export { UserById, UserByUsername, UserByEmail, UpdateUser, DeleteUser };
