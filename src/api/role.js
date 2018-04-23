@@ -1,13 +1,9 @@
 import { RolesClient  } from '../middleware/clients.js';
 
-const roleByUserIdQuery = `query roleByUserId($user_id: String!) {
-  roleByUserId(user_id: $user_id) {
-    type
-  }
-}`
 
-var RoleByUserId = function (variables) {
-  return RolesClient.request(roleByUserIdQuery, variables);
+var RoleByUserId = function (variables, returnedSchema) {
+  let roleByUserIdQuery = QueryRequest("roleByUserId", variables, returnedSchema)
+  return RolesClient.request(roleByUserIdQuery);
 }
 
 export { RoleByUserId };

@@ -89,23 +89,31 @@ const deleteKafaMutation = `mutation deleteKafa($id: String!){
 }
 `
 
-var Kafas = function (variables) {
-  return kafasClient.request(kafasQuery, variables);
+var Kafas = function (variables, returnedSchema) {
+  let kafasQuery = QueryRequest("kafas", variables, returnedSchema);
+  return kafasClient.request(kafasQuery);
 }
 
-var KafaById = function (variables) {
-  return kafasClient.request(kafaByIdQuery, variables);
+var KafaById = function (variables, returnedSchema) {
+  let kafaByIdQuery = QueryRequest("kafaById", variables, returnedSchema);
+  return kafasClient.request(kafaByIdQuery);
 }
 
-var IncrementKafa = function (variables) {
-  return kafasClient.request(IncrementKafaMutation, variables);
+var IncrementKafa = function (input, returnedSchema)) {
+  let variables = {'input': input};
+  let incrementKafaMutation = MutationRequest("incrementKafa", variables, returnedSchema);
+  return kafasClient.request(incrementKafaMutation);
 }
 
-var UpdateKafa = function (variables) {
-  return kafasClient.request(updateKafaMutation, variables);
+var UpdateKafa = function (id, input, returnedSchema) {
+  let variables = {'id': id, 'input': input};
+  let updateKafaMutation = MutationRequest("updateKafa", variables, returnedSchema);
+  return kafasClient.request(updateKafaMutation);
 }
 
-var DeleteKafa = function (variables) {
+var DeleteKafa = function (id, returnedSchema) {
+  let variables = {'id': id};
+  let deleteKafaMutation = MutationRequest("deleteKafa", variables, returnedSchema);
   return kafasClient.request(deleteKafaMutation, variables);
 }
 

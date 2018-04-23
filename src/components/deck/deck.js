@@ -77,7 +77,9 @@ export default class Deck extends Component {
   }
 
   joinUs = (event) => {
-    CreateUser(this.state.joinUsFormData).then(data => {
+    CreateUser(this.state.joinUsFormData, [
+      'id', 'username', 'email', 'birthday', 'created_at'
+    ]).then(data => {
       this.setState({
         formResultDisplay: "block",
         formResultType: 'green',
@@ -98,7 +100,11 @@ export default class Deck extends Component {
   }
 
   signIn = (event) => {
-    CreateToken(this.state.signInFormData).then(tokenData => {
+    CreateToken(this.state.signInFormData, [
+      'token',
+      {'user':['id', 'username', 'email', 'about',{'role': ['type']}, 'birthday',
+      'created_at']},
+    ]).then(tokenData => {
       localStorage.setItem('token', tokenData.createToken.token);
       localStorage.setItem('user', JSON.stringify(tokenData.createToken.user));
       localStorage.setItem('role', tokenData.createToken.user.role.type);
