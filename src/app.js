@@ -17,7 +17,7 @@ const RouteMap = () => (
       <Switch>
         <Route path='/browse' component={Browse}/>
         <Route path='/detail' component={Detail}/>
-        <Route path='/profile' component={Profile}/>
+        <Route path='/:userId/profile' component={Profile}/>
         <Route path='/account-settings' component={AccountSettings}/>
         <Route path='/share' component={Share}/>
       </Switch>
