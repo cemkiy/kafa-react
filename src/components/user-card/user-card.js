@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Card, Icon } from 'semantic-ui-react'
-import { UserById } from '../../api/token';
 import Gravatar from 'react-gravatar'
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   getFormatDate(dateString) {

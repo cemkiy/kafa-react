@@ -34,4 +34,4 @@ var DeleteUser = function (id, returnedSchema) {
   return UsersClient.request(deleteUserMutation);
 }
 
-export { UserById, UserByUsername, UserByEmail, UpdateUser, DeleteUser };
+export { Users, UserById, UserByUsername, UserByEmail, UpdateUser, DeleteUser };

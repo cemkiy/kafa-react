@@ -8,11 +8,16 @@ import TorrentSummary from '../../components/torrent-summary/torrent-summary.js'
 export default class Browse extends Component {
   constructor(props) {
     super(props);
-    this.goToDetail = this.goToDetail.bind(this);
+    this.state = {
+      isHovered: false
+    }
+    this.kafaHover = this.kafaHover.bind(this);
   }
 
-  goToDetail(event, data) {
-    this.props.history.push("/detail");
+  kafaHover(){
+    this.setState({
+        isHovered: !this.state.isHovered
+    });
   }
 
   componentDidMount() {
@@ -54,8 +59,10 @@ export default class Browse extends Component {
                        <Button
                          content='Kafa'
                          icon='hand spock'
-                         label={{ as: 'a', basic: true, pointing: 'right', content: '548' }}
+                         label={{ as: 'a', basic: true, pointing: 'right', color: this.state.isHovered ? "yellow" : "", content: '548' }}
                          labelPosition='left'
+                         color={this.state.isHovered ? "yellow" : ""}
+                         onMouseEnter={this.kafaHover} onMouseLeave={this.kafaHover}
                        />
                      </Table.Cell>
                      <Table.Cell>

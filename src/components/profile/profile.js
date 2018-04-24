@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import './profile.css';
-import { Card, Icon, Grid, Tab, Header } from 'semantic-ui-react'
+import { Card, Grid, Tab, Header } from 'semantic-ui-react'
 import { UserById } from '../../api/user';
 import Browse from '../../components/browse/browse';
 import UserCard from '../../components/user-card/user-card.js';
-import Gravatar from 'react-gravatar'
 import { ErrorAnalysis } from '../../middleware/error-handler';
 
 export default class Profile extends Component {
