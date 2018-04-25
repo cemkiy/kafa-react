@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './deck.css';
-import logo from '../../logo.gif';
-import we_need_you from '../../assets/img/weneedyou.png';
+import logo from '../../../assets/img/logo.gif';
+import we_need_you from '../../../assets/img/weneedyou.png';
 import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox, Label, Item } from 'semantic-ui-react'
-import { CreateToken, CreateUser } from '../../api/token';
-import { ErrorAnalysis } from '../../middleware/error-handler';
+import { CreateToken, CreateUser } from '../../../api/token';
+import { ErrorAnalysis } from '../../../middleware/error-handler';
 import Recaptcha from 'react-recaptcha';
 
 

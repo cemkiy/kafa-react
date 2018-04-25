@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './detail.css';
 import { Header, Message, Icon, Card, Popup, Image, Grid, Button, List } from 'semantic-ui-react'
-import UserLabel from '../../components/user-label/user-label';
-import CommentSection from '../../components/comment-section/comment-section';
+import UserLabel from '../../../components/sub-components/user-label/user-label';
+import CommentSection from '../../../components/sub-components/comment-section/comment-section';
 
 export default class Detail extends Component {
   constructor(props) {

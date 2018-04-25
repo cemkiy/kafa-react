@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './user-label.css';
 import { Link } from 'react-router-dom'
 import { Label, Popup } from 'semantic-ui-react'
-import UserCard from '../../components/user-card/user-card.js';
+import UserCard from '../../../components/sub-components/user-card/user-card';
 import Gravatar from 'react-gravatar'
 
 export default class UserLabel extends Component {

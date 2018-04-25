@@ -1,13 +1,13 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Deck from './components/deck/deck';
-import Sidebar from './components/sidebar/sidebar';
-import Navbar from './components/navbar/navbar';
-import Browse from './components/browse/browse';
-import Detail from './components/detail/detail';
-import Profile from './components/profile/profile';
-import AccountSettings from './components/account-settings/account-settings';
-import Share from './components/share/share';
+import Deck from './components/pages/deck/deck';
+import Sidebar from './components/templates/sidebar/sidebar';
+import Navbar from './components/templates/navbar/navbar';
+import Browse from './components/pages/browse/browse';
+import Detail from './components/pages/detail/detail';
+import Profile from './components/pages/profile/profile';
+import AccountSettings from './components/pages/account-settings/account-settings';
+import Share from './components/pages/share/share';
 
 const RouteMap = () => (
   <div>

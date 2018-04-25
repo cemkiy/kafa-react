@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './browse.css';
-import satellite from '../../assets/img/satellite.gif';
+import satellite from '../../../assets/img/satellite.gif';
 import { Icon, Table, Button, Image, Pagination } from 'semantic-ui-react'
-import Filter from '../../components/filter/filter';
-import TorrentSummary from '../../components/torrent-summary/torrent-summary.js';
+import Filter from '../../../components/sub-components/filter/filter';
+import TorrentSummary from '../../../components/sub-components/torrent-summary/torrent-summary';
 
 export default class Browse extends Component {
   constructor(props) {

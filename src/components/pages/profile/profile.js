@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './profile.css';
 import { Card, Grid, Tab, Header } from 'semantic-ui-react'
-import { UserById } from '../../api/user';
-import Browse from '../../components/browse/browse';
-import UserCard from '../../components/user-card/user-card.js';
-import { ErrorAnalysis } from '../../middleware/error-handler';
+import { UserById } from '../../../api/user';
+import Browse from '../../../components/pages/browse/browse';
+import UserCard from '../../../components/sub-components/user-card/user-card';
+import { ErrorAnalysis } from '../../../middleware/error-handler';
 
 export default class Profile extends Component {
   constructor(props) {
