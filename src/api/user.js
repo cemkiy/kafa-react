@@ -28,10 +28,22 @@ var UpdateUser = function (id, input, returnedSchema) {
   return UsersClient.request(updateUserMutation);
 }
 
+var ChangePassUser = function (id, input, returnedSchema) {
+  let variables = {'id': id, 'input': input};
+  let changePassUserMutation = MutationRequest("changePass", variables, returnedSchema);
+  return UsersClient.request(changePassUserMutation);
+}
+
+var UpdateEmailUser = function (id, input, returnedSchema) {
+  let variables = {'id': id, 'input': input};
+  let updateEmailMutation = MutationRequest("updateEmail", variables, returnedSchema);
+  return UsersClient.request(updateEmailMutation);
+}
+
 var DeleteUser = function (id, returnedSchema) {
   let variables = {'id': id};
   let deleteUserMutation = MutationRequest("deleteUser", variables, returnedSchema);
   return UsersClient.request(deleteUserMutation);
 }
 
-export { Users, UserById, UserByUsername, UserByEmail, UpdateUser, DeleteUser };
+export { Users, UserById, UserByUsername, UserByEmail, UpdateUser, ChangePassUser, UpdateEmailUser, DeleteUser };

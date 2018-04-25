@@ -1,8 +1,128 @@
 import React, { Component } from 'react'
 import './account-settings.css';
 import { Card, Form, Button, Message } from 'semantic-ui-react'
+import { ChangePassUser, UpdateEmailUser, UpdateUser } from '../../../api/user';
+import { ErrorAnalysis } from '../../../middleware/error-handler';
+
 
 export default class Filter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: JSON.parse(localStorage.getItem('user')),
+      formResultDisplay: "none",
+      formResultType: 'green',
+      formResultHeader: '',
+      formResultDescription: '',
+      emailChangeFormData: {
+        email:'',
+      },
+      passwordChangeFormData: {
+        password: '',
+        password_again: ''
+      },
+      profileChangeFormData: {
+        about: ''
+      }
+    };
+    this.emailChangeFormHandleChange = this.emailChangeFormHandleChange.bind(this);
+    this.passwordChangeFormHandleChange = this.passwordChangeFormHandleChange.bind(this);
+    this.profileChangeFormHandleChange = this.profileChangeFormHandleChange.bind(this);
+    this.emailChange = this.emailChange.bind(this);
+    this.passwordChange = this.passwordChange.bind(this);
+    this.profileChange = this.profileChange.bind(this);
+  }
+
+  emailChangeFormHandleChange(event, data) {
+    let mockEmailChangeFormData = this.state.emailChangeFormData;
+    mockEmailChangeFormData[data.name] = event.target.value;
+    this.setState({emailChangeFormData: mockEmailChangeFormData});
+  }
+
+  passwordChangeFormHandleChange(event, data) {
+    let mockPasswordChangeFormData = this.state.passwordChangeFormData;
+    mockPasswordChangeFormData[data.name] = event.target.value;
+    this.setState({passwordChangeFormData: mockPasswordChangeFormData});
+  }
+
+  profileChangeFormHandleChange(event, data) {
+    let mockProfileChangeFormData = this.state.profileChangeFormData;
+    mockProfileChangeFormData[data.name] = event.target.value;
+    this.setState({profileChangeFormData: mockProfileChangeFormData});
+  }
+
+  emailChange = (event) => {
+    UpdateEmailUser(this.state.user.id, this.state.emailChangeFormData, [
+      'id', 'username', 'email', 'verified', 'about',{'role': ['type']}, 'birthday',
+      'created_at'
+    ]).then(data => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'yellow',
+        formResultHeader: 'Update Email Processing',
+        formResultDescription: 'Go to your email and click the activation button.'
+      });
+    })
+    .catch(err => {
+      ErrorAnalysis(err, this.props.history);
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'red',
+        formResultHeader: 'Update Email Failed',
+        formResultDescription: err.response.errors[0].message
+      });
+    })
+    event.preventDefault();
+  }
+
+  passwordChange = (event) => {
+    ChangePassUser(this.state.user.id, this.state.passwordChangeFormData, [
+      'id', 'username', 'email', 'verified', 'about',{'role': ['type']}, 'birthday',
+      'created_at'
+    ]).then(data => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'green',
+        formResultHeader: 'Updated Password',
+        formResultDescription: 'Now, activated new password.'
+      });
+    })
+    .catch(err => {
+      ErrorAnalysis(err, this.props.history);
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'red',
+        formResultHeader: 'Update Password Failed',
+        formResultDescription: err.response.errors[0].message
+      });
+    })
+    event.preventDefault();
+  }
+
+  profileChange = (event) => {
+    UpdateUser(this.state.user.id, this.state.profileChangeFormData, [
+      'id', 'username', 'email', 'verified', 'about',{'role': ['type']}, 'birthday',
+      'created_at'
+    ]).then(data => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'green',
+        formResultHeader: 'Updated Password',
+        formResultDescription: 'Now, activated new password.'
+      });
+    })
+    .catch(err => {
+      ErrorAnalysis(err, this.props.history);
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'red',
+        formResultHeader: 'Update Password Failed',
+        formResultDescription: err.response.errors[0].message
+      });
+    })
+    event.preventDefault();
+  }
+
   render() {
     return (
       <Card className="form-card" centered>
@@ -14,16 +134,14 @@ export default class Filter extends Component {
             </Message.Header>
             <p>
               You need to confirm the link from the email to complete this process.
+              If you are not complete, your account is disabled.
             </p>
           </Message>
-         <Form className='form'>
-          <Form.Field>
-            <label>E-mail</label>
-            <input placeholder='joe@mail.com' />
-          </Form.Field>
-          <Button type='submit'>Submit</Button>
-        </Form>
-          <hr />
+         <Form className='form' onSubmit={this.emailChange}>
+          <Form.Input fluid name="email" label='email' value={this.state.emailChangeFormData.email} onChange={this.emailChangeFormHandleChange} placeholder='jacksparrow@mail.com' required />
+          <Form.Button>Submit</Form.Button>
+         </Form>
+        <hr />
         <Message>
            <Message.Header>
               Password Change Notify
@@ -36,25 +154,16 @@ export default class Filter extends Component {
              'Password must contain at least 1 digit']
            } />
          </Message>
-        <Form className='form'>
-          <Form.Field>
-            <label>Change Password</label>
-            <input placeholder='let me guess 12345' />
-          </Form.Field>
-          <Form.Field>
-            <label>Change Password Again</label>
-            <input placeholder='The same as the above but different from the previous one' />
-          </Form.Field>
-          <Button type='submit'>Change it!</Button>
+        <Form className='form' onSubmit={this.passwordChange}>
+          <Form.Input fluid type='password' name='password' label='password' value={this.state.passwordChangeFormData.password} onChange={this.passwordChangeFormHandleChange} placeholder='min 8, have a number' required />
+          <Form.Input fluid type='password' name='password_again' label='password_again' value={this.state.passwordChangeFormData.password_again} onChange={this.passwordChangeFormHandleChange} placeholder='min 8, have a number' required />
+          <Form.Button>Submit</Form.Button>
         </Form>
         <hr />
-      <Form className='form'>
-        <Form.Field>
-          <label>About Yourself</label>
-          <textarea placeholder='You should write short. Sorry, but nobody reads.' />
-        </Form.Field>
-        <Button type='submit'>Submit</Button>
-      </Form>
+        <Form className='form' onSubmit={this.profileChange}>
+          <Form.TextArea label='about yourself' name='about' value={this.state.profileChangeFormData.about} onChange={this.profileChangeFormHandleChange} placeholder='You should write short. Sorry, but nobody reads.' required/>
+          <Form.Button>Submit</Form.Button>
+        </Form>
        </Card.Content>
      </Card>
     )
