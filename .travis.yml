@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "stable"
+yarn:
+  - "1.6.0"
 sudo: required
 before_install: # if "install" is overridden
   # Repo for Yarn
