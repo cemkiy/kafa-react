@@ -37,10 +37,10 @@ export default class Deck extends Component {
     };
     this.joinUsFormHandleChange = this.joinUsFormHandleChange.bind(this);
     this.signInFormHandleChange = this.signInFormHandleChange.bind(this);
-    this.forgotPassFormHandleChange = this.signInFormHandleChange.bind(this);
+    this.forgotPassFormHandleChange = this.forgotPassFormHandleChange.bind(this);
     this.joinUs = this.joinUs.bind(this);
     this.signIn = this.signIn.bind(this);
-    this.forgotPass = this.signIn.bind(this);
+    this.forgotPass = this.forgotPass.bind(this);
     this.termsAgreeChange = this.termsAgreeChange.bind(this);
     this.verifyCallback = this.verifyCallback.bind(this);
   }
@@ -52,7 +52,7 @@ export default class Deck extends Component {
   // verify user callback function
   verifyCallback(response) {
     this.setState({joinUsFormCaptcha: true});
-  };
+  }
 
   joinUsFormHandleChange(event, data) {
     let mockJoinUsFormData = this.state.joinUsFormData;

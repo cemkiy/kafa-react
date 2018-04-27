@@ -8,6 +8,7 @@ import Detail from './components/pages/detail/detail';
 import Profile from './components/pages/profile/profile';
 import AccountSettings from './components/pages/account-settings/account-settings';
 import Share from './components/pages/share/share';
+import Verify from './components/pages/verify/verify';
 
 const RouteMap = () => (
   <div>
@@ -28,6 +29,7 @@ const RouteMap = () => (
 const App = () => (
     <Switch>
       <Route exact path='/' component={Deck} />
+      <Route path='/verify' component={Verify}/>
       <Route path='/' component={RouteMap} />
     </Switch>
 )
