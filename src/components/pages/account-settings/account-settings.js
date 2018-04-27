@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './account-settings.css';
-import { Card, Form, Button, Message } from 'semantic-ui-react'
+import { Card, Form, Message } from 'semantic-ui-react'
 import { ChangePassUser, UpdateEmailUser, UpdateUser } from '../../../api/user';
 import { ErrorAnalysis } from '../../../middleware/error-handler';
 

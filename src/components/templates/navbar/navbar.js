@@ -39,7 +39,7 @@ export class Navbar extends Component {
           <Menu.Item >
             <Dropdown item icon='setting' className="settings-icon" simple direction="left">
               <Dropdown.Menu>
-                <Link to='/profile'><Dropdown.Item text='Profile' /></Link>
+                <Link to={this.state.user.id + '/profile'}><Dropdown.Item text='Profile' /></Link>
                 <Link to='/account-settings'><Dropdown.Item text='Account Settings' /></Link>
                 <Dropdown.Divider />
                 <Dropdown.Item icon='sign out' text='Logout' onClick={this.logout}/>
