@@ -21,4 +21,10 @@ var CreateUser = function (input, returnedSchema) {
   return TokenClient.request(createUserMutation);
 }
 
-export { CreateToken, CreateUser };
+var ForgotPass = function (input, returnedSchema) {
+  let variables = {'input': input};
+  let forgotPassMutation = MutationRequest('forgotPass', variables, returnedSchema);
+  return TokenClient.request(forgotPassMutation);
+}
+
+export { CreateToken, CreateUser, ForgotPass };

@@ -30,7 +30,7 @@ export class Navbar extends Component {
           <Menu.Menu className="search-input">
             <div className='ui aligned category search item search-input'>
               <div className='ui transparent icon input'>
-                <input className='prompt' type='text' placeholder='Search Here...'/>
+                <input className='prompt' type='text' placeholder='Search Here... The article you are reading is written for you to see the search bar.'/>
                 <i className='search icon' />
               </div>
               <div className='results' />
