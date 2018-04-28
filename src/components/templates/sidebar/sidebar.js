@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './sidebar.css';
-import logo from '../../logo.gif';
+import logo from '../../../assets/img/logo.gif';
 import { Menu, Image } from 'semantic-ui-react'
 
 export class Sidebar extends Component {

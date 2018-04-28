@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/cemkiy/kafa-node.svg?branch=master)](https://travis-ci.org/cemkiy/kafa-node)
-![alt text](https://github.com/cemkiy/kafa-react/blob/master/src/logo.gif)
+![alt text](https://github.com/cemkiy/kafa-react/blob/master/src/assets/img/logo.gif)
 
 
 # kafa.io

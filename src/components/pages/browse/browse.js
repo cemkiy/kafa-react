@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import './browse.css';
-import satellite from '../../assets/img/satellite.gif';
+import satellite from '../../../assets/img/satellite.gif';
+import kafa from '../../../assets/img/kafa.png';
 import { Icon, Table, Button, Image, Pagination } from 'semantic-ui-react'
-import Filter from '../../components/filter/filter';
-import TorrentSummary from '../../components/torrent-summary/torrent-summary.js';
+import Filter from '../../../components/sub-components/filter/filter';
+import TorrentSummary from '../../../components/sub-components/torrent-summary/torrent-summary';
+import KafaButton from '../../../components/sub-components/kafa-button/kafa-button';
 
 export default class Browse extends Component {
   constructor(props) {
     super(props);
-    this.goToDetail = this.goToDetail.bind(this);
-  }
-
-  goToDetail(event, data) {
-    this.props.history.push("/detail");
+    this.state = {}
   }
 
   componentDidMount() {
@@ -38,7 +36,7 @@ export default class Browse extends Component {
                       Leechs/Seeds
                      </Table.HeaderCell>
                      <Table.HeaderCell><Icon name='tag' />Tag</Table.HeaderCell>
-                     <Table.HeaderCell><Icon name='hand spock' />Kafa</Table.HeaderCell>
+                     <Table.HeaderCell><Image avatar spaced='right' src={kafa} />Kafa</Table.HeaderCell>
                      <Table.HeaderCell><Icon name='download' />Download</Table.HeaderCell>
                   </Table.Row>
                </Table.Header>
@@ -51,12 +49,7 @@ export default class Browse extends Component {
                      <Table.Cell><Icon name='long arrow down' />78/800<Icon name='long arrow up' /></Table.Cell>
                      <Table.Cell>Game/Action</Table.Cell>
                      <Table.Cell>
-                       <Button
-                         content='Kafa'
-                         icon='hand spock'
-                         label={{ as: 'a', basic: true, pointing: 'right', content: '548' }}
-                         labelPosition='left'
-                       />
+                      <KafaButton />
                      </Table.Cell>
                      <Table.Cell>
                       <Button.Group>

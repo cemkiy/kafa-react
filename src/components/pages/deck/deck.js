@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './deck.css';
-import logo from '../../logo.gif';
-import we_need_you from '../../assets/img/weneedyou.png';
+import logo from '../../../assets/img/logo.gif';
+import we_need_you from '../../../assets/img/weneedyou.png';
 import { Icon, Grid, Image, Button, Form, Header, Message, List, Checkbox, Label, Item } from 'semantic-ui-react'
-import { CreateToken, CreateUser } from '../../api/token';
-import { ErrorAnalysis } from '../../middleware/error-handler';
+import { CreateToken, CreateUser, ForgotPass } from '../../../api/token';
+import { ErrorAnalysis } from '../../../middleware/error-handler';
 import Recaptcha from 'react-recaptcha';
 
 
@@ -14,6 +14,7 @@ export default class Deck extends Component {
     this.state = {
       joinUsFormDisplay: "none",
       signInFormDisplay: "none",
+      forgotPassFormDisplay: "none",
       formResultDisplay: "none",
       formResultType: 'green',
       formResultHeader: '',
@@ -29,12 +30,17 @@ export default class Deck extends Component {
       signInFormData: {
         usernameOrEmail: '',
         password: ''
+      },
+      forgotPassFormData: {
+        email: ''
       }
     };
     this.joinUsFormHandleChange = this.joinUsFormHandleChange.bind(this);
     this.signInFormHandleChange = this.signInFormHandleChange.bind(this);
+    this.forgotPassFormHandleChange = this.forgotPassFormHandleChange.bind(this);
     this.joinUs = this.joinUs.bind(this);
     this.signIn = this.signIn.bind(this);
+    this.forgotPass = this.forgotPass.bind(this);
     this.termsAgreeChange = this.termsAgreeChange.bind(this);
     this.verifyCallback = this.verifyCallback.bind(this);
   }
@@ -46,7 +52,7 @@ export default class Deck extends Component {
   // verify user callback function
   verifyCallback(response) {
     this.setState({joinUsFormCaptcha: true});
-  };
+  }
 
   joinUsFormHandleChange(event, data) {
     let mockJoinUsFormData = this.state.joinUsFormData;
@@ -60,17 +66,34 @@ export default class Deck extends Component {
     this.setState({signInFormData: mockSignInFormData});
   }
 
+  forgotPassFormHandleChange(event, data) {
+    let mockForgotPassFormData = this.state.forgotPassFormData;
+    mockForgotPassFormData[data.name] = event.target.value;
+    this.setState({signInFormData: mockForgotPassFormData});
+  }
+
   joinUsClick = () => {
     this.setState({
       joinUsFormDisplay: "block",
       signInFormDisplay: "none",
-      formResultDisplay: "none"
+      forgotPassFormDisplay: "none",
+      formResultDisplay: "none",
     });
   }
 
   signInClick = () => {
     this.setState({
       signInFormDisplay: "block",
+      joinUsFormDisplay: "none",
+      forgotPassFormDisplay: "none",
+      formResultDisplay: "none"
+    });
+  }
+
+  forgotPassClick = () => {
+    this.setState({
+      forgotPassFormDisplay: "block",
+      signInFormDisplay: "none",
       joinUsFormDisplay: "none",
       formResultDisplay: "none"
     });
@@ -121,6 +144,26 @@ export default class Deck extends Component {
     event.preventDefault();
   }
 
+  forgotPass = (event) => {
+    ForgotPass(this.state.forgotPassFormData, []).then(data => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'green',
+        formResultHeader: 'Email Sended',
+        formResultDescription: 'Please check your email and change your password.'
+      });
+    })
+    .catch(err => {
+      this.setState({
+        formResultDisplay: "block",
+        formResultType: 'red',
+        formResultHeader: 'Forgot Pass Failed',
+        formResultDescription: err.response.error
+      });
+    })
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div className='center'>
@@ -160,7 +203,7 @@ export default class Deck extends Component {
               <Form onSubmit={this.joinUs}>
                 <Form.Group widths='equal'>
                   <Form.Input fluid name="username" label='username' value={this.state.joinUsFormData.username} onChange={this.joinUsFormHandleChange} placeholder='captainjack' required />
-                  <Form.Input fluid name='email' label='email' value={this.state.joinUsFormData.email} onChange={this.joinUsFormHandleChange} placeholder='jacksparrow@blackpearl.com' required />
+                  <Form.Input fluid name='email' type='email' label='email' value={this.state.joinUsFormData.email} onChange={this.joinUsFormHandleChange} placeholder='jacksparrow@blackpearl.com' required />
                 </Form.Group>
                 <Form.Group widths='equal'>
                   <Form.Input fluid type='password' name='password' label='password' value={this.state.joinUsFormData.password} onChange={this.joinUsFormHandleChange} placeholder='min 8, have a number' required />
@@ -190,7 +233,22 @@ export default class Deck extends Component {
                   <Form.Input fluid name='usernameOrEmail' label='username or email' value={this.state.signInFormData.usernameOrEmail} onChange={this.signInFormHandleChange} placeholder='captainjack or jacksparrow@blackpearl.com' required />
                   <Form.Input fluid type='password' name='password' label='password' value={this.state.signInFormData.password} onChange={this.signInFormHandleChange} placeholder='********' required />
                 </Form.Group>
-                <Form.Button>Sign in</Form.Button>
+                <Form.Group>
+                  <Form.Button>Sign in</Form.Button>
+                  <Button as='a' basic color='yellow' onClick={this.forgotPassClick}>Forgot password?</Button>
+                </Form.Group>
+              </Form>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row style={{display: this.state.forgotPassFormDisplay }}>
+            <Grid.Column width={16}>
+              <Form onSubmit={this.forgotPass}>
+                <Form.Group widths='equal'>
+                  <Form.Input fluid name='email' type='email' label='email' value={this.state.forgotPassFormData.email} onChange={this.forgotPassFormHandleChange} placeholder='jacksparrow@blackpearl.com' required />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Button>Send Password Change Email</Form.Button>
+                </Form.Group>
               </Form>
             </Grid.Column>
           </Grid.Row>
@@ -299,7 +357,7 @@ export default class Deck extends Component {
                 <List>
                   <List.Item>
                     <List.Content>
-                      <Label color='black' as='a' href='https://github.com/cemkiy/kafa-react'>
+                      <Label color='black' as='a' href='https://github.com/cemkiy/kafa-react' target="_blank">
                         <Icon name="github"/>
                         &nbsp;front-end
                         <Label.Detail>github.com/cemkiy/kafa-react</Label.Detail>
@@ -308,7 +366,7 @@ export default class Deck extends Component {
                   </List.Item>
                   <List.Item>
                   <List.Content>
-                    <Label color='black' as='a' href='https://github.com/cemkiy/kafa-node'>
+                    <Label color='black' as='a' href='https://github.com/cemkiy/kafa-node' target="_blank">
                       <Icon name="github"/>
                       &nbsp;back-end
                       <Label.Detail>github.com/cemkiy/kafa-node</Label.Detail>
