@@ -28,3 +28,8 @@ body {
 .link:visited {
   color: #fbbd08
 }
+
+.action-button:hover {
+  background-color: #fbbd08 !important;
+  color: white !important;
+}

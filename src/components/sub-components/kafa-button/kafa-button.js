@@ -20,9 +20,7 @@ export default class KafaButton extends Component {
   }
 
   render () {
-    return (<Label as='a' color={this.state.isHovered
-      ? 'yellow'
-      : 'grey'} onMouseEnter={this.kafaHover} onMouseLeave={this.kafaHover} className='shake'>
+    return (<Label as='a' onMouseEnter={this.kafaHover} onMouseLeave={this.kafaHover} className='shake action-button'>
       <Image avatar='avatar' spaced='right' src={this.state.isHovered
         ? kafaHover
         : kafa} />

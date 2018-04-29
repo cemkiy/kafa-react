@@ -57,9 +57,9 @@ export default class Browse extends Component {
               </Table.Cell>
               <Table.Cell>
                 <Button.Group>
-                  <Button><Icon name='save' /></Button>
+                  <Button className='action-button'><Icon name='save' /></Button>
                   <Button.Or />
-                  <Button><Icon name='magnet' /></Button>
+                  <Button className='action-button'><Icon name='magnet' /></Button>
                 </Button.Group>
               </Table.Cell>
             </Table.Row>
