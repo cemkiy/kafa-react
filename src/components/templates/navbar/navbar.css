@@ -1,29 +1,33 @@
 .search-input {
-  width: 100%;
+  width: 100%
 }
 
 .ui.menu .item:before {
-     background: none!important;
+  background: none !important
 }
 
-.settings-icon:hover .setting{
-  animation: settings-icon-spin infinite 5s linear;
+.settings-icon:hover .setting {
+  animation: settings-icon-spin infinite 5s linear
 }
 
 @keyframes settings-icon-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
+  }
 }
 
 .navbar-label {
-  background-color: #eef3f9!important;
-  color: black!important;
+  background-color: #eef3f9 !important;
+  color: black !important;
 }
 
 .avatar {
-  margin-right: .25em!important;
-  display: inline-block!important;
-  width: 2em!important;
-  height: 2em!important;
-  border-radius: 500rem!important;
+  margin-right: .25em !important;
+  display: inline-block !important;
+  width: 2em !important;
+  height: 2em !important;
+  border-radius: 500rem !important;
 }

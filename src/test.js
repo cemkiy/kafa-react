@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom'
-import App from './app';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
+import App from './app'
+
+/* global it */
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render((
-    <BrowserRouter>
-      <Route path='/' component={App} />
-    </BrowserRouter>
-  ), div)
+  const div = document.createElement('div')
+  ReactDOM.render((<BrowserRouter>
+    <Route path='/' component={App} />
+  </BrowserRouter>), div)
 
-  ReactDOM.unmountComponentAtNode(div);
-});
+  ReactDOM.unmountComponentAtNode(div)
+})
