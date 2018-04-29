@@ -11,10 +11,9 @@ export class Navbar extends Component {
       user: JSON.parse(window.localStorage.getItem('user')),
       role: window.localStorage.getItem('role')
     }
-    this.logout = this.logout.bind(this)
   }
 
-  logout () {
+  logout = () => {
     window.localStorage.clear()
     this.props.history.push('/')
   }

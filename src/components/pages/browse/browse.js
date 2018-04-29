@@ -17,7 +17,7 @@ export default class Browse extends Component {
     this.ListTorrent()
   }
 
-  ListTorrent () {
+  ListTorrent = () => {
     console.log('list')
   }
 

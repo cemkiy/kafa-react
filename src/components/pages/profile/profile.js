@@ -33,7 +33,7 @@ export default class Profile extends Component {
     })
   }
 
-  getFormatDate (dateString) {
+  getFormatDate = (dateString) => {
     var date = new Date(dateString)
     return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()
   }

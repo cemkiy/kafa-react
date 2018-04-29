@@ -19,13 +19,9 @@ export default class Deck extends Component {
         password: ''
       }
     }
-    this.joinUsComplete = this.joinUsComplete.bind(this)
-    this.emailChangeComplete = this.emailChangeComplete.bind(this)
-    this.forgotPassCompleteFormHandleChange = this.forgotPassCompleteFormHandleChange.bind(this)
-    this.forgotPassComplete = this.emailChangeComplete.bind(this)
   }
 
-  joinUsComplete () {
+  joinUsComplete = () => {
     VerifyUser(this.props.location.query.email_verification_key, []).then(data => {
       this.setState({
         formResultDisplay: 'block',
@@ -45,7 +41,7 @@ export default class Deck extends Component {
     })
   }
 
-  emailChangeComplete () {
+  emailChangeComplete = () => {
     VerifyUser(this.props.location.query.email_verification_key, []).then(data => {
       this.setState({
         formResultDisplay: 'block',
@@ -64,7 +60,7 @@ export default class Deck extends Component {
     })
   }
 
-  forgotPassCompleteFormHandleChange (event, data) {
+  forgotPassCompleteFormHandleChange = (event, data) => {
     let mockforgotPassCompleteFormData = this.state.forgotPassCompleteFormData
     mockforgotPassCompleteFormData[data.name] = event.target.value
     this.setState({emailChangeCompleteFormData: mockforgotPassCompleteFormData})

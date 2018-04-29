@@ -13,7 +13,7 @@ export default class KafaButton extends Component {
     this.kafaHover = this.kafaHover.bind(this)
   }
 
-  kafaHover () {
+  kafaHover = () => {
     this.setState({
       isHovered: !this.state.isHovered
     })

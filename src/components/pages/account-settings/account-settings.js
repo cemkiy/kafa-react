@@ -24,27 +24,21 @@ export default class Filter extends Component {
         about: ''
       }
     }
-    this.emailChangeFormHandleChange = this.emailChangeFormHandleChange.bind(this)
-    this.passwordChangeFormHandleChange = this.passwordChangeFormHandleChange.bind(this)
-    this.profileChangeFormHandleChange = this.profileChangeFormHandleChange.bind(this)
-    this.emailChange = this.emailChange.bind(this)
-    this.passwordChange = this.passwordChange.bind(this)
-    this.profileChange = this.profileChange.bind(this)
   }
 
-  emailChangeFormHandleChange (event, data) {
+  emailChangeFormHandleChange = (event, data) => {
     let mockEmailChangeFormData = this.state.emailChangeFormData
     mockEmailChangeFormData[data.name] = event.target.value
     this.setState({emailChangeFormData: mockEmailChangeFormData})
   }
 
-  passwordChangeFormHandleChange (event, data) {
+  passwordChangeFormHandleChange = (event, data) => {
     let mockPasswordChangeFormData = this.state.passwordChangeFormData
     mockPasswordChangeFormData[data.name] = event.target.value
     this.setState({passwordChangeFormData: mockPasswordChangeFormData})
   }
 
-  profileChangeFormHandleChange (event, data) {
+  profileChangeFormHandleChange = (event, data) => {
     let mockProfileChangeFormData = this.state.profileChangeFormData
     mockProfileChangeFormData[data.name] = event.target.value
     this.setState({profileChangeFormData: mockProfileChangeFormData})

@@ -12,10 +12,9 @@ export class Sidebar extends Component {
       shareDisplay: 'none',
       role: window.localStorage.getItem('role')
     }
-    this.getTorrents = this.getTorrents.bind(this)
   }
 
-  getTorrents (event, data) {
+  getTorrents = (event, data) => {
     if (data.name === 'browse') {
       this.props.history.push('/browse')
     } else if (data.name === 'recent') {

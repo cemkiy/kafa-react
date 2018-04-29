@@ -24,10 +24,9 @@ export default class UploadTorrent extends Component {
       next: 'block',
       previous: 'none'
     }
-    this.refreshForm = this.refreshForm.bind(this)
   }
 
-  refreshForm () {
+  refreshForm = () => {
     if (this.state.active === 'Torrent Info') {
       this.setState({stepTorrentInfo: 'block', stepTrackers: 'none', stepAdditionalInfo: 'none', next: 'block', previous: 'none'})
     } else if (this.state.active === 'Trackers') {
@@ -37,13 +36,13 @@ export default class UploadTorrent extends Component {
     }
   }
 
-  titleClick (e, {title}) {
+  titleClick = (e, {title}) => {
     this.setState({
       active: title
     }, this.refreshForm)
   }
 
-  next () {
+  next = () => {
     if (this.state.active === 'Torrent Info') {
       this.setState({
         active: 'Trackers'
@@ -55,7 +54,7 @@ export default class UploadTorrent extends Component {
     }
   }
 
-  previous () {
+  previous = () => {
     if (this.state.active === 'Trackers') {
       this.setState({
         active: 'Torrent Info'
@@ -67,11 +66,11 @@ export default class UploadTorrent extends Component {
     }
   }
 
-  share () {
+  share = () => {
     console.log('create')
   }
 
-  render () {
+  render = () => {
     const {active} = this.state
 
     const categories = [
