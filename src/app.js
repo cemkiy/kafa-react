@@ -25,7 +25,7 @@ const RouteMap = () => (<div>
 </div>)
 
 const App = () => (<Switch>
-  <Route exact='exact' path='/' component={Deck} />
+  <Route exact path='/' component={Deck} />
   <Route path='/verify' component={Verify} />
   <Route path='/' component={RouteMap} />
 </Switch>)

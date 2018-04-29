@@ -199,7 +199,7 @@ export default class Deck extends Component {
               the file you want. But you need to upload a lot of what you downloaded. At the same time the
               <strong>kafa.io</strong>
               is a BitTorrent client. So you are only considered to upload it on this site.<br />
-              <List bulleted='bulleted'>
+              <List bulleted>
                 <List.Item>
                   The ratio should not fall below <strong>0.5</strong>.
                 </List.Item>
@@ -212,11 +212,11 @@ export default class Deck extends Component {
               </List>
             </div>
             <div className='deck-button-group'>
-              <Button onClick={this.joinUsClick} icon='icon' labelPosition='left' color='black'>
+              <Button onClick={this.joinUsClick} icon labelPosition='left' color='black'>
                 <Icon name='group' />
                 Join us
               </Button>
-              <Button onClick={this.signInClick} icon='icon' labelPosition='right' color='black'>
+              <Button onClick={this.signInClick} icon labelPosition='right' color='black'>
                 Sign in
                 <Icon name='sign in' />
               </Button>
@@ -227,27 +227,27 @@ export default class Deck extends Component {
           <Grid.Column width={16}>
             <Form onSubmit={this.joinUs}>
               <Form.Group widths='equal'>
-                <Form.Input fluid='fluid' name='username' label='username'
+                <Form.Input fluid name='username' label='username'
                   value={this.state.joinUsFormData.username} onChange={this.joinUsFormHandleChange}
-                  placeholder='captainjack' required='required' />
-                <Form.Input fluid='fluid' name='email' type='email' label='email'
+                  placeholder='captainjack' required />
+                <Form.Input fluid name='email' type='email' label='email'
                   value={this.state.joinUsFormData.email} onChange={this.joinUsFormHandleChange}
-                  placeholder='jacksparrow@blackpearl.com' required='required' />
+                  placeholder='jacksparrow@blackpearl.com' required />
               </Form.Group>
               <Form.Group widths='equal'>
-                <Form.Input fluid='fluid' type='password' name='password' label='password'
+                <Form.Input fluid type='password' name='password' label='password'
                   value={this.state.joinUsFormData.password} onChange={this.joinUsFormHandleChange}
-                  placeholder='min 8, have a number' required='required' />
-                <Form.Input fluid='fluid' type='password' label='password again'
-                  placeholder='********' required='required' />
+                  placeholder='min 8, have a number' required />
+                <Form.Input fluid type='password' label='password again'
+                  placeholder='********' required />
               </Form.Group>
               <Message>
                 <div>The reason we do want your birthday, verify your age is 18 or bigger.</div>
-                <Form.Input fluid='fluid' name='birthday' label='birthday'
+                <Form.Input fluid name='birthday' label='birthday'
                   value={this.state.joinUsFormData.birthday} onChange={this.joinUsFormHandleChange}
-                  placeholder='YYYY-mm-dd exp:1993-03-22' required='required' />
+                  placeholder='YYYY-mm-dd exp:1993-03-22' required />
               </Message>
-              <Form.Field required='required'>
+              <Form.Field required>
                 <Checkbox onChange={this.termsAgreeChange} label='I agree to the Terms and Conditions' />
               </Form.Field>
               <Form.Field>
@@ -261,16 +261,16 @@ export default class Deck extends Component {
           <Grid.Column width={16}>
             <Form onSubmit={this.signIn}>
               <Form.Group widths='equal'>
-                <Form.Input fluid='fluid' name='usernameOrEmail' label='username or email'
+                <Form.Input fluid name='usernameOrEmail' label='username or email'
                   value={this.state.signInFormData.usernameOrEmail} onChange={this.signInFormHandleChange}
-                  placeholder='captainjack or jacksparrow@blackpearl.com' required='required' />
-                <Form.Input fluid='fluid' type='password' name='password' label='password'
+                  placeholder='captainjack or jacksparrow@blackpearl.com' required />
+                <Form.Input fluid type='password' name='password' label='password'
                   value={this.state.signInFormData.password} onChange={this.signInFormHandleChange}
-                  placeholder='********' required='required' />
+                  placeholder='********' required />
               </Form.Group>
               <Form.Group>
                 <Form.Button>Sign in</Form.Button>
-                <Button as='a' basic='basic' color='yellow' onClick={this.forgotPassClick}>Forgot password?</Button>
+                <Button as='a' basic color='yellow' onClick={this.forgotPassClick}>Forgot password?</Button>
               </Form.Group>
             </Form>
           </Grid.Column>
@@ -279,9 +279,9 @@ export default class Deck extends Component {
           <Grid.Column width={16}>
             <Form onSubmit={this.forgotPass}>
               <Form.Group widths='equal'>
-                <Form.Input fluid='fluid' name='email' type='email' label='email'
+                <Form.Input fluid name='email' type='email' label='email'
                   value={this.state.forgotPassFormData.email} onChange={this.forgotPassFormHandleChange}
-                  placeholder='jacksparrow@blackpearl.com' required='required' />
+                  placeholder='jacksparrow@blackpearl.com' required />
               </Form.Group>
               <Form.Group>
                 <Form.Button>Send Password Change Email</Form.Button>
@@ -305,7 +305,7 @@ export default class Deck extends Component {
                   <Item.Header>
                     <Icon.Group>
                       <Icon name='file code outline' />
-                      <Icon corner='corner' name='dont' />
+                      <Icon corner name='dont' />
                     </Icon.Group>
                     You do not need any program
                   </Item.Header>
@@ -319,7 +319,7 @@ export default class Deck extends Component {
                   <Item.Header>
                     <Icon.Group>
                       <Icon name='puzzle' />
-                      <Icon corner='corner' name='puzzle' />
+                      <Icon corner name='puzzle' />
                     </Icon.Group>
                     Modern Design
                   </Item.Header>
