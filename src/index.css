@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #eef3f9!important;
+  background-color: #eef3f9 !important;
 }
 
 #sidebar {
@@ -10,21 +10,21 @@ body {
   overflow: hidden;
   margin-bottom: -5000px;
   padding-bottom: 5000px;
-  background-color: black!important;
+  background-color: black !important;
 }
 
 #main {
   margin-left: 262.85px;
- }
+}
 
- .link {
-   color: #fbbd08;
- }
+.link {
+  color: #fbbd08;
+}
 
- .link:hover{
-   color: #fbbd08;
- }
+.link:hover {
+  color: #fbbd08;
+}
 
- .link:visited{
-   color: #fbbd08;
- }
+.link:visited {
+  color: #fbbd08;
+}

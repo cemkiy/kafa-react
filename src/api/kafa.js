@@ -1,4 +1,4 @@
-import { KafasClient } from '../middleware/clients.js';
+import {KafasClient} from '../middleware/clients.js';
 
 const kafasQuery = `query kafas($user_id: String, $torrent_id: String,
   $created_at_from: String, $created_at_to: String, $updated_at_from: String,
@@ -89,32 +89,45 @@ const deleteKafaMutation = `mutation deleteKafa($id: String!){
 }
 `
 
-var Kafas = function (variables, returnedSchema) {
+var Kafas = function(variables, returnedSchema) {
   let kafasQuery = QueryRequest("kafas", variables, returnedSchema);
   return kafasClient.request(kafasQuery);
 }
 
-var KafaById = function (variables, returnedSchema) {
+var KafaById = function(variables, returnedSchema) {
   let kafaByIdQuery = QueryRequest("kafaById", variables, returnedSchema);
   return kafasClient.request(kafaByIdQuery);
 }
 
-var IncrementKafa = function (input, returnedSchema)) {
-  let variables = {'input': input};
+var IncrementKafa = function(input, returnedSchema)) {
+  let variables = {
+    'input': input
+  };
   let incrementKafaMutation = MutationRequest("incrementKafa", variables, returnedSchema);
   return kafasClient.request(incrementKafaMutation);
 }
 
-var UpdateKafa = function (id, input, returnedSchema) {
-  let variables = {'id': id, 'input': input};
+var UpdateKafa = function(id, input, returnedSchema) {
+  let variables = {
+    'id': id,
+    'input': input
+  };
   let updateKafaMutation = MutationRequest("updateKafa", variables, returnedSchema);
   return kafasClient.request(updateKafaMutation);
 }
 
-var DeleteKafa = function (id, returnedSchema) {
-  let variables = {'id': id};
+var DeleteKafa = function(id, returnedSchema) {
+  let variables = {
+    'id': id
+  };
   let deleteKafaMutation = MutationRequest("deleteKafa", variables, returnedSchema);
   return kafasClient.request(deleteKafaMutation, variables);
 }
 
-export { Kafas, KafaById, IncrementKafa, UpdateKafa, DeleteKafa };
+export {
+  Kafas,
+  KafaById,
+  IncrementKafa,
+  UpdateKafa,
+  DeleteKafa
+};

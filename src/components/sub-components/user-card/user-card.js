@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {Card, Icon} from 'semantic-ui-react'
 import Gravatar from 'react-gravatar'
 
 export default class Profile extends Component {
@@ -14,24 +14,22 @@ export default class Profile extends Component {
   }
 
   render() {
-    return (
-      <Card className="profile-info">
-        <Gravatar email={this.props.user.email} size={285}/>
-        <Card.Content>
-          <Card.Header>
-            {this.props.user.username}
-          </Card.Header>
-          <Card.Description>
-            {this.props.user.about || 'nothing to show'}
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <a>
-            <Icon name='magnet' />
-            22 Torrents
-          </a>
-        </Card.Content>
-      </Card>
-    )
+    return (<Card className="profile-info">
+      <Gravatar email={this.props.user.email} size={285}/>
+      <Card.Content>
+        <Card.Header>
+          {this.props.user.username}
+        </Card.Header>
+        <Card.Description>
+          {this.props.user.about || 'nothing to show'}
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra="extra">
+        <a>
+          <Icon name='magnet'/>
+          22 Torrents
+        </a>
+      </Card.Content>
+    </Card>)
   }
 }

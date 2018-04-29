@@ -1,5 +1,4 @@
-const Languages = [
-  {
+const Languages = [{
     'value': 'ab',
     'text': 'Abkhaz'
   },
@@ -737,4 +736,6 @@ const Languages = [
   }
 ];
 
-export { Languages };
+export {
+  Languages
+};

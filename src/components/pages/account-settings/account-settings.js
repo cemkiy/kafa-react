@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import './account-settings.css';
-import { Card, Form, Message } from 'semantic-ui-react'
-import { ChangePassUser, UpdateEmailUser, UpdateUser } from '../../../api/user';
-import { ErrorAnalysis } from '../../../middleware/error-handler';
-
+import {Card, Form, Message} from 'semantic-ui-react'
+import {ChangePassUser, UpdateEmailUser, UpdateUser} from '../../../api/user';
+import {ErrorAnalysis} from '../../../middleware/error-handler';
 
 export default class Filter extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ export default class Filter extends Component {
       formResultHeader: '',
       formResultDescription: '',
       emailChangeFormData: {
-        email:'',
+        email: ''
       },
       passwordChangeFormData: {
         password: '',
@@ -53,119 +52,101 @@ export default class Filter extends Component {
 
   emailChange = (event) => {
     UpdateEmailUser(this.state.user.id, this.state.emailChangeFormData, [
-      'id', 'username', 'email', 'verified', 'about',{'role': ['type']}, 'birthday',
+      'id',
+      'username',
+      'email',
+      'verified',
+      'about', {
+        'role': ['type']
+      },
+      'birthday',
       'created_at'
     ]).then(data => {
-      this.setState({
-        formResultDisplay: "block",
-        formResultType: 'yellow',
-        formResultHeader: 'Update Email Processing',
-        formResultDescription: 'Go to your email and click the activation button.'
-      });
-    })
-    .catch(err => {
+      this.setState({formResultDisplay: "block", formResultType: 'yellow', formResultHeader: 'Update Email Processing', formResultDescription: 'Go to your email and click the activation button.'});
+    }).catch(err => {
       ErrorAnalysis(err, this.props.history);
-      this.setState({
-        formResultDisplay: "block",
-        formResultType: 'red',
-        formResultHeader: 'Update Email Failed',
-        formResultDescription: err.response.errors[0].message
-      });
-    })
+      this.setState({formResultDisplay: "block", formResultType: 'red', formResultHeader: 'Update Email Failed', formResultDescription: err.response.errors[0].message});
+    });
     event.preventDefault();
   }
 
   passwordChange = (event) => {
     ChangePassUser(this.state.user.id, this.state.passwordChangeFormData, [
-      'id', 'username', 'email', 'verified', 'about',{'role': ['type']}, 'birthday',
+      'id',
+      'username',
+      'email',
+      'verified',
+      'about', {
+        'role': ['type']
+      },
+      'birthday',
       'created_at'
     ]).then(data => {
-      this.setState({
-        formResultDisplay: "block",
-        formResultType: 'green',
-        formResultHeader: 'Updated Password',
-        formResultDescription: 'Now, activated new password.'
-      });
-    })
-    .catch(err => {
+      this.setState({formResultDisplay: "block", formResultType: 'green', formResultHeader: 'Updated Password', formResultDescription: 'Now, activated new password.'});
+    }).catch(err => {
       ErrorAnalysis(err, this.props.history);
-      this.setState({
-        formResultDisplay: "block",
-        formResultType: 'red',
-        formResultHeader: 'Update Password Failed',
-        formResultDescription: err.response.errors[0].message
-      });
-    })
+      this.setState({formResultDisplay: "block", formResultType: 'red', formResultHeader: 'Update Password Failed', formResultDescription: err.response.errors[0].message});
+    });
     event.preventDefault();
   }
 
   profileChange = (event) => {
     UpdateUser(this.state.user.id, this.state.profileChangeFormData, [
-      'id', 'username', 'email', 'verified', 'about',{'role': ['type']}, 'birthday',
+      'id',
+      'username',
+      'email',
+      'verified',
+      'about', {
+        'role': ['type']
+      },
+      'birthday',
       'created_at'
     ]).then(data => {
-      this.setState({
-        formResultDisplay: "block",
-        formResultType: 'green',
-        formResultHeader: 'Updated Password',
-        formResultDescription: 'Now, activated new password.'
-      });
-    })
-    .catch(err => {
+      this.setState({formResultDisplay: "block", formResultType: 'green', formResultHeader: 'Updated Password', formResultDescription: 'Now, activated new password.'});
+    }).catch(err => {
       ErrorAnalysis(err, this.props.history);
-      this.setState({
-        formResultDisplay: "block",
-        formResultType: 'red',
-        formResultHeader: 'Update Password Failed',
-        formResultDescription: err.response.errors[0].message
-      });
-    })
+      this.setState({formResultDisplay: "block", formResultType: 'red', formResultHeader: 'Update Password Failed', formResultDescription: err.response.errors[0].message});
+    });
     event.preventDefault();
   }
 
   render() {
-    return (
-      <Card className="form-card" centered>
-       <Card.Content>
-         <Card.Header content='Account Settings' />
-         <Message>
-            <Message.Header>
-               Email Change Notify
-            </Message.Header>
-            <p>
-              You need to confirm the link from the email to complete this process.
-              If you are not complete, your account is disabled.
-            </p>
-          </Message>
-         <Form className='form' onSubmit={this.emailChange}>
-          <Form.Input fluid name="email" label='email' value={this.state.emailChangeFormData.email} onChange={this.emailChangeFormHandleChange} placeholder='jacksparrow@mail.com' required />
-          <Form.Button>Submit</Form.Button>
-         </Form>
-        <hr />
+    return (<Card className="form-card" centered="centered">
+      <Card.Content>
+        <Card.Header content='Account Settings'/>
         <Message>
-           <Message.Header>
-              Password Change Notify
-           </Message.Header>
-           <p>
-             You need to confirm the link from the email to complete this process.
-           </p>
-           <Message.List items={
-             ['Password must be at least 8 characters',
-             'Password must contain at least 1 digit']
-           } />
-         </Message>
+          <Message.Header>
+            Email Change Notify
+          </Message.Header>
+          <p>
+            You need to confirm the link from the email to complete this process. If you are not complete, your account is disabled.
+          </p>
+        </Message>
+        <Form className='form' onSubmit={this.emailChange}>
+          <Form.Input fluid="fluid" name="email" label='email' value={this.state.emailChangeFormData.email} onChange={this.emailChangeFormHandleChange} placeholder='jacksparrow@mail.com' required="required"/>
+          <Form.Button>Submit</Form.Button>
+        </Form>
+        <hr/>
+        <Message>
+          <Message.Header>
+            Password Change Notify
+          </Message.Header>
+          <p>
+            You need to confirm the link from the email to complete this process.
+          </p>
+          <Message.List items={['Password must be at least 8 characters', 'Password must contain at least 1 digit']}/>
+        </Message>
         <Form className='form' onSubmit={this.passwordChange}>
-          <Form.Input fluid type='password' name='password' label='password' value={this.state.passwordChangeFormData.password} onChange={this.passwordChangeFormHandleChange} placeholder='min 8, have a number' required />
-          <Form.Input fluid type='password' name='password_again' label='password_again' value={this.state.passwordChangeFormData.password_again} onChange={this.passwordChangeFormHandleChange} placeholder='min 8, have a number' required />
+          <Form.Input fluid="fluid" type='password' name='password' label='password' value={this.state.passwordChangeFormData.password} onChange={this.passwordChangeFormHandleChange} placeholder='min 8, have a number' required="required"/>
+          <Form.Input fluid="fluid" type='password' name='password_again' label='password_again' value={this.state.passwordChangeFormData.password_again} onChange={this.passwordChangeFormHandleChange} placeholder='min 8, have a number' required="required"/>
           <Form.Button>Submit</Form.Button>
         </Form>
-        <hr />
+        <hr/>
         <Form className='form' onSubmit={this.profileChange}>
-          <Form.TextArea label='about yourself' name='about' value={this.state.profileChangeFormData.about} onChange={this.profileChangeFormHandleChange} placeholder='You should write short. Sorry, but nobody reads.' required/>
+          <Form.TextArea label='about yourself' name='about' value={this.state.profileChangeFormData.about} onChange={this.profileChangeFormHandleChange} placeholder='You should write short. Sorry, but nobody reads.' required="required"/>
           <Form.Button>Submit</Form.Button>
         </Form>
-       </Card.Content>
-     </Card>
-    )
+      </Card.Content>
+    </Card>)
   }
 }

@@ -1,8 +1,8 @@
 .center {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-    padding-top: 80px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  padding-top: 80px;
 }
 
 .deck-button-group {
@@ -10,8 +10,8 @@
 }
 
 .description-table {
-  padding-top: 50px!important;
-  padding-bottom: 50px!important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
 }
 
 .description-table-element {
