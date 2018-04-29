@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
-import './verify.css';
-import logo from '../../../assets/img/logo.gif';
+import './verify.css'
+import logo from '../../../assets/img/logo.gif'
 import {Grid, Image, Form, Header, Message} from 'semantic-ui-react'
-import {VerifyUser, ForgotPassComplete} from '../../../api/token';
-import {ErrorAnalysis} from '../../../middleware/error-handler';
+import {VerifyUser, ForgotPassComplete} from '../../../api/token'
+import {ErrorAnalysis} from '../../../middleware/error-handler'
 
 export default class Deck extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
-      forgotPassCompleteFormDisplay: "none",
-      formResultDisplay: "none",
+      forgotPassCompleteFormDisplay: 'none',
+      formResultDisplay: 'none',
       formResultType: 'green',
       formResultHeader: '',
       formResultDescription: '',
@@ -18,86 +18,106 @@ export default class Deck extends Component {
         forgot_password_token: '',
         password: ''
       }
-    };
-    this.joinUsComplete = this.joinUsComplete.bind(this);
-    this.emailChangeComplete = this.emailChangeComplete.bind(this);
-    this.forgotPassCompleteFormHandleChange = this.forgotPassCompleteFormHandleChange.bind(this);
-    this.forgotPassComplete = this.emailChangeComplete.bind(this);
+    }
+    this.joinUsComplete = this.joinUsComplete.bind(this)
+    this.emailChangeComplete = this.emailChangeComplete.bind(this)
+    this.forgotPassCompleteFormHandleChange = this.forgotPassCompleteFormHandleChange.bind(this)
+    this.forgotPassComplete = this.emailChangeComplete.bind(this)
   }
 
-  joinUsComplete() {
+  joinUsComplete () {
     VerifyUser(this.props.location.query.email_verification_key, []).then(data => {
-      this.setState({formResultDisplay: "block", formResultType: 'green', formResultHeader: 'Account Verified', formResultDescription: 'Redirect...'});
-      this.props.history.push("/");
+      this.setState({
+        formResultDisplay: 'block',
+        formResultType: 'green',
+        formResultHeader: 'Account Verified',
+        formResultDescription: 'Redirect...'
+      })
+      this.props.history.push('/')
     }).catch(err => {
-      ErrorAnalysis(err, this.props.history);
-      this.setState({formResultDisplay: "block", formResultType: 'red', formResultHeader: 'Account Verify Failed', formResultDescription: err.response.error});
+      ErrorAnalysis(err, this.props.history)
+      this.setState({
+        formResultDisplay: 'block',
+        formResultType: 'red',
+        formResultHeader: 'Account Verify Failed',
+        formResultDescription: err.response.error
+      })
     })
   }
 
-  emailChangeComplete() {
+  emailChangeComplete () {
     VerifyUser(this.props.location.query.email_verification_key, []).then(data => {
-      this.setState({formResultDisplay: "block", formResultType: 'green', formResultHeader: 'Email Changed', formResultDescription: 'Redirect...'});
+      this.setState({
+        formResultDisplay: 'block',
+        formResultType: 'green',
+        formResultHeader: 'Email Changed',
+        formResultDescription: 'Redirect...'
+      })
     }).catch(err => {
-      ErrorAnalysis(err, this.props.history);
-      this.setState({formResultDisplay: "block", formResultType: 'red', formResultHeader: 'Email Change Failed', formResultDescription: err.response.error});
+      ErrorAnalysis(err, this.props.history)
+      this.setState({
+        formResultDisplay: 'block',
+        formResultType: 'red',
+        formResultHeader: 'Email Change Failed',
+        formResultDescription: err.response.error
+      })
     })
   }
 
-  forgotPassCompleteFormHandleChange(event, data) {
-    let mockforgotPassCompleteFormData = this.state.forgotPassCompleteFormData;
-    mockforgotPassCompleteFormData[data.name] = event.target.value;
-    this.setState({emailChangeCompleteFormData: mockforgotPassCompleteFormData});
+  forgotPassCompleteFormHandleChange (event, data) {
+    let mockforgotPassCompleteFormData = this.state.forgotPassCompleteFormData
+    mockforgotPassCompleteFormData[data.name] = event.target.value
+    this.setState({emailChangeCompleteFormData: mockforgotPassCompleteFormData})
   }
 
-  forgotPassComplete = (event) => {
+  forgotPassComplete (event) {
     ForgotPassComplete(this.props.location.query.forgot_password_token, this.state.forgotPassCompleteFormData, []).then(data => {
-      this.setState({formResultDisplay: "block", formResultType: 'green', formResultHeader: 'Password Changed', formResultDescription: 'Redirect...'});
+      this.setState({formResultDisplay: 'block', formResultType: 'green', formResultHeader: 'Password Changed', formResultDescription: 'Redirect...'})
     }).catch(err => {
-      ErrorAnalysis(err, this.props.history);
-      this.setState({formResultDisplay: "block", formResultType: 'red', formResultHeader: 'Forgot Pass Failed', formResultDescription: err.response.error});
-    });
-    event.preventDefault();
+      ErrorAnalysis(err, this.props.history)
+      this.setState({formResultDisplay: 'block', formResultType: 'red', formResultHeader: 'Forgot Pass Failed', formResultDescription: err.response.error})
+    })
+    event.preventDefault()
   }
 
-  componentDidMount() {
-    console.log(this.props.location.search);
+  componentDidMount () {
+    console.log(this.props.location.search)
     // TODO: qs lib
     // if(this.props.location.query.type === 'joinUsComplete'){
-    //   this.joinUsComplete();
+    //   this.joinUsComplete()
     // }else if(this.props.location.query.type === 'emailChangeComplete'){
-    //   this.emailChangeComplete();
+    //   this.emailChangeComplete()
     // }else if(this.props.location.query.type === 'forgotPassComplete'){
     //   this.setState({
-    //     forgotPassCompleteFormDisplay: "block",
-    //     formResultDisplay: "none"
-    //   });
+    //     forgotPassCompleteFormDisplay: 'block',
+    //     formResultDisplay: 'none'
+    //   })
     // }
   }
 
-  render() {
+  render () {
     return (<div className='center'>
       <Grid columns={2}>
         <Grid.Row>
           <Grid.Column width={3}>
-            <Image src={logo}/>
+            <Image src={logo} />
           </Grid.Column>
           <Grid.Column width={13}>
             <Header as='h1'>Ahoy Pirate,</Header>
             <div>
               Welcome to
               <strong>kafa.io</strong>
-              verify page. Check the url and do not be a shark bait.<br/>
+              verify page. Check the url and do not be a shark bait.<br />
             </div>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row style={{
-            display: this.state.forgotPassCompleteFormDisplay
-          }}>
+        <Grid.Row style={{display: this.state.forgotPassCompleteFormDisplay}}>
           <Grid.Column width={16}>
             <Form onSubmit={this.forgotPassComplete}>
               <Form.Group widths='equal'>
-                <Form.Input fluid="fluid" type='password' name='password' label='password' value={this.state.forgotPassCompleteFormData.password} onChange={this.forgotPassFormHandleChange} placeholder='min 8, have a number' required="required"/>
+                <Form.Input fluid='fluid' type='password' name='password' label='password'
+                  value={this.state.forgotPassCompleteFormData.password} onChange={this.forgotPassFormHandleChange}
+                  placeholder='min 8, have a number' required='required' />
               </Form.Group>
               <Form.Group>
                 <Form.Button>Change Password</Form.Button>
@@ -105,9 +125,7 @@ export default class Deck extends Component {
             </Form>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row style={{
-            display: this.state.formResultDisplay
-          }}>
+        <Grid.Row style={{display: this.state.formResultDisplay}}>
           <Grid.Column width={16}>
             <Message color={this.state.formResultType}>
               <Message.Header>{this.state.formResultHeader}</Message.Header>

@@ -1,45 +1,46 @@
 import {GraphQLClient} from 'graphql-request'
-const hostname = window && window.location && window.location.hostname;
+const hostname = window && window.location && window.location.hostname
 
-var api_url = 'https://api.kafa.io/graphql/';
+var apiURL = 'https://api.kafa.io/graphql/'
 if (hostname === 'localhost') {
-  api_url = 'http://localhost:3000/graphql/';
+  apiURL = 'http://localhost:3000/graphql/'
 } else if (hostname === 'kafa-react.herokuapp.com') {
-  api_url = 'https://kafa-node.herokuapp.com/graphql/';
+  apiURL = 'https://kafa-node.herokuapp.com/graphql/'
 }
 
-var getToken = function() {
+var getToken = function () {
   try {
-    let token = localStorage.getItem('token');
-    if (!token)
-      return '';
-    return 'Bearer ' + token;
+    let token = window.localStorage.getItem('token')
+    if (!token) {
+      return ''
+    }
+    return 'Bearer ' + token
   } catch (e) {
-    return '';
+    return ''
   }
 }
 
-const TokenClient = new GraphQLClient(api_url + 'token', {headers: {}})
+const TokenClient = new GraphQLClient(apiURL + 'token', {headers: {}})
 
-const RolesClient = new GraphQLClient(api_url + 'roles', {
+const RolesClient = new GraphQLClient(apiURL + 'roles', {
   headers: {
     Authorization: getToken()
   }
 })
 
-const KafasClient = new GraphQLClient(api_url + 'kafas', {
+const KafasClient = new GraphQLClient(apiURL + 'kafas', {
   headers: {
     Authorization: getToken()
   }
 })
 
-const TorrentsClient = new GraphQLClient(api_url + 'torrents', {
+const TorrentsClient = new GraphQLClient(apiURL + 'torrents', {
   headers: {
     Authorization: getToken()
   }
 })
 
-const UsersClient = new GraphQLClient(api_url + 'users', {
+const UsersClient = new GraphQLClient(apiURL + 'users', {
   headers: {
     Authorization: getToken()
   }
@@ -51,4 +52,4 @@ export {
   KafasClient,
   TorrentsClient,
   UsersClient
-};
+}

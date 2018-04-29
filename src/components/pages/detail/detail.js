@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './detail.css';
+import './detail.css'
 import {
   Header,
   Message,
@@ -11,24 +11,23 @@ import {
   Button,
   List
 } from 'semantic-ui-react'
-import UserLabel from '../../../components/sub-components/user-label/user-label';
-import CommentSection from '../../../components/sub-components/comment-section/comment-section';
+import UserLabel from '../../../components/sub-components/user-label/user-label'
+import CommentSection from '../../../components/sub-components/comment-section/comment-section'
 
 export default class Detail extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       user: {}
     }
-
   }
 
-  render() {
+  render () {
     return (<div className='detail-section'>
       <Header as='h2'>Torrent Details</Header>
       <div>
-        <Message icon="icon" color='black' className='torrent-description'>
-          <Icon name='paw'/>
+        <Message icon='icon' color='black' className='torrent-description'>
+          <Icon name='paw' />
           <Message.Content>
             <Message.Header>Battlefield X</Message.Header>
             This is a action game.
@@ -36,14 +35,14 @@ export default class Detail extends Component {
         </Message>
       </div>
       <div className='detail-card-div'>
-        <Card centered={true} className='detail-card'>
+        <Card centered className='detail-card'>
           <Card.Content>
             <Card.Description>
               <Grid divided='vertically'>
                 <Grid.Row columns={2}>
                   <Grid.Column>
                     <Header as='h5'>Uploader:</Header>
-                    <UserLabel user={this.state.user}/>
+                    <UserLabel user={this.state.user} />
                     <Header as='h5'>Size:</Header>
                     14 GB
                     <Header as='h5'>Leechs:</Header>
@@ -72,17 +71,17 @@ export default class Detail extends Component {
         </Card>
       </div>
       <div className='detail-buttons'>
-        <Button icon="icon" labelPosition='left' color='yellow'>
-          <Icon name='save'/>
+        <Button icon='icon' labelPosition='left' color='yellow'>
+          <Icon name='save' />
           Torrent File
         </Button>
-        <Button icon="icon" labelPosition='right' color='yellow'>
+        <Button icon='icon' labelPosition='right' color='yellow'>
           Magnet Link
-          <Icon name='magnet'/>
+          <Icon name='magnet' />
         </Button>
       </div>
       <div className='detail-card-div'>
-        <Card centered={true} className='detail-card'>
+        <Card centered className='detail-card'>
           <Card.Content>
             <Card.Description>
               <Grid divided='vertically'>
@@ -90,26 +89,26 @@ export default class Detail extends Component {
                   <Grid.Column>
                     <List>
                       <List.Item icon='image' content={<Popup
-                        trigger = {
+                        trigger={
                           <a className='link' href='http://www.semantic-ui.com'>semantic-ui.com</a>
                         }
                         flowing
-                        hoverable > <Image floated='right' size='medium' src='https://static-dergi.milliyetemlak.com/dergi/wp-content/uploads/2017/10/orman-emvali-1.jpg'/>
-                      </Popup>}/>
+                        hoverable > <Image floated='right' size='medium' src='https://static-dergi.milliyetemlak.com/dergi/wp-content/uploads/2017/10/orman-emvali-1.jpg' />
+                      </Popup>} />
                       <List.Item icon='image' content={<Popup
-                        trigger = {
+                        trigger={
                           <a className='link' href='http://www.semantic-ui.com'>semantic-ui.com</a>
                         }
                         flowing
-                        hoverable > <Image floated='right' size='medium' src='https://static-dergi.milliyetemlak.com/dergi/wp-content/uploads/2017/10/orman-emvali-1.jpg'/>
-                      </Popup>}/>
+                        hoverable > <Image floated='right' size='medium' src='https://static-dergi.milliyetemlak.com/dergi/wp-content/uploads/2017/10/orman-emvali-1.jpg' />
+                      </Popup>} />
                       <List.Item icon='image' content={<Popup
-                        trigger = {
+                        trigger={
                           <a className='link' href='http://www.semantic-ui.com'>semantic-ui.com</a>
                         }
                         flowing
-                        hoverable > <Image floated='right' size='medium' src='https://static-dergi.milliyetemlak.com/dergi/wp-content/uploads/2017/10/orman-emvali-1.jpg'/>
-                      </Popup>}/>
+                        hoverable > <Image floated='right' size='medium' src='https://static-dergi.milliyetemlak.com/dergi/wp-content/uploads/2017/10/orman-emvali-1.jpg' />
+                      </Popup>} />
                     </List>
                   </Grid.Column>
                   <Grid.Column>
@@ -123,7 +122,7 @@ export default class Detail extends Component {
         </Card>
       </div>
       <div className='detail-card-div'>
-        <CommentSection/>
+        <CommentSection />
       </div>
     </div>)
   }

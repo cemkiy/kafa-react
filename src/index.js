@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import {BrowserRouter} from 'react-router-dom'
-import './index.css';
-import 'semantic-ui-css/semantic.min.css';
-import App from './app';
-import registerServiceWorker from './registerServiceWorker';
+import './index.css'
+import 'semantic-ui-css/semantic.min.css'
+import App from './app'
+import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render((<BrowserRouter>
-  <App/>
+  <App />
 </BrowserRouter>), document.getElementById('root'))
 
-registerServiceWorker();
+registerServiceWorker()

@@ -1,12 +1,12 @@
-var ErrorAnalysis = function(err, history) {
+var ErrorAnalysis = function (err, history) {
   // TODO: Error handlers
   if (err.response.status === 401) {
-    history.push("/");
+    history.push('/')
   } else if (err.response.status === 500) {
-    history.push("/");
+    history.push('/')
   }
 }
 
 export {
   ErrorAnalysis
-};
+}

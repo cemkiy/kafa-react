@@ -1,15 +1,14 @@
 import React, {Component} from 'react'
-import './comment-section.css';
+import './comment-section.css'
 import {Card, Button, Comment, Form} from 'semantic-ui-react'
 
 export default class CommentSection extends Component {
-
-  render() {
-    return (<Card centered={true} className='comment-card'>
+  render () {
+    return (<Card centered className='comment-card'>
       <Card.Content>
         <Comment.Group>
           <Comment>
-            <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg'/>
+            <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg' />
             <Comment.Content>
               <Comment.Author as='a'>Matt</Comment.Author>
               <Comment.Metadata>
@@ -23,7 +22,7 @@ export default class CommentSection extends Component {
           </Comment>
 
           <Comment>
-            <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg'/>
+            <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg' />
             <Comment.Content>
               <Comment.Author as='a'>Elliot Fu</Comment.Author>
               <Comment.Metadata>
@@ -38,7 +37,7 @@ export default class CommentSection extends Component {
             </Comment.Content>
             <Comment.Group>
               <Comment>
-                <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg'/>
+                <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg' />
                 <Comment.Content>
                   <Comment.Author as='a'>Jenny Hess</Comment.Author>
                   <Comment.Metadata>
@@ -56,7 +55,7 @@ export default class CommentSection extends Component {
           </Comment>
 
           <Comment>
-            <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg'/>
+            <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg' />
             <Comment.Content>
               <Comment.Author as='a'>Joe Henderson</Comment.Author>
               <Comment.Metadata>
@@ -71,9 +70,9 @@ export default class CommentSection extends Component {
             </Comment.Content>
           </Comment>
 
-          <Form reply="reply">
-            <Form.TextArea/>
-            <Button content='Add Reply' labelPosition='left' icon='edit' color='yellow'/>
+          <Form reply='reply'>
+            <Form.TextArea />
+            <Button content='Add Reply' labelPosition='left' icon='edit' color='yellow' />
           </Form>
         </Comment.Group>
       </Card.Content>
