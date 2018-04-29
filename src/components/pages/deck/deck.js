@@ -46,44 +46,36 @@ export default class Deck extends Component {
         email: ''
       }
     }
-    this.joinUsFormHandleChange = this.joinUsFormHandleChange.bind(this)
-    this.signInFormHandleChange = this.signInFormHandleChange.bind(this)
-    this.forgotPassFormHandleChange = this.forgotPassFormHandleChange.bind(this)
-    this.joinUs = this.joinUs.bind(this)
-    this.signIn = this.signIn.bind(this)
-    this.forgotPass = this.forgotPass.bind(this)
-    this.termsAgreeChange = this.termsAgreeChange.bind(this)
-    this.verifyCallback = this.verifyCallback.bind(this)
   }
 
-  termsAgreeChange (event, data) {
+  termsAgreeChange = (event, data) => {
     this.setState({joinUsFormTermsAgree: data.checked})
   }
 
   // verify user callback function
-  verifyCallback (response) {
+  verifyCallback = (response) => {
     this.setState({joinUsFormCaptcha: true})
   }
 
-  joinUsFormHandleChange (event, data) {
+  joinUsFormHandleChange = (event, data) => {
     let mockJoinUsFormData = this.state.joinUsFormData
     mockJoinUsFormData[data.name] = event.target.value
     this.setState({joinUsFormData: mockJoinUsFormData})
   }
 
-  signInFormHandleChange (event, data) {
+  signInFormHandleChange = (event, data) => {
     let mockSignInFormData = this.state.signInFormData
     mockSignInFormData[data.name] = event.target.value
     this.setState({signInFormData: mockSignInFormData})
   }
 
-  forgotPassFormHandleChange (event, data) {
+  forgotPassFormHandleChange = (event, data) => {
     let mockForgotPassFormData = this.state.forgotPassFormData
     mockForgotPassFormData[data.name] = event.target.value
     this.setState({signInFormData: mockForgotPassFormData})
   }
 
-  joinUsClick () {
+  joinUsClick = () => {
     this.setState({
       joinUsFormDisplay: 'block',
       signInFormDisplay: 'none',
@@ -92,7 +84,7 @@ export default class Deck extends Component {
     })
   }
 
-  signInClick () {
+  signInClick = () => {
     this.setState({
       signInFormDisplay: 'block',
       joinUsFormDisplay: 'none',
@@ -101,7 +93,7 @@ export default class Deck extends Component {
     })
   }
 
-  forgotPassClick () {
+  forgotPassClick = () => {
     this.setState({
       forgotPassFormDisplay: 'block',
       signInFormDisplay: 'none',
@@ -110,7 +102,7 @@ export default class Deck extends Component {
     })
   }
 
-  joinUs (event) {
+  joinUs = (event) => {
     CreateUser(this.state.joinUsFormData,
       ['id', 'username', 'email', 'birthday', 'created_at']).then(data => {
       this.setState({
@@ -131,7 +123,7 @@ export default class Deck extends Component {
     event.preventDefault()
   }
 
-  signIn (event) {
+  signIn = (event) => {
     CreateToken(this.state.signInFormData, [
       'token', {
         'user': [
@@ -161,7 +153,7 @@ export default class Deck extends Component {
     event.preventDefault()
   }
 
-  forgotPass (event) {
+  forgotPass = (event) => {
     ForgotPass(this.state.forgotPassFormData, []).then(data => {
       this.setState({
         formResultDisplay: 'block',

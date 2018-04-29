@@ -2,6 +2,9 @@
   "name": "kafa-react",
   "version": "0.1.0",
   "private": true,
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "dependencies": {
     "graphql-query-builder": "^1.0.7",
     "graphql-request": "^1.5.1",
@@ -19,5 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "standard": "^11.0.1"
   }
 }
