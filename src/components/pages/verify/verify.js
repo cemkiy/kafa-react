@@ -10,7 +10,7 @@ export default class Deck extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      parsedQueryParams : {},
+      parsedQueryParams: {},
       forgotPassCompleteFormDisplay: 'none',
       formResultDisplay: 'none',
       formResultType: 'green',
@@ -79,12 +79,12 @@ export default class Deck extends Component {
   }
 
   componentDidMount () {
-    this.setState({parsedQueryParams: queryString.parse(this.props.location.search)},function(){
-      if(this.state.parsedQueryParams.type === 'joinUsComplete'){
+    this.setState({parsedQueryParams: queryString.parse(this.props.location.search)}, () => {
+      if (this.state.parsedQueryParams.type === 'joinUsComplete') {
         this.joinUsComplete()
-      }else if(this.state.parsedQueryParams.type === 'emailChangeComplete'){
+      } else if (this.state.parsedQueryParams.type === 'emailChangeComplete') {
         this.emailChangeComplete()
-      }else if(this.state.parsedQueryParams.type === 'forgotPassComplete'){
+      } else if (this.state.parsedQueryParams.type === 'forgotPassComplete') {
         this.setState({
           forgotPassCompleteFormDisplay: 'block',
           formResultDisplay: 'none'
@@ -104,7 +104,7 @@ export default class Deck extends Component {
             <Header as='h1'>Ahoy Pirate,</Header>
             <div>
               Welcome to
-              &nbsp;<strong>kafa.io</strong>&nbsp; 
+              &nbsp;<strong>kafa.io</strong>&nbsp;
               verify page. Check the url and do not be a shark bait.<br />
             </div>
           </Grid.Column>

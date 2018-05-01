@@ -1,0 +1,29 @@
+.imdb-card {
+  width: 674px !important;
+  height: 700px !important;
+}
+
+.imdb-card-button-group {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.imdb-card-content {
+  padding: 0px !important;
+  background-color: black !important;
+}
+
+.imdb-header {
+  background-color: #fbbd08 !important;
+  color: black;
+}
+
+.popup {
+  background-color: #fbbd08 !important;
+  color: black;
+}
+
+.imdb-rate {
+  float: right !important;
+  color: #fbbd08 !important;
+}

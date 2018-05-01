@@ -4,11 +4,19 @@ body {
   background-color: #eef3f9 !important;
 }
 
+#navbar {
+    position: fixed;
+    width: 100%;
+    display: inline;
+    z-index: 103;
+}
+
 #sidebar {
   width: 262.85px;
   background-color: black !important;
   position: fixed;
   left: 0;
+  padding-top: 76px;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   -webkit-transition: none;
