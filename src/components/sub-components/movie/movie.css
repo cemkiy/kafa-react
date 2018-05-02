@@ -13,12 +13,18 @@
   background-color: black !important;
 }
 
+.imdb-poster {
+  width: 100%;
+  height: 100%;
+  background-repeat: no repeat !important;
+}
+
 .imdb-header {
   background-color: #fbbd08 !important;
   color: black;
 }
 
-.popup {
+.imdb-card-button-group > .popup {
   background-color: #fbbd08 !important;
   color: black;
 }
@@ -26,4 +32,14 @@
 .imdb-rate {
   float: right !important;
   color: #fbbd08 !important;
+}
+
+.imdb-point {
+  color: #fbbd08 !important
+}
+
+.imdb-info {
+  max-width: 90% !important;
+  position: absolute !important;
+  bottom: 80px !important;
 }

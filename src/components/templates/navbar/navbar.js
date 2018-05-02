@@ -35,7 +35,7 @@ export class Navbar extends Component {
         </div>
       </Menu.Menu>
       <Menu.Item >
-        <Dropdown item='item' icon='setting' className='settings-icon' simple='simple' direction='left'>
+        <Dropdown item icon='setting' className='settings-icon' simple direction='left'>
           <Dropdown.Menu>
             <Link to={this.state.user.id + '/profile'}><Dropdown.Item text='Profile' /></Link>
             <Link to='/account-settings'><Dropdown.Item text='Account Settings' /></Link>

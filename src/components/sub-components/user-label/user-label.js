@@ -13,7 +13,7 @@ export default class UserLabel extends Component {
 
   render () {
     return (<Popup className='popup-wide' trigger={<Link to={this.props.user.id + '/profile'}>
-      <Label image='image'>
+      <Label image>
         <Gravatar email={this.props.user.email} /> {this.props.user.username}
         <Label.Detail>{
           this.props.user.role
@@ -21,7 +21,7 @@ export default class UserLabel extends Component {
             : ''
         }</Label.Detail>
       </Label>
-    </Link>} flowing='flowing' hoverable='hoverable'>
+    </Link>} flowing hoverable>
       <UserCard user={this.props.user} />
     </Popup>)
   }
