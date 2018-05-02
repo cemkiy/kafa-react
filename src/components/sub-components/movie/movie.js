@@ -7,7 +7,7 @@ import {
   Card,
   Grid,
   Button,
-  Label,
+  Label
 } from 'semantic-ui-react'
 import UserLabel from '../../../components/sub-components/user-label/user-label'
 // const imdb = require('imdb-api')
@@ -17,7 +17,7 @@ export default class Detail extends Component {
     super(props)
     this.state = {
       user: {},
-      show_info : 'none',
+      show_info: 'none',
       show_cast: 'none',
       show_additional: 'none',
       movie: {
@@ -48,27 +48,27 @@ export default class Detail extends Component {
   }
 
   infoMouseEnter = () => {
-    this.setState({show_info:'block'});
+    this.setState({show_info: 'block'})
   }
 
   infoMouseLeave = () => {
-    this.setState({show_info:'none'});
+    this.setState({show_info: 'none'})
   }
 
   castMouseEnter = () => {
-    this.setState({show_cast:'block'});
+    this.setState({show_cast: 'block'})
   }
 
   castMouseLeave = () => {
-    this.setState({show_cast:'none'});
+    this.setState({show_cast: 'none'})
   }
 
   additionalMouseEnter = () => {
-    this.setState({show_additional:'block'});
+    this.setState({show_additional: 'block'})
   }
 
   additionalMouseLeave = () => {
-    this.setState({show_additional:'none'});
+    this.setState({show_additional: 'none'})
   }
 
   // componentDidMount () {
@@ -115,19 +115,19 @@ export default class Detail extends Component {
                   meta={
                     <div>
                       <Label.Group>
-                      {
-                         this.state.movie.director.split(',').map(el => <Label color='grey' key={el}>{el}<Label.Detail>director</Label.Detail></Label>)
-                      }
+                        {
+                          this.state.movie.director.split(',').map(el => <Label color='grey' key={el}>{el}<Label.Detail>director</Label.Detail></Label>)
+                        }
                       </Label.Group><br />
                       <Label.Group>
-                      {
-                         this.state.movie.writer.split(',').map(el => <Label color='black' key={el}>{el}<Label.Detail>writer</Label.Detail></Label>)
-                      }
+                        {
+                          this.state.movie.writer.split(',').map(el => <Label color='black' key={el}>{el}<Label.Detail>writer</Label.Detail></Label>)
+                        }
                       </Label.Group><br />
                       <Label.Group>
-                      {
-                         this.state.movie.actors.split(',').map(el => <Label color='yellow' key={el}>{el}<Label.Detail>actor</Label.Detail></Label>)
-                      }
+                        {
+                          this.state.movie.actors.split(',').map(el => <Label color='yellow' key={el}>{el}<Label.Detail>actor</Label.Detail></Label>)
+                        }
                       </Label.Group>
                     </div>}
                 />

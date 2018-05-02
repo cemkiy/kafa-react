@@ -20,7 +20,7 @@ export default class Detail extends Component {
     super(props)
     this.state = {
       user: {
-        id:'321asd'
+        id: '321asd'
       }
     }
   }
