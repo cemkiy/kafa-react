@@ -362,7 +362,7 @@ export default class Deck extends Component {
                   <List.Content>
                     <Label color='yellow'>
                       <Icon className='fab fa-bitcoin' />
-                      &nbspbitcoin
+                      &nbsp;bitcoin
                       <Label.Detail>32mLAFhCJ8m75jsGtdwWK6B4ScKtKn6Avb</Label.Detail>
                     </Label>
                   </List.Content>
@@ -371,7 +371,7 @@ export default class Deck extends Component {
                   <List.Content>
                     <Label color='grey'>
                       <Icon className='fab fa-ethereum' />
-                      &nbspethereum
+                      &nbsp;ethereum
                       <Label.Detail>0x8172Dd888EcBC9eBAF7dB95dB4e4b1Dc601E4B81</Label.Detail>
                     </Label>
                   </List.Content>
