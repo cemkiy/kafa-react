@@ -135,7 +135,7 @@ export default class Filter extends Component {
   }
 
   render () {
-    return (<Card className='form-card' centered='centered'>
+    return (<Card className='form-card' centered>
       <Card.Content>
         <Card.Header content='Account Settings' />
         <Message>
@@ -147,7 +147,7 @@ export default class Filter extends Component {
           </p>
         </Message>
         <Form className='form' onSubmit={this.emailChange}>
-          <Form.Input fluid='fluid' name='email' label='email' value={this.state.emailChangeFormData.email}
+          <Form.Input fluid name='email' label='email' value={this.state.emailChangeFormData.email}
             onChange={this.emailChangeFormHandleChange} placeholder='jacksparrow@mail.com' required='required' />
           <Form.Button>Submit</Form.Button>
         </Form>
@@ -162,10 +162,10 @@ export default class Filter extends Component {
           <Message.List items={['Password must be at least 8 characters', 'Password must contain at least 1 digit']} />
         </Message>
         <Form className='form' onSubmit={this.passwordChange}>
-          <Form.Input fluid='fluid' type='password' name='password' label='password'
+          <Form.Input fluid type='password' name='password' label='password'
             value={this.state.passwordChangeFormData.password} onChange={this.passwordChangeFormHandleChange}
             placeholder='min 8, have a number' required='required' />
-          <Form.Input fluid='fluid' type='password' name='password_again' label='password_again'
+          <Form.Input fluid type='password' name='password_again' label='password_again'
             value={this.state.passwordChangeFormData.password_again} onChange={this.passwordChangeFormHandleChange}
             placeholder='min 8, have a number' required='required' />
           <Form.Button>Submit</Form.Button>

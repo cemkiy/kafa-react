@@ -183,13 +183,13 @@ export default class Deck extends Component {
             <Header as='h1'>Ahoy Pirate,</Header>
             <div>
               Welcome to
-              <strong>kafa.io</strong>. This is a
-              <strong>private torrent site</strong>. You can
-              <strong>download/upload</strong>
-              and
-              <strong>share</strong>
-              the file you want. But you need to upload a lot of what you downloaded. At the same time the
-              <strong>kafa.io</strong>
+              <strong>kafa.io</strong>. This is a&nbsp;
+              <strong>private torrent site</strong>. You can&nbsp;
+              <strong>download/upload</strong>&nbsp;
+              and&nbsp;
+              <strong>share</strong>&nbsp;
+              the file you want. But you need to upload a lot of what you downloaded. At the same time the&nbsp;
+              <strong>kafa.io</strong>&nbsp;
               is a BitTorrent client. So you are only considered to upload it on this site.<br />
               <List bulleted>
                 <List.Item>
@@ -352,10 +352,10 @@ export default class Deck extends Component {
           <Grid.Column width={10}>
             <Header as='h1' size='huge'>We Need You! Support Us...</Header>
             <div>
-              Kafa.io is started hobby project. Our goal is to set up a platform to share files freely. But we have some expenses. We have to pay bills sended from&nbsp
+              Kafa.io is started hobby project. Our goal is to set up a platform to share files freely. But we have some expenses. We have to pay bills sended from&nbsp;
               <a href='https://digitalocean.com' className='link'>
-                <Icon className='fab fa-digital-ocean' />Digitalocean</a>&nbspand&nbsp
-              <a href='https://namecheap.com' className='link'>NameCheap</a>.&nbsp If you join us, you will be a great support. But we ask you to donate if there is a lot of money )
+                <Icon className='fab fa-digital-ocean' />Digitalocean</a>&nbsp;and&nbsp;
+              <a href='https://namecheap.com' className='link'>NameCheap</a>.&nbsp;If you join us, you will be a great support. But we ask you to donate if there is a lot of money )
               <br />
               <List>
                 <List.Item>
@@ -383,7 +383,7 @@ export default class Deck extends Component {
                   <List.Content>
                     <Label color='black' as='a' href='https://github.com/cemkiy/kafa-react' target='_blank'>
                       <Icon name='github' />
-                      &nbspfront-end
+                      &nbsp;front-end
                       <Label.Detail>github.com/cemkiy/kafa-react</Label.Detail>
                     </Label>
                   </List.Content>
@@ -392,7 +392,7 @@ export default class Deck extends Component {
                   <List.Content>
                     <Label color='black' as='a' href='https://github.com/cemkiy/kafa-node' target='_blank'>
                       <Icon name='github' />
-                      &nbspback-end
+                      &nbsp;back-end
                       <Label.Detail>github.com/cemkiy/kafa-node</Label.Detail>
                     </Label>
                   </List.Content>

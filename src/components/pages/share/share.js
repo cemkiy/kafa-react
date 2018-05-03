@@ -10,7 +10,9 @@ import {
   Button,
   Select,
   Message,
-  Dropdown
+  Dropdown,
+  Label,
+  Segment
 } from 'semantic-ui-react'
 
 export default class UploadTorrent extends Component {
@@ -111,7 +113,8 @@ export default class UploadTorrent extends Component {
 
     const tags = []
 
-    return (<Card centered='centered' className='step-card'>
+    return (<div className='share-section'>
+      <Card centered className='step-card'>
       <Card.Content >
         <Step.Group className='step-group'>
           <Step active={active === 'Torrent Info'} icon='paw' link='link' onClick={this.titleClick} title='Torrent Info' description='Info hash or file' />
@@ -125,14 +128,14 @@ export default class UploadTorrent extends Component {
               <Message.Header>
                 Share your file
               </Message.Header>
-              with input file hash &nbsp
+              with input file hash &nbsp;
               <Input placeholder='info hash' />
-              &nbsp or &nbsp
+              &nbsp;or &nbsp;
               <label htmlFor='torrentFile' className='ui icon button'>
                 <i className='file icon' />
                 upload .torrent file
               </label>
-              or directly &nbsp
+              or directly &nbsp;
               <label htmlFor='directlyFile' className='ui icon button'>
                 <i className='folder icon' />
                 upload your file or folders
@@ -149,6 +152,13 @@ export default class UploadTorrent extends Component {
               <Input label='http://' placeholder='mysite.com' />
             </Form.Field>
             <Form.Field label='name' control={Input} placeholder='file name' />
+            <Segment inverted color='yellow'>
+              <Input fluid size='medium' placeholder='search movie or paset link'
+                action={{ color: 'black', labelPosition: 'left', icon: 'search', content: 'IMDb' }}
+                actionPosition='left'
+                icon={{ name: 'check circle', circular: true, color: 'green' }}
+              />
+            </Segment>
           </div>
           {/* Step Torrent Info End */}
 
@@ -163,8 +173,8 @@ export default class UploadTorrent extends Component {
             <Form.Field label='about' control='textarea' placeholder='describe file' />
             <Form.Field label='screens' control='textarea' placeholder='give links line by line' />
             <Form.Group widths='equal'>
-              <Dropdown placeholder='Select Audios' className='dropdown' fluid='fluid' multiple='multiple' search='search' selection='selection' options={Languages} />
-              <Dropdown placeholder='Select Subtitles' className='dropdown' fluid='fluid' multiple='multiple' search='search' selection='selection' options={Languages} />
+              <Dropdown placeholder='Select Audios' className='dropdown' fluid multiple search selection options={Languages} />
+              <Dropdown placeholder='Select Subtitles' className='dropdown' fluid multiple search selection options={Languages} />
             </Form.Group>
           </div>
           {/* Step Additional Info End */}
@@ -182,6 +192,6 @@ export default class UploadTorrent extends Component {
           </Button.Group>
         </Form>
       </Card.Content>
-    </Card>)
+    </Card></div>)
   }
 }

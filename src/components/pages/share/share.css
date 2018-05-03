@@ -1,6 +1,11 @@
+.share-section {
+  padding-top: 100px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
 .step-card {
-  width: 95% !important;
-  margin-top: 50px !important;
+  width: 95% !important
 }
 
 .step-group {
@@ -17,4 +22,8 @@
 
 .stepperButtons {
   margin-top: 10px !important
+}
+
+.imdb-button {
+    width: 100% !important
 }
