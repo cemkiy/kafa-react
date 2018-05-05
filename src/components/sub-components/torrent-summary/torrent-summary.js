@@ -10,7 +10,7 @@ export default class TorrentSummary extends Component {
 
   render () {
     return (<Popup className='popup-wide' trigger={<Link to='/detail' className='link'> Battlefield x</Link>}
-      hoverable='hoverable'>
+      hoverable>
       <Card>
         <Image src='https://cdn.ndtv.com/tech/gadgets/bf4_ea_dice.jpg?output-quality=80' />
         <Card.Content>
@@ -20,7 +20,7 @@ export default class TorrentSummary extends Component {
         </Card.Content>
         <Card.Content extra='extra'>
           <Link to='/detail'>
-            <Button icon='icon' fluid='fluid' labelPosition='right' color='yellow'>
+            <Button icon='icon' fluid labelPosition='right' color='yellow'>
               Detail
               <Icon name='right arrow' />
             </Button>
