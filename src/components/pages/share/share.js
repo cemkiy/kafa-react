@@ -115,83 +115,83 @@ export default class UploadTorrent extends Component {
 
     return (<div className='share-section'>
       <Card centered className='step-card'>
-      <Card.Content >
-        <Step.Group className='step-group'>
-          <Step active={active === 'Torrent Info'} icon='paw' link='link' onClick={this.titleClick} title='Torrent Info' description='Info hash or file' />
-          <Step active={active === 'Trackers'} icon='find' link='link' onClick={this.titleClick} title='Trackers' description='Set trackers' />
-          <Step active={active === 'Additional Info'} icon='info' link='link' onClick={this.titleClick} title='Additional Info' description='File promotoin link' />
-        </Step.Group>
-        <Form>
-          {/* Step Torrent Info */}
-          <div style={{display: this.state.stepTorrentInfo}}>
-            <Message >
-              <Message.Header>
+        <Card.Content >
+          <Step.Group className='step-group'>
+            <Step active={active === 'Torrent Info'} icon='paw' link='link' onClick={this.titleClick} title='Torrent Info' description='Info hash or file' />
+            <Step active={active === 'Trackers'} icon='find' link='link' onClick={this.titleClick} title='Trackers' description='Set trackers' />
+            <Step active={active === 'Additional Info'} icon='info' link='link' onClick={this.titleClick} title='Additional Info' description='File promotoin link' />
+          </Step.Group>
+          <Form>
+            {/* Step Torrent Info */}
+            <div style={{display: this.state.stepTorrentInfo}}>
+              <Message >
+                <Message.Header>
                 Share your file
-              </Message.Header>
+                </Message.Header>
               with input file hash &nbsp;
-              <Input placeholder='info hash' />
+                <Input placeholder='info hash' />
               &nbsp;or &nbsp;
-              <label htmlFor='torrentFile' className='ui icon button'>
-                <i className='file icon' />
+                <label htmlFor='torrentFile' className='ui icon button'>
+                  <i className='file icon' />
                 upload .torrent file
-              </label>
+                </label>
               or directly &nbsp;
-              <label htmlFor='directlyFile' className='ui icon button'>
-                <i className='folder icon' />
+                <label htmlFor='directlyFile' className='ui icon button'>
+                  <i className='folder icon' />
                 upload your file or folders
-              </label>
-              <input type='file' id='torrentFile' className='uploadButton' />
-              <input type='file' id='directlyFile' className='uploadButton' />
-            </Message>
-            <Form.Group widths='equal'>
-              <Form.Field control={Select} label='category' options={categories} placeholder='Select a category' />
-              <Form.Field control={Select} label='tags' options={tags} placeholder='Select a tag' />
-            </Form.Group>
-            <Form.Field>
-              <label>info link</label>
-              <Input label='http://' placeholder='mysite.com' />
-            </Form.Field>
-            <Form.Field label='name' control={Input} placeholder='file name' />
-            <Segment inverted color='yellow'>
-              <Input fluid size='medium' placeholder='search movie or paset link'
-                action={{ color: 'black', labelPosition: 'left', icon: 'search', content: 'IMDb' }}
-                actionPosition='left'
-                icon={{ name: 'check circle', circular: true, color: 'green' }}
-              />
-            </Segment>
-          </div>
-          {/* Step Torrent Info End */}
+                </label>
+                <input type='file' id='torrentFile' className='uploadButton' />
+                <input type='file' id='directlyFile' className='uploadButton' />
+              </Message>
+              <Form.Group widths='equal'>
+                <Form.Field control={Select} label='category' options={categories} placeholder='Select a category' />
+                <Form.Field control={Select} label='tags' options={tags} placeholder='Select a tag' />
+              </Form.Group>
+              <Form.Field>
+                <label>info link</label>
+                <Input label='http://' placeholder='mysite.com' />
+              </Form.Field>
+              <Form.Field label='name' control={Input} placeholder='file name' />
+              <Segment inverted color='yellow'>
+                <Input fluid size='medium' placeholder='search movie or paset link'
+                  action={{ color: 'black', labelPosition: 'left', icon: 'search', content: 'IMDb' }}
+                  actionPosition='left'
+                  icon={{ name: 'check circle', circular: true, color: 'green' }}
+                />
+              </Segment>
+            </div>
+            {/* Step Torrent Info End */}
 
-          {/* Step Trackers */}
-          <div style={{display: this.state.stepTrackers}}>
-            <Form.Field label='trackers' control='textarea' placeholder='tracker list' />
-          </div>
-          {/* Step Trackers End */}
+            {/* Step Trackers */}
+            <div style={{display: this.state.stepTrackers}}>
+              <Form.Field label='trackers' control='textarea' placeholder='tracker list' />
+            </div>
+            {/* Step Trackers End */}
 
-          {/* Step Additional Info */}
-          <div style={{display: this.state.stepAdditionalInfo}}>
-            <Form.Field label='about' control='textarea' placeholder='describe file' />
-            <Form.Field label='screens' control='textarea' placeholder='give links line by line' />
-            <Form.Group widths='equal'>
-              <Dropdown placeholder='Select Audios' className='dropdown' fluid multiple search selection options={Languages} />
-              <Dropdown placeholder='Select Subtitles' className='dropdown' fluid multiple search selection options={Languages} />
-            </Form.Group>
-          </div>
-          {/* Step Additional Info End */}
+            {/* Step Additional Info */}
+            <div style={{display: this.state.stepAdditionalInfo}}>
+              <Form.Field label='about' control='textarea' placeholder='describe file' />
+              <Form.Field label='screens' control='textarea' placeholder='give links line by line' />
+              <Form.Group widths='equal'>
+                <Dropdown placeholder='Select Audios' className='dropdown' fluid multiple search selection options={Languages} />
+                <Dropdown placeholder='Select Subtitles' className='dropdown' fluid multiple search selection options={Languages} />
+              </Form.Group>
+            </div>
+            {/* Step Additional Info End */}
 
-          <Button.Group attached='bottom' className='stepperButtons'>
-            <Button onClick={this.previous} style={{display: this.state.previous}}>
-              <Icon color='black' name='arrow circle left' />Previous
-            </Button>
-            <Button onClick={this.next} style={{display: this.state.next}}>
+            <Button.Group attached='bottom' className='stepperButtons'>
+              <Button onClick={this.previous} style={{display: this.state.previous}}>
+                <Icon color='black' name='arrow circle left' />Previous
+              </Button>
+              <Button onClick={this.next} style={{display: this.state.next}}>
               Next<Icon color='black' name='arrow circle right' />
-            </Button>
-            <Button onClick={this.share} style={{display: this.state.stepAdditionalInfo}}>
+              </Button>
+              <Button onClick={this.share} style={{display: this.state.stepAdditionalInfo}}>
               Share<Icon color='black' name='arrow circle right' />
-            </Button>
-          </Button.Group>
-        </Form>
-      </Card.Content>
-    </Card></div>)
+              </Button>
+            </Button.Group>
+          </Form>
+        </Card.Content>
+      </Card></div>)
   }
 }
