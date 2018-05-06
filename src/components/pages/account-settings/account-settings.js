@@ -44,7 +44,7 @@ export default class Filter extends Component {
     this.setState({profileChangeFormData: mockProfileChangeFormData})
   }
 
-  emailChange (event) {
+  emailChange = (event) => {
     UpdateEmailUser(this.state.user.id, this.state.emailChangeFormData, [
       'id',
       'username',
@@ -74,7 +74,7 @@ export default class Filter extends Component {
     event.preventDefault()
   }
 
-  passwordChange (event) {
+  passwordChange = (event) => {
     ChangePassUser(this.state.user.id, this.state.passwordChangeFormData, [
       'id',
       'username',
@@ -104,7 +104,7 @@ export default class Filter extends Component {
     event.preventDefault()
   }
 
-  profileChange (event) {
+  profileChange = (event) => {
     UpdateUser(this.state.user.id, this.state.profileChangeFormData, [
       'id',
       'username',
