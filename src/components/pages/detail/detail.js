@@ -26,11 +26,11 @@ export default class Detail extends Component {
   }
 
   render () {
-    return (<div className='detail-section'>
+    return (<div id='content' className='detail-section'>
       <Movie />
       <Header as='h2'>Torrent Details</Header>
       <div>
-        <Message icon color='black' className='torrent-description'>
+        <Message icon color='black'>
           <Icon name='paw' />
           <Message.Content>
             <Message.Header>Battlefield X</Message.Header>

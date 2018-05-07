@@ -1,0 +1,14 @@
+.paginator {
+  margin: auto;
+  width: 50%;
+}
+
+.torrent-table {
+  padding-top: 60px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.torrent-name {
+  margin-bottom: 5px !important
+}

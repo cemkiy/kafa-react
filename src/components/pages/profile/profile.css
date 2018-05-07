@@ -1,7 +1,3 @@
-.profile {
-  padding-top: 50px
-}
-
 .profile-info {
   margin: 20px !important
 }
@@ -9,4 +5,8 @@
 .profile-log {
   margin: 20px !important;
   width: 97% !important
+}
+
+#content > #content {
+  padding-top: 10px !important
 }

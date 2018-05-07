@@ -37,6 +37,10 @@ body {
   margin-left: 262.85px
 }
 
+#content {
+  padding-top: 100px
+}
+
 .link {
   color: #fbbd08
 }

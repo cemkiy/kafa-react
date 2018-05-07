@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import './profile.css'
 import {Card, Grid, Tab, Header} from 'semantic-ui-react'
 import {UserById} from '../../../api/user'
-import Browse from '../../../components/pages/browse/browse'
+import Filter from '../../../components/sub-components/filter/filter'
+import TorrentTable from '../../../components/sub-components/torrent-table/torrent-table'
 import UserCard from '../../../components/sub-components/user-card/user-card'
 import {ErrorAnalysis} from '../../../middleware/error-handler'
 
@@ -59,12 +60,13 @@ export default class Profile extends Component {
       }, {
         menuItem: 'Torrents',
         render: () => <Tab.Pane>
-          <Browse />
+          <Filter />
+          <TorrentTable />
         </Tab.Pane>
       }
     ]
 
-    return (<div className='profile'>
+    return (<div id='content'>
       <Grid divided='vertically'>
         <Grid.Row columns={2}>
           <Grid.Column width={3}>
