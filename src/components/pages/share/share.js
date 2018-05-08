@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './share.css'
+import {TagNames, TagCategories} from '../../../categories'
 import {Languages} from '../../../languages'
 import {
   Icon,
@@ -8,7 +9,6 @@ import {
   Form,
   Input,
   Button,
-  Select,
   Message,
   Dropdown,
   Segment
@@ -20,12 +20,15 @@ export default class UploadTorrent extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      user: JSON.parse(window.localStorage.getItem('user')),
       stepTorrentInfo: 'block',
       stepTrackers: 'none',
       stepAdditionalInfo: 'none',
       active: 'Torrent Info',
       next: 'block',
       previous: 'none',
+      imdbLink: 'none',
+      infoLink: 'block',
       createTorrentFormData: {
         name: '',
         description: '',
@@ -37,7 +40,7 @@ export default class UploadTorrent extends Component {
           name: '',
           categories: []
         },
-        languages: {
+        language: {
           audios: [],
           subtitles: []
         }
@@ -106,7 +109,28 @@ export default class UploadTorrent extends Component {
   createTorrentFormHandleChange = (event, data) => {
     let mockCreateTorrentFormData = this.state.createTorrentFormData
     mockCreateTorrentFormData[data.name] = event.target.value
-    this.setState({emailChangeFormData: mockCreateTorrentFormData})
+    this.setState({createTorrentFormData: mockCreateTorrentFormData})
+  }
+
+  createTorrentFormSelectHandleChange = (event, data) => {
+    let mockCreateTorrentFormData = this.state.createTorrentFormData
+    mockCreateTorrentFormData[data.name] = event.target.value
+    if (data.name === 'tag_name') {
+      mockCreateTorrentFormData.tag.name = data.value
+    } else if (data.name === 'tag_categories') {
+      mockCreateTorrentFormData.tag.categories = data.value
+    } else if (data.name === 'language_audios') {
+      mockCreateTorrentFormData.language.audios = data.value
+    } else if (data.name === 'language_subtitles') {
+      mockCreateTorrentFormData.language.subtitles = data.value
+    }
+    this.setState({createTorrentFormData: mockCreateTorrentFormData}, () => {
+      if (['movies', 'tv/shows'].indexOf(this.state.createTorrentFormData.tag.name) > -1) {
+        this.setState({imdbLink: 'block', infoLink: 'none'})
+      } else {
+        this.setState({infoLink: 'block', imdbLink: 'none'})
+      }
+    })
   }
 
   createTorrent = (event) => {
@@ -134,53 +158,15 @@ export default class UploadTorrent extends Component {
   render = () => {
     const {active} = this.state
 
-    const categories = [
-      {
-        key: '0',
-        text: 'movies',
-        value: 'movies'
-      }, {
-        key: '1',
-        text: 'tv/shows',
-        value: 'tv/shows'
-      }, {
-        key: '2',
-        text: 'games',
-        value: 'games'
-      }, {
-        key: '3',
-        text: 'music',
-        value: 'music'
-      }, {
-        key: '4',
-        text: 'applications',
-        value: 'applications'
-      }, {
-        key: '5',
-        text: 'documents',
-        value: 'documents'
-      }, {
-        key: '6',
-        text: 'movies',
-        value: 'movies'
-      }, {
-        key: '7',
-        text: 'xxx',
-        value: 'xxx'
-      }
-    ]
-
-    const tags = []
-
     return (<div className='share-section'>
       <Card centered className='step-card'>
         <Card.Content>
           <Step.Group className='step-group'>
-            <Step active={active === 'Torrent Info'} icon='paw' link='link'
+            <Step active={active === 'Torrent Info'} icon='paw' link
               onClick={this.titleClick} title='Torrent Info' description='Info hash or file' />
-            <Step active={active === 'Trackers'} icon='find' link='link'
+            <Step active={active === 'Trackers'} icon='find' link
               onClick={this.titleClick} title='Trackers' description='Set trackers' />
-            <Step active={active === 'Additional Info'} icon='info' link='link'
+            <Step active={active === 'Additional Info'} icon='info' link
               onClick={this.titleClick} title='Additional Info' description='File promotoin link' />
           </Step.Group>
           <Form>
@@ -191,7 +177,7 @@ export default class UploadTorrent extends Component {
                 Share your file
                 </Message.Header>
               with input file hash &nbsp;
-                <Input placeholder='info hash'
+                <Input name='info_hash' placeholder='info hash' required
                   value={this.state.createTorrentFormData.info_hash} onChange={this.createTorrentFormHandleChange} />
               &nbsp;or &nbsp;
                 <label htmlFor='torrentFile' className='ui icon button'>
@@ -207,59 +193,65 @@ export default class UploadTorrent extends Component {
                 <input type='file' id='directlyFile' className='uploadButton' />
               </Message>
               <Form.Group widths='equal'>
-                <Form.Field control={Select} label='category' options={categories} placeholder='Select a category'
-                  value={this.state.createTorrentFormData.tag.name} onChange={this.createTorrentFormHandleChange} />
-                <Form.Field control={Select} label='tags' options={tags} placeholder='Select a tag'
-                  value={this.state.createTorrentFormData.tag.categories} onChange={this.createTorrentFormHandleChange} />
+                <Form.Field>
+                  <label>select tag</label>
+                  <Dropdown name='tag_name' placeholder='select category' fluid selection options={TagNames}
+                    value={this.state.createTorrentFormData.tag.name} onChange={this.createTorrentFormSelectHandleChange} required />
+                </Form.Field>
+                <Form.Field>
+                  <label>select categories</label>
+                  <Dropdown name='tag_categories' placeholder='select tags' fluid search multiple selection options={TagCategories}
+                    value={this.state.createTorrentFormData.tag.categories} onChange={this.createTorrentFormSelectHandleChange} required/>
+                </Form.Field>
               </Form.Group>
-              <Form.Field>
+              <Form.Field style={{display: this.state.infoLink}}>
                 <label>info link</label>
-                <Input label='http://' placeholder='mysite.com'
+                <Input label='http://' placeholder='mysite.com' name='info_link'
                   value={this.state.createTorrentFormData.info_link} onChange={this.createTorrentFormHandleChange} />
               </Form.Field>
-              <Form.Field label='name' control={Input} placeholder='name'
-                value={this.state.createTorrentFormData.name} onChange={this.createTorrentFormHandleChange} />
-              <Segment inverted color='yellow'>
+              <Segment inverted color='yellow' style={{display: this.state.imdbLink}}>
                 <Input fluid size='medium' placeholder='search movie or paset link'
                   action={{ color: 'black', labelPosition: 'left', icon: 'search', content: 'IMDb' }}
                   actionPosition='left'
-                  icon={{ name: 'check circle', circular: true, color: 'green' }}
+                  icon={{ name: 'circle notched', circular: true, color: 'green', loading: true }}
                   value={this.state.createTorrentFormData.info_link} onChange={this.createTorrentFormHandleChange} />
               </Segment>
+              <Form.Field label='name' name='name' control={Input} placeholder='name'
+                value={this.state.createTorrentFormData.name} onChange={this.createTorrentFormHandleChange} required />
             </div>
             {/* Step Torrent Info End */}
 
             {/* Step Trackers */}
             <div style={{display: this.state.stepTrackers}}>
-              <Form.Field label='trackers' control='textarea' placeholder='tracker list'
+              <Form.Field label='trackers' name='trackers' control='textarea' placeholder='tracker list'
                 value={this.state.createTorrentFormData.trackers} onChange={this.createTorrentFormHandleChange} />
             </div>
             {/* Step Trackers End */}
 
             {/* Step Additional Info */}
             <div style={{display: this.state.stepAdditionalInfo}}>
-              <Form.Field label='description' control='textarea' placeholder='describe file'
+              <Form.Field label='description' name='description' control='textarea' placeholder='describe file'
                 value={this.state.createTorrentFormData.description} onChange={this.createTorrentFormHandleChange} />
-              <Form.Field label='screens' control='textarea' placeholder='give links line by line'
+              <Form.Field label='screens' name='screens' control='textarea' placeholder='give links line by line'
                 value={this.state.createTorrentFormData.screens} onChange={this.createTorrentFormHandleChange} />
               <Form.Group widths='equal'>
-                <Dropdown placeholder='Select Audios' className='dropdown' fluid multiple search selection options={Languages}
-                  value={this.state.createTorrentFormData.languages.audios} onChange={this.createTorrentFormHandleChange} />
-                <Dropdown placeholder='Select Subtitles' className='dropdown' fluid multiple search selection options={Languages}
-                  value={this.state.createTorrentFormData.languages.subtitles} onChange={this.createTorrentFormHandleChange} />
+                <Dropdown placeholder='Select Audios' name='language_audios' className='dropdown' fluid multiple search selection options={Languages}
+                  value={this.state.createTorrentFormData.language.audios} onChange={this.createTorrentFormSelectHandleChange} required />
+                <Dropdown placeholder='Select Subtitles' name='language_subtitles' className='dropdown' fluid multiple search selection options={Languages}
+                  value={this.state.createTorrentFormData.language.subtitles} onChange={this.createTorrentFormSelectHandleChange} required />
               </Form.Group>
             </div>
             {/* Step Additional Info End */}
 
             <Button.Group attached='bottom' className='stepperButtons'>
-              <Button onClick={this.previous} style={{display: this.state.previous}}>
+              <Button className='action-button' onClick={this.previous} style={{display: this.state.previous}}>
                 <Icon color='black' name='arrow circle left' />Previous
               </Button>
-              <Button onClick={this.next} style={{display: this.state.next}}>
+              <Button className='action-button' onClick={this.next} style={{display: this.state.next}}>
                 Next<Icon color='black' name='arrow circle right' />
               </Button>
-              <Button onClick={this.share} style={{display: this.state.stepAdditionalInfo}}>
-                Share<Icon color='black' name='arrow circle right' />
+              <Button className='action-button' onClick={this.createTorrent} style={{display: this.state.stepAdditionalInfo}}>
+                Share<Icon color='black' name='share' />
               </Button>
             </Button.Group>
           </Form>

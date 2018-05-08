@@ -40,7 +40,7 @@ export class Navbar extends Component {
             <Link to={this.state.user.id + '/profile'}><Dropdown.Item text='Profile' /></Link>
             <Link to='/account-settings'><Dropdown.Item text='Account Settings' /></Link>
             <Dropdown.Divider />
-            <Dropdown.Item icon='sign out' text='Logout' onClick={this.logout} />
+            <Dropdown.Item icon='sign out' text='Abondon Ship' onClick={this.logout} />
           </Dropdown.Menu>
         </Dropdown>
       </Menu.Item>
