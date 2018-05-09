@@ -20,7 +20,6 @@ export default class UploadTorrent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: JSON.parse(window.localStorage.getItem('user')),
       stepTorrentInfo: 'block',
       stepTrackers: 'none',
       stepAdditionalInfo: 'none',
@@ -30,9 +29,10 @@ export default class UploadTorrent extends Component {
       imdbLink: 'none',
       infoLink: 'block',
       createTorrentFormData: {
+        user_id: JSON.parse(window.localStorage.getItem('user')).id,
         name: '',
         description: '',
-        size: '',
+        size: 0,
         info_link: '',
         info_hash: '',
         screens: [],
@@ -114,7 +114,6 @@ export default class UploadTorrent extends Component {
 
   createTorrentFormSelectHandleChange = (event, data) => {
     let mockCreateTorrentFormData = this.state.createTorrentFormData
-    mockCreateTorrentFormData[data.name] = event.target.value
     if (data.name === 'tag_name') {
       mockCreateTorrentFormData.tag.name = data.value
     } else if (data.name === 'tag_categories') {
@@ -134,7 +133,7 @@ export default class UploadTorrent extends Component {
   }
 
   createTorrent = (event) => {
-    CreateTorrent(this.state.user.id, this.state.emailChangeFormData, [
+    CreateTorrent(this.state.createTorrentFormData, [
       'id'
     ]).then(data => {
       this.setState({
