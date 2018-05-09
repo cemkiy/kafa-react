@@ -18,9 +18,9 @@ export default class TorrentSummary extends Component {
           <Card.Meta>2018-06-02</Card.Meta>
           <Card.Description>This is a action game.</Card.Description>
         </Card.Content>
-        <Card.Content extra='extra'>
+        <Card.Content extra>
           <Link to='/detail'>
-            <Button icon='icon' fluid labelPosition='right' color='yellow'>
+            <Button icon fluid labelPosition='right' color='yellow'>
               Detail
               <Icon name='right arrow' />
             </Button>

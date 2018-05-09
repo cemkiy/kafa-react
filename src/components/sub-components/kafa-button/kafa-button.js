@@ -21,10 +21,10 @@ export default class KafaButton extends Component {
 
   render () {
     return (<Label as='a' onMouseEnter={this.kafaHover} onMouseLeave={this.kafaHover} className='shake action-button'>
-      <Image avatar='avatar' spaced='right' src={this.state.isHovered
+      <Image avatar spaced='right' src={this.state.isHovered
         ? kafaHover
         : kafa} />
-      <Label basic='basic' color='grey' active pointing='left'>2,048 Kafa</Label>
+      <Label basic color='grey' active pointing='left'>2,048 Kafa</Label>
     </Label>)
   }
 }

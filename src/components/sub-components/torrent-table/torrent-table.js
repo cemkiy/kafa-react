@@ -22,18 +22,18 @@ export default class TorrentTable extends Component {
 
   render () {
     return (<div className='torrent-table'>
-        <Table celled='celled'>
+        <Table celled>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell><Icon name='paw' />Name</Table.HeaderCell>
               <Table.HeaderCell><Icon name='file' />Size</Table.HeaderCell>
               <Table.HeaderCell>
-                <Image src={satellite} avatar='avatar' />
+                <Image src={satellite} avatar />
                 Leechs/Seeds
               </Table.HeaderCell>
               <Table.HeaderCell><Icon name='tag' />Tag</Table.HeaderCell>
               <Table.HeaderCell>
-                <Image avatar='avatar' spaced='right' src={kafa} />
+                <Image avatar spaced='right' src={kafa} />
                   Kafa
               </Table.HeaderCell>
               <Table.HeaderCell><Icon name='download' />Download</Table.HeaderCell>
