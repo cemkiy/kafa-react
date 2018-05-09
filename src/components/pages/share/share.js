@@ -242,6 +242,11 @@ export default class UploadTorrent extends Component {
             </div>
             {/* Step Additional Info End */}
 
+            <Message color={this.state.formResultType} style={{display: this.state.formResultDisplay}}>
+              <Message.Header>{this.state.formResultHeader}</Message.Header>
+              <p>{this.state.formResultDescription}</p>
+            </Message>
+
             <Button.Group attached='bottom' className='stepperButtons'>
               <Button className='action-button' onClick={this.previous} style={{display: this.state.previous}}>
                 <Icon color='black' name='arrow circle left' />Previous
@@ -250,7 +255,7 @@ export default class UploadTorrent extends Component {
                 Next<Icon color='black' name='arrow circle right' />
               </Button>
               <Button className='action-button' onClick={this.createTorrent} style={{display: this.state.stepAdditionalInfo}}>
-                Share<Icon color='black' name='share' />
+                Share&nbsp;<Icon color='black' name='share' />
               </Button>
             </Button.Group>
           </Form>

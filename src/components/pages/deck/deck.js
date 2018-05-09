@@ -182,7 +182,7 @@ export default class Deck extends Component {
           <Grid.Column width={13}>
             <Header as='h1'>Ahoy Pirate,</Header>
             <div>
-              Welcome to
+              Welcome to&nbsp;
               <strong>kafa.io</strong>. This is a&nbsp;
               <strong>private torrent site</strong>. You can&nbsp;
               <strong>download/upload</strong>&nbsp;
