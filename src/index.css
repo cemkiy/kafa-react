@@ -4,17 +4,41 @@ body {
   background-color: #eef3f9 !important;
 }
 
+#navbar {
+    position: fixed;
+    width: 100%;
+    display: inline;
+    z-index: 103;
+}
+
 #sidebar {
   width: 262.85px;
-  position: absolute;
-  overflow: hidden;
-  margin-bottom: -5000px;
-  padding-bottom: 5000px;
   background-color: black !important;
+  position: fixed;
+  left: 0;
+  padding-top: 76px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: none;
+  transition: none;
+  will-change: transform;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-overflow-scrolling: touch;
+  height: 100% !important;
+  max-height: 100%;
+  border-radius: 0em !important;
+  margin: 0em !important;
+  overflow-y: auto !important;
+  z-index: 102;
 }
 
 #main {
   margin-left: 262.85px
+}
+
+#content {
+  padding-top: 100px
 }
 
 .link {
@@ -27,4 +51,9 @@ body {
 
 .link:visited {
   color: #fbbd08
+}
+
+.action-button:hover {
+  background-color: #fbbd08 !important;
+  color: white !important;
 }

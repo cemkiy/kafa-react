@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import queryString from 'query-string'
 import './verify.css'
 import logo from '../../../assets/img/logo.gif'
 import {Grid, Image, Form, Header, Message} from 'semantic-ui-react'
@@ -9,6 +10,7 @@ export default class Deck extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      parsedQueryParams: {},
       forgotPassCompleteFormDisplay: 'none',
       formResultDisplay: 'none',
       formResultType: 'green',
@@ -19,14 +21,10 @@ export default class Deck extends Component {
         password: ''
       }
     }
-    this.joinUsComplete = this.joinUsComplete.bind(this)
-    this.emailChangeComplete = this.emailChangeComplete.bind(this)
-    this.forgotPassCompleteFormHandleChange = this.forgotPassCompleteFormHandleChange.bind(this)
-    this.forgotPassComplete = this.emailChangeComplete.bind(this)
   }
 
-  joinUsComplete () {
-    VerifyUser(this.props.location.query.email_verification_key, []).then(data => {
+  joinUsComplete = () => {
+    VerifyUser(this.state.email_verification_key, []).then(data => {
       this.setState({
         formResultDisplay: 'block',
         formResultType: 'green',
@@ -45,8 +43,8 @@ export default class Deck extends Component {
     })
   }
 
-  emailChangeComplete () {
-    VerifyUser(this.props.location.query.email_verification_key, []).then(data => {
+  emailChangeComplete = () => {
+    VerifyUser(this.state.email_verification_key, []).then(data => {
       this.setState({
         formResultDisplay: 'block',
         formResultType: 'green',
@@ -64,14 +62,14 @@ export default class Deck extends Component {
     })
   }
 
-  forgotPassCompleteFormHandleChange (event, data) {
+  forgotPassCompleteFormHandleChange = (event, data) => {
     let mockforgotPassCompleteFormData = this.state.forgotPassCompleteFormData
     mockforgotPassCompleteFormData[data.name] = event.target.value
     this.setState({emailChangeCompleteFormData: mockforgotPassCompleteFormData})
   }
 
   forgotPassComplete (event) {
-    ForgotPassComplete(this.props.location.query.forgot_password_token, this.state.forgotPassCompleteFormData, []).then(data => {
+    ForgotPassComplete(this.state.forgot_password_token, this.state.forgotPassCompleteFormData, []).then(data => {
       this.setState({formResultDisplay: 'block', formResultType: 'green', formResultHeader: 'Password Changed', formResultDescription: 'Redirect...'})
     }).catch(err => {
       ErrorAnalysis(err, this.props.history)
@@ -81,18 +79,18 @@ export default class Deck extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props.location.search)
-    // TODO: qs lib
-    // if(this.props.location.query.type === 'joinUsComplete'){
-    //   this.joinUsComplete()
-    // }else if(this.props.location.query.type === 'emailChangeComplete'){
-    //   this.emailChangeComplete()
-    // }else if(this.props.location.query.type === 'forgotPassComplete'){
-    //   this.setState({
-    //     forgotPassCompleteFormDisplay: 'block',
-    //     formResultDisplay: 'none'
-    //   })
-    // }
+    this.setState({parsedQueryParams: queryString.parse(this.props.location.search)}, () => {
+      if (this.state.parsedQueryParams.type === 'joinUsComplete') {
+        this.joinUsComplete()
+      } else if (this.state.parsedQueryParams.type === 'emailChangeComplete') {
+        this.emailChangeComplete()
+      } else if (this.state.parsedQueryParams.type === 'forgotPassComplete') {
+        this.setState({
+          forgotPassCompleteFormDisplay: 'block',
+          formResultDisplay: 'none'
+        })
+      }
+    })
   }
 
   render () {
@@ -106,7 +104,7 @@ export default class Deck extends Component {
             <Header as='h1'>Ahoy Pirate,</Header>
             <div>
               Welcome to
-              <strong>kafa.io</strong>
+              &nbsp;<strong>kafa.io</strong>&nbsp;
               verify page. Check the url and do not be a shark bait.<br />
             </div>
           </Grid.Column>
@@ -115,9 +113,9 @@ export default class Deck extends Component {
           <Grid.Column width={16}>
             <Form onSubmit={this.forgotPassComplete}>
               <Form.Group widths='equal'>
-                <Form.Input fluid='fluid' type='password' name='password' label='password'
+                <Form.Input fluid type='password' name='password' label='password'
                   value={this.state.forgotPassCompleteFormData.password} onChange={this.forgotPassFormHandleChange}
-                  placeholder='min 8, have a number' required='required' />
+                  placeholder='min 8, have a number' required />
               </Form.Group>
               <Form.Group>
                 <Form.Button>Change Password</Form.Button>

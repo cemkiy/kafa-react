@@ -13,20 +13,24 @@ import {
 } from 'semantic-ui-react'
 import UserLabel from '../../../components/sub-components/user-label/user-label'
 import CommentSection from '../../../components/sub-components/comment-section/comment-section'
+import Movie from '../../../components/sub-components/movie/movie'
 
 export default class Detail extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: {}
+      user: {
+        id: '321asd'
+      }
     }
   }
 
   render () {
-    return (<div className='detail-section'>
+    return (<div id='content' className='detail-section'>
+      <Movie />
       <Header as='h2'>Torrent Details</Header>
       <div>
-        <Message icon='icon' color='black' className='torrent-description'>
+        <Message icon color='black'>
           <Icon name='paw' />
           <Message.Content>
             <Message.Header>Battlefield X</Message.Header>
@@ -71,11 +75,11 @@ export default class Detail extends Component {
         </Card>
       </div>
       <div className='detail-buttons'>
-        <Button icon='icon' labelPosition='left' color='yellow'>
+        <Button icon labelPosition='left' color='yellow'>
           <Icon name='save' />
           Torrent File
         </Button>
-        <Button icon='icon' labelPosition='right' color='yellow'>
+        <Button icon labelPosition='right' color='yellow'>
           Magnet Link
           <Icon name='magnet' />
         </Button>

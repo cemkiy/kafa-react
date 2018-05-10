@@ -70,7 +70,7 @@ export default class CommentSection extends Component {
             </Comment.Content>
           </Comment>
 
-          <Form reply='reply'>
+          <Form>
             <Form.TextArea />
             <Button content='Add Reply' labelPosition='left' icon='edit' color='yellow' />
           </Form>

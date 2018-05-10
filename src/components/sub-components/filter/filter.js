@@ -50,13 +50,6 @@ export default class Filter extends Component {
       <div className='pretty p-icon p-curve p-tada p-plain'>
         <input type='checkbox' />
         <div className='state'>
-          <Icon name='image' />
-          <label>Pictures</label>
-        </div>
-      </div>
-      <div className='pretty p-icon p-curve p-tada p-plain'>
-        <input type='checkbox' />
-        <div className='state'>
           <Icon name='heart' color='red' />
           <label>XXX</label>
         </div>

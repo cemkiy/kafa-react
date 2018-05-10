@@ -1,0 +1,147 @@
+const TagNames = [{
+  key: '0',
+  text: 'movies',
+  value: 'movies',
+  icon: 'film'
+}, {
+  key: '1',
+  text: 'tv/shows',
+  value: 'tv/shows',
+  icon: 'tv'
+}, {
+  key: '2',
+  text: 'games',
+  value: 'games',
+  icon: 'game'
+}, {
+  key: '3',
+  text: 'music',
+  value: 'music',
+  icon: 'sound'
+}, {
+  key: '4',
+  text: 'applications',
+  value: 'applications',
+  icon: 'bug'
+}, {
+  key: '5',
+  text: 'documents',
+  value: 'documents',
+  icon: 'spy'
+}, {
+  key: '7',
+  text: 'xxx',
+  value: 'xxx',
+  icon: 'heart'
+}]
+
+const TagCategories = [{
+  key: '0',
+  text: 'Action',
+  value: 'Action'
+}, {
+  key: '1',
+  text: 'Comedy',
+  value: 'Comedy'
+}, {
+  key: '2',
+  text: 'Family',
+  value: 'Family'
+}, {
+  key: '3',
+  text: 'History',
+  value: 'History'
+}, {
+  key: '4',
+  text: 'Mystery',
+  value: 'Mystery'
+}, {
+  key: '5',
+  text: 'Sci-Fi',
+  value: 'Sci-Fi'
+}, {
+  key: '6',
+  text: 'War',
+  value: 'War'
+}, {
+  key: '7',
+  text: 'Adventure',
+  value: 'Adventure'
+}, {
+  key: '8',
+  text: 'Crime',
+  value: 'Crime'
+}, {
+  key: '9',
+  text: 'Fantasy',
+  value: 'Fantasy'
+}, {
+  key: '10',
+  text: 'Horror',
+  value: 'Horror'
+}, {
+  key: '11',
+  text: 'News',
+  value: 'News'
+}, {
+  key: '12',
+  text: 'Sport',
+  value: 'Sport'
+}, {
+  key: '13',
+  text: 'Western',
+  value: 'Western'
+}, {
+  key: '14',
+  text: 'Animation',
+  value: 'Animation'
+}, {
+  key: '15',
+  text: 'Documentary',
+  value: 'Documentary'
+}, {
+  key: '16',
+  text: 'Film-Noir',
+  value: 'Film-Noir'
+}, {
+  key: '17',
+  text: 'Music',
+  value: 'Music'
+}, {
+  key: '18',
+  text: 'Reality-TV',
+  value: 'Reality-TV'
+}, {
+  key: '19',
+  text: 'Talk-Show',
+  value: 'Talk-Show'
+}, {
+  key: '20',
+  text: 'Biography',
+  value: 'Biography'
+}, {
+  key: '21',
+  text: 'Drama',
+  value: 'Drama'
+}, {
+  key: '22',
+  text: 'Game-Show',
+  value: 'Game-Show'
+}, {
+  key: '23',
+  text: 'Musical',
+  value: 'Musical'
+}, {
+  key: '24',
+  text: 'Romance',
+  value: 'Romance'
+}, {
+  key: '25',
+  text: 'Thriller',
+  value: 'Thriller'
+}]
+
+export {
+  TagNames,
+  TagCategories
+}

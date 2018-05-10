@@ -11,10 +11,9 @@ export class Navbar extends Component {
       user: JSON.parse(window.localStorage.getItem('user')),
       role: window.localStorage.getItem('role')
     }
-    this.logout = this.logout.bind(this)
   }
 
-  logout () {
+  logout = () => {
     window.localStorage.clear()
     this.props.history.push('/')
   }
@@ -36,12 +35,12 @@ export class Navbar extends Component {
         </div>
       </Menu.Menu>
       <Menu.Item >
-        <Dropdown item='item' icon='setting' className='settings-icon' simple='simple' direction='left'>
+        <Dropdown item icon='setting' className='settings-icon' simple direction='left'>
           <Dropdown.Menu>
             <Link to={this.state.user.id + '/profile'}><Dropdown.Item text='Profile' /></Link>
             <Link to='/account-settings'><Dropdown.Item text='Account Settings' /></Link>
             <Dropdown.Divider />
-            <Dropdown.Item icon='sign out' text='Logout' onClick={this.logout} />
+            <Dropdown.Item icon='sign out' text='Abondon Ship' onClick={this.logout} />
           </Dropdown.Menu>
         </Dropdown>
       </Menu.Item>
