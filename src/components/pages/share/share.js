@@ -200,7 +200,7 @@ export default class UploadTorrent extends Component {
                 <Form.Field>
                   <label>select categories</label>
                   <Dropdown name='tag_categories' placeholder='select tags' fluid search multiple selection options={TagCategories}
-                    value={this.state.createTorrentFormData.tag.categories} onChange={this.createTorrentFormSelectHandleChange} required/>
+                    value={this.state.createTorrentFormData.tag.categories} onChange={this.createTorrentFormSelectHandleChange} required />
                 </Form.Field>
               </Form.Group>
               <Form.Field style={{display: this.state.infoLink}}>

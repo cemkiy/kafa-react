@@ -7,7 +7,6 @@ import {
   Message
 } from 'semantic-ui-react'
 
-
 export default class NotFound extends Component {
   constructor (props) {
     super(props)
@@ -17,13 +16,13 @@ export default class NotFound extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     setTimeout(() => {
       this.setState({displayImg: 'block', displayMessage: 'none'})
       setTimeout(() => {
         this.setState({displayImg: 'none', displayMessage: 'block'})
-      }, 100);
-    }, 5000);
+      }, 100)
+    }, 5000)
   }
 
   render () {
@@ -42,10 +41,10 @@ export default class NotFound extends Component {
         </Message.List>
       </Message>
       <Link to='/'>
-      <Message attached='bottom' color='black'>
-        <Icon name='external' />
+        <Message attached='bottom' color='black'>
+          <Icon name='external' />
         Click and go to deck page
-      </Message>
+        </Message>
       </Link>
     </div>)
   }

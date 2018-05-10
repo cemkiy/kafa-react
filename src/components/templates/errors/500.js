@@ -5,9 +5,7 @@ import {
   Message
 } from 'semantic-ui-react'
 
-
 export default class ServerError extends Component {
-
   render () {
     return (<div className='center'>
       <Message attached>
