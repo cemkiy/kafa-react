@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import tylerDurden from '../../../assets/img/tylerDurden.jpg'
+// import tylerDurden from '../../../assets/img/tylerDurden.jpg'
 import {
   Icon,
   Image,
@@ -28,7 +28,7 @@ export default class NotFound extends Component {
   render () {
     return (<div className='center'>
       <Image style={{display: this.state.displayImg}}
-        src={tylerDurden} size='massive' />
+        src='https://top250imdbfilms.files.wordpress.com/2013/11/fight-club-penis-at-the-end-cretits.jpg' size='massive' />
       <Message attached style={{display: this.state.displayMessage}}>
         <Message.Header color='black'>404 Not Found!</Message.Header>
         <p>
