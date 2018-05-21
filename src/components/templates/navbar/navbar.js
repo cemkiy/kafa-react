@@ -37,7 +37,7 @@ export class Navbar extends Component {
       <Menu.Item >
         <Dropdown item icon='setting' className='settings-icon' simple direction='left'>
           <Dropdown.Menu>
-            <Link to={this.state.user.id + '/profile'}><Dropdown.Item text='Profile' /></Link>
+            <Link to={this.state.user ? this.state.user.id + '/profile' : ''}><Dropdown.Item text='Profile' /></Link>
             <Link to='/account-settings'><Dropdown.Item text='Account Settings' /></Link>
             <Dropdown.Divider />
             <Dropdown.Item icon='sign out' text='Abondon Ship' onClick={this.logout} />
@@ -45,7 +45,7 @@ export class Navbar extends Component {
         </Dropdown>
       </Menu.Item>
       <Menu.Item>
-        <Gravatar className='avatar' email={this.state.user.email} />
+        <Gravatar className='avatar' email={this.state.user ? this.state.user.email : ''} />
       </Menu.Item>
     </Menu>)
   }

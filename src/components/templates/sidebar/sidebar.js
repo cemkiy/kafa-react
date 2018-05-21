@@ -14,16 +14,6 @@ export class Sidebar extends Component {
     }
   }
 
-  getTorrents = (event, data) => {
-    if (data.name === 'browse') {
-      this.props.history.push('/browse')
-    } else if (data.name === 'recent') {
-      this.props.history.push('/browse?order_by=date')
-    } else if (data.name === 'populer') {
-      this.props.history.push('/browse?order_by=downlad_count')
-    }
-  }
-
   render () {
     const {activeItem} = this.state
 
@@ -31,10 +21,10 @@ export class Sidebar extends Component {
       <Menu.Item className='menu-items'><Image src={logo} size='small' className='sidebar-logo' /></Menu.Item>
       {(this.state.role === 'captain' || this.state.role === 'privateer') && (<Link to='/share'><Menu.Item name='share'
         active={activeItem === 'Share Torrents'} className='menu-items' /></Link>)}
-      <Menu.Item name='browse' active={activeItem === 'Browse Torrents'} onClick={this.getTorrents} className='menu-items' />
-      <Menu.Item name='recent' active={activeItem === 'Recent Torrents'} onClick={this.getTorrents} className='menu-items' />
-      <Menu.Item name='populer' active={activeItem === 'Populer Torrents'} onClick={this.getTorrents} className='menu-items' />
-      <Menu.Item name='support us' active={activeItem === 'Support Us'} onClick={this.handleItemClick} className='menu-items' />
+      <Link to='/browse'><Menu.Item name='browse' active={activeItem === 'Browse Torrents'} className='menu-items' /></Link>
+      <Link to='/browse?order_by=date'><Menu.Item name='recent' active={activeItem === 'Recent Torrents'} className='menu-items' /></Link>
+      <Link to='/browse?order_by=downlad_count'><Menu.Item name='populer' active={activeItem === 'Populer Torrents'} className='menu-items' /></Link>
+      <Menu.Item name='support us' active={activeItem === 'Support Us'} className='menu-items' />
     </Menu>)
   }
 }

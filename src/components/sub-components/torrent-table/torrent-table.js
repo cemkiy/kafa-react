@@ -12,14 +12,6 @@ export default class TorrentTable extends Component {
     this.state = {}
   }
 
-  componentDidMount () {
-    this.ListTorrent()
-  }
-
-  ListTorrent = () => {
-    console.log('list')
-  }
-
   render () {
     return (<div className='torrent-table'>
       <Table celled>
