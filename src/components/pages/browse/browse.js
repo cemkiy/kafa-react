@@ -20,13 +20,16 @@ export default class Browse extends Component {
       'id',
       'info_hash',
       'name',
+      'description',
       'size',
-      'tag',
+      {'tag':['name', 'categories']},
       'kafa',
+      'screens',
       'created_at'
     ]).then(data => {
+      console.log(data.torrents);
       this.setState({
-        torrents: data
+        torrents: data.torrents
       })
     }).catch(err => {
       ErrorAnalysis(err, this.props.history)
