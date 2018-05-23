@@ -22,8 +22,8 @@ export class Sidebar extends Component {
       {(this.state.role === 'captain' || this.state.role === 'privateer') && (<Link to='/share'><Menu.Item name='share'
         active={activeItem === 'Share Torrents'} className='menu-items' /></Link>)}
       <Link to='/browse'><Menu.Item name='browse' active={activeItem === 'Browse Torrents'} className='menu-items' /></Link>
-      <Link to='/browse?order_by=date'><Menu.Item name='recent' active={activeItem === 'Recent Torrents'} className='menu-items' /></Link>
-      <Link to='/browse?order_by=downlad_count'><Menu.Item name='populer' active={activeItem === 'Populer Torrents'} className='menu-items' /></Link>
+      <Link to='/browse?sort_field=created_at'><Menu.Item name='recent' active={activeItem === 'Recent Torrents'} className='menu-items' /></Link>
+      <Link to='/browse?sort_field=downlad_count'><Menu.Item name='populer' active={activeItem === 'Populer Torrents'} className='menu-items' /></Link>
       <Menu.Item name='support us' active={activeItem === 'Support Us'} className='menu-items' />
     </Menu>)
   }

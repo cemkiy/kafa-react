@@ -10,7 +10,9 @@ export default class Browse extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      filter: {},
+      filter: {
+        sort_field: 'created_at'
+      },
       torrents: []
     }
   }
@@ -27,7 +29,6 @@ export default class Browse extends Component {
       'screens',
       'created_at'
     ]).then(data => {
-      console.log(data.torrents);
       this.setState({
         torrents: data.torrents
       })
@@ -39,20 +40,30 @@ export default class Browse extends Component {
     })
   }
 
-  filterHandleChange = (categories) => {
+  filterHandleChange = (tags) => {
     let mockFilter = this.state.filter
-    mockFilter['categories'] = categories
-    this.setState({filter: mockFilter})
+    mockFilter['tags'] = tags
+    this.setState({filter: mockFilter}, () => {
+      this.getTorrents()
+    })
   }
 
   componentDidMount () {
-    this.setState({parsedQueryParams: queryString.parse(this.props.location.search)}, () => {
+    let mockFilter = this.state.filter
+    if (queryString.parse(this.props.location.search).sort_field) {
+      mockFilter['sort_field'] = queryString.parse(this.props.location.search).sort_field
+    }
+    this.setState({filter: mockFilter}, () => {
       this.getTorrents()
     })
   }
 
   componentWillReceiveProps (nextProps) { // watch query params
-    this.setState({parsedQueryParams: queryString.parse(nextProps.location.search)}, () => {
+    let mockFilter = this.state.filter
+    if (queryString.parse(this.props.location.search).sort_field) {
+      mockFilter['sort_field'] = queryString.parse(nextProps.location.search).sort_field
+    }
+    this.setState({filter: mockFilter}, () => {
       this.getTorrents()
     })
   }
