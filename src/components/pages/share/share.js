@@ -35,7 +35,7 @@ export default class UploadTorrent extends Component {
         size: 0,
         info_link: '',
         info_hash: '',
-        screens: [],
+        screens: '',
         tag: {
           name: '',
           categories: []
@@ -222,16 +222,16 @@ export default class UploadTorrent extends Component {
 
             {/* Step Trackers */}
             <div style={{display: this.state.stepTrackers}}>
-              <Form.Field label='trackers' name='trackers' control='textarea' placeholder='tracker list'
+              <Form.TextArea label='trackers' name='trackers' placeholder='tracker list'
                 value={this.state.createTorrentFormData.trackers} onChange={this.createTorrentFormHandleChange} />
             </div>
             {/* Step Trackers End */}
 
             {/* Step Additional Info */}
             <div style={{display: this.state.stepAdditionalInfo}}>
-              <Form.Field label='description' name='description' control='textarea' placeholder='describe file'
+              <Form.TextArea label='description' name='description' placeholder='describe file'
                 value={this.state.createTorrentFormData.description} onChange={this.createTorrentFormHandleChange} />
-              <Form.Field label='screens' name='screens' control='textarea' placeholder='give links line by line'
+              <Form.TextArea label='screens' name='screens' placeholder='give links line by line'
                 value={this.state.createTorrentFormData.screens} onChange={this.createTorrentFormHandleChange} />
               <Form.Group widths='equal'>
                 <Dropdown placeholder='Select Audios' name='language_audios' className='dropdown' fluid multiple search selection options={Languages}

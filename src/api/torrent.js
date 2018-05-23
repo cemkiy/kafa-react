@@ -36,10 +36,19 @@ var DeleteTorrent = function (id, returnedSchema) {
   return TorrentsClient.request(deleteTorrentMutation, variables)
 }
 
+var IncrementDownloadCount = function (input, returnedSchema) {
+  let variables = {
+    'input': input
+  }
+  let incrementDownloadMutation = MutationRequest('incrementDownloadCount', variables, returnedSchema)
+  return TorrentsClient.request(incrementDownloadMutation)
+}
+
 export {
   Torrents,
   TorrentById,
   CreateTorrent,
   UpdateTorrent,
-  DeleteTorrent
+  DeleteTorrent,
+  IncrementDownloadCount
 }

@@ -18,7 +18,7 @@ const RouteMap = () => (<div>
   <main id='main'>
     <Switch>
       <Route path='/browse' component={Browse} />
-      <Route path='/detail' component={Detail} />
+      <Route path='/:torrentId/detail' component={Detail} />
       <Route path='/:userId/profile' component={Profile} />
       <Route path='/account-settings' component={AccountSettings} />
       <Route path='/share' component={Share} />

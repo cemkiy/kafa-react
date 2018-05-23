@@ -12,14 +12,6 @@ export default class TorrentTable extends Component {
     this.state = {}
   }
 
-  componentDidMount () {
-    this.ListTorrent()
-  }
-
-  ListTorrent = () => {
-    console.log('list')
-  }
-
   render () {
     return (<div className='torrent-table'>
       <Table celled>
@@ -40,26 +32,29 @@ export default class TorrentTable extends Component {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          <Table.Row>
-            <Table.Cell>
-              <TorrentSummary />
-            </Table.Cell>
-            <Table.Cell>14 GB</Table.Cell>
-            <Table.Cell>
-              <Icon name='long arrow down' />78/800<Icon name='long arrow up' />
-            </Table.Cell>
-            <Table.Cell>Game/Action</Table.Cell>
-            <Table.Cell>
-              <KafaButton />
-            </Table.Cell>
-            <Table.Cell>
-              <Button.Group>
-                <Button className='action-button'><Icon name='save' /></Button>
-                <Button.Or />
-                <Button className='action-button'><Icon name='magnet' /></Button>
-              </Button.Group>
-            </Table.Cell>
-          </Table.Row>
+          {
+            this.props.torrents.map(torrent =>
+              <Table.Row key={torrent.id}>
+                <Table.Cell width='4'>
+                  <TorrentSummary torrent={torrent} />
+                </Table.Cell>
+                <Table.Cell width='2' textAlign='center'>{torrent.size}</Table.Cell>
+                <Table.Cell width='2' textAlign='center'>
+                  <Icon name='long arrow down' />78/800<Icon name='long arrow up' />
+                </Table.Cell>
+                <Table.Cell width='2' textAlign='center'>{torrent.tag.name}</Table.Cell>
+                <Table.Cell width='2' textAlign='center'>
+                  <KafaButton torrent={torrent} />
+                </Table.Cell>
+                <Table.Cell width='4' textAlign='center'>
+                  <Button.Group>
+                    <Button className='action-button'><Icon name='save' /></Button>
+                    <Button.Or />
+                    <Button className='action-button'><Icon name='magnet' /></Button>
+                  </Button.Group>
+                </Table.Cell>
+              </Table.Row>)
+          }
         </Table.Body>
       </Table>
       <div className='paginator'>

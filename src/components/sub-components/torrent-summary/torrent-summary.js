@@ -8,15 +8,20 @@ export default class TorrentSummary extends Component {
     this.state = {}
   }
 
+  formatDate = (dateString) => {
+    let date = new Date(this.props.torrent.created_at)
+    return date.toLocaleDateString()
+  }
+
   render () {
-    return (<Popup className='popup-wide' trigger={<Link to='/detail' className='link'> Battlefield x</Link>}
+    return (<Popup className='popup-wide' trigger={<Link to={'/' + this.props.torrent.id + '/detail'} className='link'> {this.props.torrent.name}</Link>}
       hoverable>
       <Card>
-        <Image src='https://cdn.ndtv.com/tech/gadgets/bf4_ea_dice.jpg?output-quality=80' />
+        <Image src={this.props.torrent.screens[0]} />
         <Card.Content>
-          <Card.Header>Battlefield x</Card.Header>
-          <Card.Meta>2018-06-02</Card.Meta>
-          <Card.Description>This is a action game.</Card.Description>
+          <Card.Header>{this.props.torrent.name}</Card.Header>
+          <Card.Meta>{this.formatDate(this.props.torrent.created_at)}</Card.Meta>
+          <Card.Description>{this.props.torrent.description}</Card.Description>
         </Card.Content>
         <Card.Content extra>
           <Link to='/detail'>

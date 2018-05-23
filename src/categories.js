@@ -15,8 +15,8 @@ const TagNames = [{
   icon: 'game'
 }, {
   key: '3',
-  text: 'music',
-  value: 'music',
+  text: 'musics',
+  value: 'musics',
   icon: 'sound'
 }, {
   key: '4',
