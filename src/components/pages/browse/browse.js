@@ -24,7 +24,7 @@ export default class Browse extends Component {
       'name',
       'description',
       'size',
-      {'tag':['name', 'categories']},
+      {'tag': ['name', 'categories']},
       'kafa',
       'screens',
       'created_at'
