@@ -42,7 +42,11 @@ export default class Browse extends Component {
 
   filterHandleChange = (tags) => {
     let mockFilter = this.state.filter
-    mockFilter['tags'] = tags
+    if (tags.length === 0) {
+      delete mockFilter['tags']
+    } else {
+      mockFilter['tags'] = tags
+    }
     this.setState({filter: mockFilter}, () => {
       this.getTorrents()
     })

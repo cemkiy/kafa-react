@@ -1,4 +1,24 @@
 const Languages = [{
+  'value': 'en',
+  'text': 'English'
+},
+{
+  'value': 'ru',
+  'text': 'Russian'
+},
+{
+  'value': 'fr',
+  'text': 'French'
+},
+{
+  'value': 'bg',
+  'text': 'Bulgarian'
+},
+{
+  'value': 'de',
+  'text': 'German'
+},
+{
   'value': 'ab',
   'text': 'Abkhaz'
 },
@@ -91,10 +111,6 @@ const Languages = [{
   'text': 'Breton'
 },
 {
-  'value': 'bg',
-  'text': 'Bulgarian'
-},
-{
   'value': 'my',
   'text': 'Burmese'
 },
@@ -159,10 +175,6 @@ const Languages = [{
   'text': 'Dzongkha'
 },
 {
-  'value': 'en',
-  'text': 'English'
-},
-{
   'value': 'eo',
   'text': 'Esperanto'
 },
@@ -187,10 +199,6 @@ const Languages = [{
   'text': 'Finnish'
 },
 {
-  'value': 'fr',
-  'text': 'French'
-},
-{
   'value': 'ff',
   'text': 'Fula Fulah Pulaar Pular'
 },
@@ -201,10 +209,6 @@ const Languages = [{
 {
   'value': 'ka',
   'text': 'Georgian'
-},
-{
-  'value': 'de',
-  'text': 'German'
 },
 {
   'value': 'el',
@@ -529,10 +533,6 @@ const Languages = [{
 {
   'value': 'ro',
   'text': 'Romanian, [])'
-},
-{
-  'value': 'ru',
-  'text': 'Russian'
 },
 {
   'value': 'sa',
