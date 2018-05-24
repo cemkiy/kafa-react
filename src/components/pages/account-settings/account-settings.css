@@ -1,5 +1,10 @@
+.settings-section {
+  padding-top: 100px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
 .form-card {
-  margin: 20px !important;
   width: 97% !important;
 }
 
