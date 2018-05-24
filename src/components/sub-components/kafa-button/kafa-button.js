@@ -24,7 +24,7 @@ export default class KafaButton extends Component {
 
   incrementKafa = () => {
     IncrementKafa({torrent_id: this.props.torrent.id}, [
-      {'torrent':['kafa']}
+      {'torrent': ['kafa']}
     ]).then(data => {
       this.setState({
         kafaCount: data.incrementKafa.torrent.kafa
