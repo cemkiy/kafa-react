@@ -96,7 +96,7 @@ export default class Detail extends Component {
                   </Message.Content>
                 </Message>
               </Card.Content>
-              <Card.Content className='imdb-poster' style={{backgroundImage: "url('https://cdn1.ntv.com.tr/gorsel/sanat/thor-ragnarok-serinin-rekorunu-kirdi-abd-box-office/,QmYDjfqgSkeoATwFY6DK4g.jpg?w=960&mode=max&v=20171107071614141')"}}>
+              <Card.Content className='imdb-poster' style={{backgroundImage: "url('https://cdn1.ntv.com.tr/gorsel/sanat/thor-ragnarok-serinin-rekorunu-kirdi-abd-box-office/,QmYDjfqgSkeoATwFY6DK4g.jpg')"}}>
                 <Card
                   style={{display: this.state.show_info}}
                   centered

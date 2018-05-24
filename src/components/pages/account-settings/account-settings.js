@@ -135,49 +135,51 @@ export default class Filter extends Component {
   }
 
   render () {
-    return (<Card className='form-card' centered>
-      <Card.Content>
-        <Card.Header content='Account Settings' />
-        <Message>
-          <Message.Header>
-            Email Change Notify
-          </Message.Header>
-          <p>
-            You need to confirm the link from the email to complete this process. If you are not complete, your account is disabled.
-          </p>
-        </Message>
-        <Form className='form' onSubmit={this.emailChange}>
-          <Form.Input fluid name='email' label='email' value={this.state.emailChangeFormData.email}
-            onChange={this.emailChangeFormHandleChange} placeholder='jacksparrow@mail.com' required='required' />
-          <Form.Button>Submit</Form.Button>
-        </Form>
-        <hr />
-        <Message>
-          <Message.Header>
-            Password Change Notify
-          </Message.Header>
-          <p>
-            You need to confirm the link from the email to complete this process.
-          </p>
-          <Message.List items={['Password must be at least 8 characters', 'Password must contain at least 1 digit']} />
-        </Message>
-        <Form className='form' onSubmit={this.passwordChange}>
-          <Form.Input fluid type='password' name='password' label='password'
-            value={this.state.passwordChangeFormData.password} onChange={this.passwordChangeFormHandleChange}
-            placeholder='min 8, have a number' required='required' />
-          <Form.Input fluid type='password' name='password_again' label='password_again'
-            value={this.state.passwordChangeFormData.password_again} onChange={this.passwordChangeFormHandleChange}
-            placeholder='min 8, have a number' required='required' />
-          <Form.Button>Submit</Form.Button>
-        </Form>
-        <hr />
-        <Form className='form' onSubmit={this.profileChange}>
-          <Form.TextArea label='about yourself' name='about' value={this.state.profileChangeFormData.about}
-            onChange={this.profileChangeFormHandleChange} placeholder='You should write short. Sorry, but nobody reads.'
-            required='required' />
-          <Form.Button>Submit</Form.Button>
-        </Form>
-      </Card.Content>
-    </Card>)
+    return (<div className='settings-section' >
+      <Card className='form-card' centered>
+        <Card.Content>
+          <Card.Header content='Account Settings' />
+          <Message>
+            <Message.Header>
+              Email Change Notify
+            </Message.Header>
+            <p>
+              You need to confirm the link from the email to complete this process. If you are not complete, your account is disabled.
+            </p>
+          </Message>
+          <Form className='form' onSubmit={this.emailChange}>
+            <Form.Input fluid name='email' label='email' value={this.state.emailChangeFormData.email}
+              onChange={this.emailChangeFormHandleChange} placeholder='jacksparrow@mail.com' required='required' />
+            <Form.Button>Submit</Form.Button>
+          </Form>
+          <hr />
+          <Message>
+            <Message.Header>
+              Password Change Notify
+            </Message.Header>
+            <p>
+              You need to confirm the link from the email to complete this process.
+            </p>
+            <Message.List items={['Password must be at least 8 characters', 'Password must contain at least 1 digit']} />
+          </Message>
+          <Form className='form' onSubmit={this.passwordChange}>
+            <Form.Input fluid type='password' name='password' label='password'
+              value={this.state.passwordChangeFormData.password} onChange={this.passwordChangeFormHandleChange}
+              placeholder='min 8, have a number' required='required' />
+            <Form.Input fluid type='password' name='password_again' label='password_again'
+              value={this.state.passwordChangeFormData.password_again} onChange={this.passwordChangeFormHandleChange}
+              placeholder='min 8, have a number' required='required' />
+            <Form.Button>Submit</Form.Button>
+          </Form>
+          <hr />
+          <Form className='form' onSubmit={this.profileChange}>
+            <Form.TextArea label='about yourself' name='about' value={this.state.profileChangeFormData.about}
+              onChange={this.profileChangeFormHandleChange} placeholder='You should write short. Sorry, but nobody reads.'
+              required='required' />
+            <Form.Button>Submit</Form.Button>
+          </Form>
+        </Card.Content>
+      </Card>
+    </div>)
   }
 }
