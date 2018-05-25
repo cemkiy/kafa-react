@@ -42,7 +42,7 @@ export default class Filter extends Component {
         </div>
       </div>
       <div className='pretty p-icon p-curve p-tada p-plain'>
-        <input type='checkbox' name='films' onChange={this.filterHandleChange} />
+        <input type='checkbox' name='movies' onChange={this.filterHandleChange} />
         <div className='state'>
           <Icon name='film' />
           <label>Movies</label>
