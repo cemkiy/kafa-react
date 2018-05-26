@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import './share.css'
 import TorrentForm from '../../../components/sub-components/torrent-form/torrent-form'
-import {CreateTorrent} from '../../../api/torrent'
-import {ErrorAnalysis} from '../../../middleware/error-handler'
 
 export default class Share extends Component {
   constructor (props) {
@@ -12,7 +10,7 @@ export default class Share extends Component {
 
   render = () => {
     return (<div className='share-section'>
-        <TorrentForm />
-      </div>)
+      <TorrentForm />
+    </div>)
   }
 }

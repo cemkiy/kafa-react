@@ -23,7 +23,7 @@ export default class Update extends Component {
       'info_link',
       'info_hash',
       'screens',
-      {'tag':['name', 'categories']},
+      {'tag': ['name', 'categories']},
       {'language': ['audios', 'subtitles']}
     ]).then(data => {
       this.setState({torrent: data.torrentById})
@@ -34,7 +34,7 @@ export default class Update extends Component {
 
   render = () => {
     return (<div className='share-section'>
-        <TorrentForm torrent={this.state.torrent} />
-      </div>)
+      <TorrentForm torrent={this.state.torrent} />
+    </div>)
   }
 }
