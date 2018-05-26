@@ -22,7 +22,7 @@ export class Navbar extends Component {
     return (<Menu attached='top' className='navbar'>
       <Menu.Item className='navbar-label'>
         <Label className='navbar-label' size='massive'>
-          Search Torrents
+          <span className='st' >Search Torrents</span>
         </Label>
       </Menu.Item>
       <Menu.Menu className='search-input'>

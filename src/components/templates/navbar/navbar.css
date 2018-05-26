@@ -2,6 +2,10 @@
   width: 100%
 }
 
+.st {
+  font-size: 18.3px;
+}
+
 .ui.menu .item:before {
   background: none !important
 }
@@ -21,7 +25,9 @@
 
 .navbar-label {
   background-color: #eef3f9 !important;
+  max-width: 200px !important;
   color: black !important;
+  margin-left: 0px !important;
 }
 
 .avatar {

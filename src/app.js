@@ -10,6 +10,7 @@ import Detail from './components/pages/detail/detail'
 import Profile from './components/pages/profile/profile'
 import AccountSettings from './components/pages/account-settings/account-settings'
 import Share from './components/pages/share/share'
+import Update from './components/pages/update/update'
 import Verify from './components/pages/verify/verify'
 
 const RouteMap = () => (<div>
@@ -22,6 +23,7 @@ const RouteMap = () => (<div>
       <Route path='/:userId/profile' component={Profile} />
       <Route path='/account-settings' component={AccountSettings} />
       <Route path='/share' component={Share} />
+      <Route path='/:torrentId/update' component={Update} />
       <Redirect to='/404' />
     </Switch>
   </main>
