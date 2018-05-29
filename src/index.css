@@ -42,11 +42,11 @@ body {
 }
 
 .link {
-  color: #fbbd08
+  color: #fbbd08 !important
 }
 
 .link:hover {
-  color: #fbbd08
+  color: #fbbd08 !important
 }
 
 .link:visited {

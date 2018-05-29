@@ -25,7 +25,7 @@ export default class Profile extends Component {
         </Card.Description>
       </Card.Content>
       <Card.Content extra='extra'>
-        <a>
+        <a className='link'>
           <Icon name='magnet' />
           22 Torrents
         </a>

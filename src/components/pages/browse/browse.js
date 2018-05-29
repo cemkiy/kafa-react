@@ -85,8 +85,13 @@ export default class Browse extends Component {
 
   componentWillReceiveProps (nextProps) { // watch query params
     let mockFilter = this.state.filter
-    if (queryString.parse(this.props.location.search).sort_field) {
-      mockFilter['sort_field'] = queryString.parse(nextProps.location.search).sort_field
+    let queryParams = queryString.parse(nextProps.location.search)
+    console.log(queryParams);
+    if (queryParams.name || queryParams.name=== '') {
+      mockFilter['name'] = queryParams.name
+    }
+    if (queryParams.sort_field) {
+      mockFilter['sort_field'] = queryParams.sort_field
     }
     this.setState({filter: mockFilter, loading: true}, () => {
       this.getTorrents()

@@ -13,6 +13,13 @@ export class Navbar extends Component {
     }
   }
 
+  searchHandleChange = (event, data) => {
+    this.props.history.push({
+      pathname: '/browse',
+      search: '?name=' + event.target.value
+    })
+  }
+
   logout = () => {
     window.localStorage.clear()
     this.props.history.push('/')
@@ -28,7 +35,8 @@ export class Navbar extends Component {
       <Menu.Menu className='search-input'>
         <div className='ui aligned category search item search-input'>
           <div className='ui transparent icon input'>
-            <input className='prompt' type='text' placeholder='Search Here... The text you are reading is written for you to see the search bar.' />
+            <input className='prompt' type='text' onChange={this.searchHandleChange} // TODO: DelayInput
+              placeholder='Search Here... The text you are reading is written for you to see the search bar.' />
             <i className='search icon' />
           </div>
           <div className='results' />
