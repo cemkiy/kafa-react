@@ -86,8 +86,7 @@ export default class Browse extends Component {
   componentWillReceiveProps (nextProps) { // watch query params
     let mockFilter = this.state.filter
     let queryParams = queryString.parse(nextProps.location.search)
-    console.log(queryParams);
-    if (queryParams.name || queryParams.name=== '') {
+    if (queryParams.name || queryParams.name === '') {
       mockFilter['name'] = queryParams.name
     }
     if (queryParams.sort_field) {
