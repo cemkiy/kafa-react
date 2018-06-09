@@ -36,7 +36,7 @@ export default class TorrentTable extends Component {
       'what is the favorite thing of hipsters ? - hamsters',
       'sometimes life is like an iphone case with a rabbit ear in the hands of a girl.'
     ]
-    this.setState({quoteOfLoading: quotes[Math.floor(Math.random()*quotes.length)]})
+    this.setState({quoteOfLoading: quotes[Math.floor(Math.random() * quotes.length)]})
   }
 
   nextHandleClick = () => {
