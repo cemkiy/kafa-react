@@ -6,7 +6,7 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
-    "babel-eslint": "^8.2.3",
+    "babel-eslint": "^9.0.0",
     "graphql-query-builder": "^1.0.7",
     "graphql-request": "^1.5.1",
     "imdb-api": "^3.1.2",
