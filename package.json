@@ -15,7 +15,7 @@
     "react-dom": "^16.2.0",
     "react-gravatar": "^2.6.3",
     "react-recaptcha": "^2.3.7",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "1.1.4",
     "semantic-ui-css": "^2.3.0",
     "semantic-ui-react": "^0.81.0"
