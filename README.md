@@ -1,9 +1,9 @@
 <p align="center"><img src="https://github.com/cemkiy/kafa-react/blob/development/src/assets/img/logo.gif" width="250"></p>
 <p align="center">
-    <a href="https://travis-ci.org/cemkiy/kafa-node.svg?branch=development"><img src="https://travis-ci.org/cemkiy/kafa-node.svg?branch=development"></a>
-    <a href="https://img.shields.io/badge/code_style-standard-brightgreen.svg)"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"></a>
-    <object id="badge" data="https://snyk-widget.herokuapp.com/badge/npm/kafa-react/0.1.0/badge.svg" type="image/svg+xml"></object>
-    <a href="https://david-dm.org/"><img src="https://david-dm.org/cemkiy/kafa-react.svg"></a>
+    <a href="https://travis-ci.org/cemkiy/kafa-react.svg?branch=development"><img src="https://travis-ci.org/cemkiy/kafa-react.svg?branch=development"></a>
+    <a href="https://img.shields.io/badge/code_style-standard-brightgreen.svg"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"></a>
+    <a href="https://snyk.io/test/github/cemkiy/kafa-react"><img src="https://snyk.io/test/github/cemkiy/kafa-react/badge.svg"></a>
+    <a href=""><img src="https://badgen.net/dependabot/cemkiy/kafa-react?icon=dependabot" alt="depandabot"></a>
 </p>
 
 # kafa.io
