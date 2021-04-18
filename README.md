@@ -2,8 +2,7 @@
 <p align="center">
     <a href="https://travis-ci.org/cemkiy/kafa-node.svg?branch=development"><img src="https://travis-ci.org/cemkiy/kafa-node.svg?branch=development"></a>
     <a href="https://img.shields.io/badge/code_style-standard-brightgreen.svg)"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"></a>
-    <a href="https://snyk.io/test/github/cemkiy/kafa-react/badge.svg"><img src="https://snyk.io/test/github/cemkiy/kafa-react/badge.svg"></a>
-    <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/cemkiy/kafa-react.svg"></a>
+    <object id="badge" data="https://snyk-widget.herokuapp.com/badge/npm/kafa-react/0.1.0/badge.svg" type="image/svg+xml"></object>
     <a href="https://david-dm.org/"><img src="https://david-dm.org/cemkiy/kafa-react.svg"></a>
 </p>
 
