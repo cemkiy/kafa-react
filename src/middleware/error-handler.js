@@ -1,4 +1,4 @@
-var ErrorAnalysis = function (err, history) {
+const ErrorAnalysis = function (err, history) {
   // TODO: Error handlers
   if (err.response.status === 401) {
     history.push('/')

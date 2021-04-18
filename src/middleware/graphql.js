@@ -1,18 +1,18 @@
 import Query from 'graphql-query-builder'
 
-var QueryRequest = function (methodName, variables, returnedSchema) {
-  let query = new Query(methodName)
+const QueryRequest = function (methodName, variables, returnedSchema) {
+  const query = new Query(methodName)
   query.filter(variables)
   query.find(returnedSchema)
   return '{' + query.toString() + '}'
 }
 
-var MutationRequest = function (methodName, variables, returnedSchema) {
-  let query = new Query(methodName)
+const MutationRequest = function (methodName, variables, returnedSchema) {
+  const query = new Query(methodName)
   query.filter(variables)
   query.find(returnedSchema)
 
-  let mutationQuery = new Query('mutation')
+  const mutationQuery = new Query('mutation')
   mutationQuery.find([
     {
       [methodName]: query
