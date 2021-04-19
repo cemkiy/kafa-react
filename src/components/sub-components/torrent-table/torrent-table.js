@@ -5,11 +5,14 @@ import kafa from '../../../assets/img/kafa.png'
 import { Icon, Table, Button, Image, Label, Menu } from 'semantic-ui-react'
 import TorrentSummary from '../../../components/sub-components/torrent-summary/torrent-summary'
 import KafaButton from '../../../components/sub-components/kafa-button/kafa-button'
+import yts from '../../../assets/img/yts.svg'
 
 export default class TorrentTable extends Component {
   constructor (props) {
     super(props)
+
     this.state = {
+      torrents: props.torrents,
       icons: {
         musics: 'music',
         applications: 'bug',
@@ -22,33 +25,23 @@ export default class TorrentTable extends Component {
     }
   }
 
-  bytesToSize = (bytes) => {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
-    if (bytes === 0) return '0 Byte'
-    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
-    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
-  }
+  // bytesToSize = (bytes) => {
+  //   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+  //   if (bytes === 0) return '0 Byte'
+  //   const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+  //   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
+  // }
 
-  getRandomQuote = () => {
-    const quotes = [
-      'the ultimate goal of mankind is to drink milkshake.',
-      'do not take it if people you do not know give you sugar.',
-      'what is the favorite thing of hipsters ? - hamsters',
-      'sometimes life is like an iphone case with a rabbit ear in the hands of a girl.'
-    ]
-    this.setState({ quoteOfLoading: quotes[Math.floor(Math.random() * quotes.length)] })
-  }
-
-  nextHandleClick = () => {
+  handleNextClick = () => {
     this.props.onChange('next') // trigger parent page
   }
 
-  prevHandleClick = () => {
+  handlePrevClick = () => {
     this.props.onChange('prev') // trigger parent page
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.getRandomQuote()
+  componentDidReceiveProps (nextProps) {
+    this.setState({ torrents: nextProps.torrents })
   }
 
   render () {
@@ -58,6 +51,7 @@ export default class TorrentTable extends Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell><Icon name='paw' />Name</Table.HeaderCell>
+              <Table.HeaderCell><Icon name='shop' />Source</Table.HeaderCell>
               <Table.HeaderCell><Icon name='file' />Size</Table.HeaderCell>
               <Table.HeaderCell>
                 <Image src={satellite} avatar />
@@ -65,8 +59,8 @@ export default class TorrentTable extends Component {
               </Table.HeaderCell>
               <Table.HeaderCell><Icon name='tag' />Tag</Table.HeaderCell>
               <Table.HeaderCell>
-                <Image avatar spaced='right' src={kafa} />
-                Kafa
+                <Image size='small' avatar spaced='right' src={kafa} />
+                Rating
               </Table.HeaderCell>
               <Table.HeaderCell><Icon name='download' />Download</Table.HeaderCell>
             </Table.Row>
@@ -78,20 +72,25 @@ export default class TorrentTable extends Component {
                 <Table.Cell width='4'>
                   <TorrentSummary torrent={torrent} />
                 </Table.Cell>
-                <Table.Cell width='1' textAlign='center'><Label basic><Icon name='file' />{this.bytesToSize(torrent.size)}</Label></Table.Cell>
-                <Table.Cell width='2' textAlign='center'>
-                  <Icon name='long arrow down' />78/800<Icon name='long arrow up' />
+                <Table.Cell width='2'>
+                  <Image size='mini' src={yts} href={torrent.source_link} />
                 </Table.Cell>
+                <Table.Cell width='2' textAlign='center'><Label basic><Icon name='file' />{torrent.size}</Label></Table.Cell>
                 <Table.Cell width='2' textAlign='center'>
+                  <Icon name='long arrow down' />{torrent.peers}/{torrent.seeds}<Icon name='long arrow up' />
+                </Table.Cell>
+                <Table.Cell width='1' textAlign='center'>
                   <Icon name={this.state.icons[torrent.tag.name]} color={torrent.tag.name === 'xxx' ? 'red' : 'black'} />
                   &nbsp;{torrent.tag.name}
                 </Table.Cell>
-                <Table.Cell width='4' textAlign='center'>
+                <Table.Cell width='2' textAlign='center'>
                   <KafaButton torrent={torrent} />
                 </Table.Cell>
                 <Table.Cell width='3' textAlign='center'>
                   <Button.Group>
-                    <Button className='action-button'><Icon name='save' /></Button>
+                    <Button className='action-button'><Icon name='video play' /></Button>
+                    <Button.Or />
+                    <Button className='action-button'><Icon name='download' /></Button>
                     <Button.Or />
                     <Button className='action-button'><Icon name='magnet' /></Button>
                   </Button.Group>
@@ -101,12 +100,13 @@ export default class TorrentTable extends Component {
           </Table.Body>
           <Table.Footer>
             <Table.Row>
+              <Table.HeaderCell colSpan='6' />
               <Table.HeaderCell colSpan='6'>
                 <Menu floated='right' pagination>
-                  <Menu.Item as='a' icon onClick={this.prevHandleClick}>
+                  <Menu.Item as='a' icon onClick={this.handlePrevClick}>
                     <Icon name='chevron left' />&nbsp;Prev
                   </Menu.Item>
-                  <Menu.Item as='a' icon onClick={this.nextHandleClick}>
+                  <Menu.Item as='a' icon onClick={this.handleNextClick}>
                     Next&nbsp;<Icon name='chevron right' />
                   </Menu.Item>
                 </Menu>

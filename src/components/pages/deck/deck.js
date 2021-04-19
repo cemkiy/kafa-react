@@ -174,7 +174,7 @@ export default class Deck extends Component {
                       <Label color='black' as='a' href='https://github.com/cemkiy/kafa-react' target='_blank'>
                         <Icon name='github' />
                             &nbsp;Repo
-                        <Label.Detail>github.com/cemkiy/kafaio</Label.Detail>
+                        <Label.Detail>github.com/cemkiy/kafa-react</Label.Detail>
                       </Label>
                     </List.Content>
                   </List.Item>
