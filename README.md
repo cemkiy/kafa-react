@@ -12,37 +12,34 @@ for the 21st Century...Centuries-awaited project...
 
 kafa.io is new generation torrent site.
 
-  - allows you to find torrent files
-  - no ads, no pop-ups, no new tabs
+  - allows you to find movies and tv/shows from  famous and trustable torrent sites
+  - stream mp4 files on website directly
   - modern web design and api
 
 ## you don't need any program
 
-kafa.io is also a bittorrent client. you can download files via this site.
+kafa.io streams video files. you can download files via this site.
 p.s. kafa.io is not keep the files on their own servers. it only allows you to find.  
-
-### useful app integrations
-
-kafa.io will integrated p2p services.(put.io, bitport.io) [coming soon]
 
 ### kafa-react tech
 
  - [react](https://reactjs.org/)
+ - [netlify](https://netlify.com)
 
 ### install
 
-before start, install node, react, yarn package manager and clone the repo.
+before you start; install node, react and clone the repo.
 
 ```sh
 $ cd kafa-react
-$ yarn install
+$ npm install
 ```
 
 ### run the project
 open terminal:
 
 ```sh
-$ yarn start
+$ npm start
 ```
 
 ### development
