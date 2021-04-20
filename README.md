@@ -1,9 +1,10 @@
-![logo](https://github.com/cemkiy/kafa-react/blob/master/src/assets/img/logo.gif)\
-[![Build Status](https://travis-ci.org/cemkiy/kafa-node.svg?branch=master)](https://travis-ci.org/cemkiy/kafa-node)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![Known Vulnerabilities](https://snyk.io/test/github/cemkiy/kafa-react/badge.svg)](https://snyk.io/test/github/cemkiy/kafa-react)
-[![Greenkeeper badge](https://badges.greenkeeper.io/cemkiy/kafa-react.svg)](https://greenkeeper.io/)
-[![David-DM badge](https://david-dm.org/cemkiy/kafa-react.svg)](https://david-dm.org/)
+<p align="center"><img src="https://github.com/cemkiy/kafa-react/blob/development/src/assets/img/logo.gif" width="250"></p>
+<p align="center">
+    <a href="https://travis-ci.org/cemkiy/kafa-react.svg?branch=development"><img src="https://travis-ci.org/cemkiy/kafa-react.svg?branch=development"></a>
+    <a href="https://img.shields.io/badge/code_style-standard-brightgreen.svg"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"></a>
+    <a href="https://snyk.io/test/github/cemkiy/kafa-react"><img src="https://snyk.io/test/github/cemkiy/kafa-react/badge.svg"></a>
+    <a href=""><img src="https://badgen.net/dependabot/cemkiy/kafa-react?icon=dependabot" alt="depandabot"></a>
+</p>
 
 # kafa.io
 

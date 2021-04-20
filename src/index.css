@@ -42,7 +42,7 @@ body {
 }
 
 .link {
-  color: #fbbd08 !important
+  color: teal !important
 }
 
 .link:hover {
@@ -54,6 +54,6 @@ body {
 }
 
 .action-button:hover {
-  background-color: #fbbd08 !important;
+  background-color: teal !important;
   color: white !important;
 }
