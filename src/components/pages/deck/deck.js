@@ -4,6 +4,7 @@ import logo from '../../../assets/img/logo.gif'
 import weNeedYou from '../../../assets/img/weneedyou.png'
 import webtorrentLogo from '../../../assets/img/webtorrent.png'
 import {
+  Popup,
   Icon,
   Grid,
   Image,
@@ -47,10 +48,10 @@ export default class Deck extends Component {
                 is a BitTorrent client.<br />
                 <List bulleted>
                   <List.Item>
-                    <strong>ThePirateBay</strong> connected.
+                    <strong>ytx.mx</strong> plugged for movies.
                   </List.Item>
                   <List.Item>
-                    <strong>RARBG</strong> in progress.
+                    <strong>TV/Shows</strong> in progress.
                   </List.Item>
                 </List>
               </div>
@@ -132,38 +133,54 @@ export default class Deck extends Component {
                 <List>
                   <List.Item as='a' onClick={() => { navigator.clipboard.writeText('32mLAFhCJ8m75jsGtdwWK6B4ScKtKn6Avb') }}>
                     <List.Content>
-                      <Label>
-                        <Icon name='bitcoin' />
-                          &nbsp;bitcoin
-                        <Label.Detail>32mLAFhCJ8m75jsGtdwWK6B4ScKtKn6Avb</Label.Detail>
-                      </Label>
+                      <Popup
+                        content='copy to clipboard' trigger={
+                          <Label>
+                            <Icon name='bitcoin' />
+                              &nbsp;bitcoin
+                            <Label.Detail>32mLAFhCJ8m75jsGtdwWK6B4ScKtKn6Avb</Label.Detail>
+                          </Label>
+                        }
+                      />
                     </List.Content>
                   </List.Item>
                   <List.Item as='a' onClick={() => { navigator.clipboard.writeText('0x8172Dd888EcBC9eBAF7dB95dB4e4b1Dc601E4B81') }}>
                     <List.Content>
-                      <Label>
-                        <Icon name='ethereum' />
-                            &nbsp;ethereum
-                        <Label.Detail>0x8172Dd888EcBC9eBAF7dB95dB4e4b1Dc601E4B81</Label.Detail>
-                      </Label>
+                      <Popup
+                        content='copy to clipboard' trigger={
+                          <Label>
+                            <Icon name='ethereum' />
+                                &nbsp;ethereum
+                            <Label.Detail>0x8172Dd888EcBC9eBAF7dB95dB4e4b1Dc601E4B81</Label.Detail>
+                          </Label>
+                        }
+                      />
                     </List.Content>
                   </List.Item>
                   <List.Item as='a' onClick={() => { navigator.clipboard.writeText('FMAIJ6XMJSCXNAN3UKJP5K34LW436ZMHYGWCFMCBLZWWIYMMV6V5SULX6A') }}>
                     <List.Content>
-                      <Label>
-                        <Icon name='tablet' />
-                            &nbsp;algorand
-                        <Label.Detail>FMAIJ6XMJSCXNAN3UKJP5K34LW436ZMHYGWCFMCBLZWWIYMMV6V5SULX6A</Label.Detail>
-                      </Label>
+                      <Popup
+                        content='copy to clipboard' trigger={
+                          <Label>
+                            <Icon name='tablet' />
+                                &nbsp;algorand
+                            <Label.Detail>FMAIJ6XMJSCXNAN3UKJP5K34LW436ZMHYGWCFMCBLZWWIYMMV6V5SULX6A</Label.Detail>
+                          </Label>
+                        }
+                      />
                     </List.Content>
                   </List.Item>
                   <List.Item as='a' onClick={() => { navigator.clipboard.writeText('GDQP2KPQGKIHYJGXNUIYOMHARUARCA7DJT5FO2FFOOKY3B2WSQHG4W37:::ucl:::362767634') }}>
                     <List.Content>
-                      <Label>
-                        <Icon name='tablet' />
-                          &nbsp;stellar lumens
-                        <Label.Detail>GDQP2KPQGKIHYJGXNUIYOMHARUARCA7DJT5FO2FFOOKY3B2WSQHG4W37:::ucl:::362767634</Label.Detail>
-                      </Label>
+                      <Popup
+                        content='copy to clipboard' trigger={
+                          <Label>
+                            <Icon name='tablet' />
+                              &nbsp;stellar lumens
+                            <Label.Detail>GDQP2KPQGKIHYJGXNUIYOMHARUARCA7DJT5FO2FFOOKY3B2WSQHG4W37:::ucl:::362767634</Label.Detail>
+                          </Label>
+                        }
+                      />
                     </List.Content>
                   </List.Item>
                 </List><br />

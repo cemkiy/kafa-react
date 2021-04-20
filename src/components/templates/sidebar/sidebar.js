@@ -21,12 +21,14 @@ export class Sidebar extends Component {
     return (
       <Menu className='sidebar-style' pointing secondary vertical icon='labeled'>
         <Menu.Item className='menu-items'><Image src={logo} size='small' className='sidebar-logo' /></Menu.Item>
-        {(this.state.role === 'captain' || this.state.role === 'privateer') && (<Link to='/share'><Menu.Item
-          name='share'
-          active={activeItem === 'Share Torrents'} className='menu-items'
-                                                                                                  ><Icon name='lab' />Share
-                                                                                                  </Menu.Item>
-                                                                                </Link>)}
+        {(this.state.role === 'captain' || this.state.role === 'privateer') && (
+          <Link to='/share'>
+            <Menu.Item
+              name='share' active={activeItem === 'Share Torrents'} className='menu-items'
+            >
+              <Icon name='lab' />Share
+            </Menu.Item>
+          </Link>)}
         <Link to='/browse'>
           <Menu.Item name='browse' active={activeItem === 'Browse Torrents'} className='menu-items'>
             <Icon name='browser' />Browse
@@ -42,7 +44,7 @@ export class Sidebar extends Component {
             <Icon name='talk outline' />Populer
           </Menu.Item>
         </Link>
-        <Menu.Item name='support us' active={activeItem === 'Support Us'} className='menu-items'>
+        <Menu.Item as='a' href='/' name='support us' active={activeItem === 'Support Us'} className='menu-items'>
           <Icon name='rocket' />Support Us
         </Menu.Item>
       </Menu>

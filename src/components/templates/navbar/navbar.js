@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import './navbar.css'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu, Label, Dropdown, Icon } from 'semantic-ui-react'
+import { Input, Menu, Label, Dropdown, Select, Icon } from 'semantic-ui-react'
 
 export class Navbar extends Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      options: [
+        { key: 'all', text: 'all', value: 'all' },
+        { key: 'movies', text: 'movies', value: 'movies' },
+        { key: 'tv/shows', text: 'tv/shows', value: 'tv/shows' }
+      ]
+    }
   }
 
   handleSearchChange = (event, data) => {
@@ -32,6 +38,8 @@ export class Navbar extends Component {
         <Menu.Menu className='search-input'>
           <div className='ui aligned category search item search-input'>
             <div className='ui transparent icon input'>
+              <Select className='select-input' compact options={this.state.options} defaultValue='all' />
+              &nbsp;
               <input
                 className='prompt' type='text' onChange={this.handleSearchChange} // TODO: DelayInput
                 placeholder='Search Here... The text you are reading is written for you to see the search bar.'
