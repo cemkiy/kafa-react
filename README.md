@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/cemkiy/kafa-react/blob/development/src/assets/img/logo.gif" width="250"></p>
 <p align="center">
-    <a href="https://travis-ci.org/cemkiy/kafa-react.svg?branch=development"><img src="https://travis-ci.org/cemkiy/kafa-react.svg?branch=development"></a>
+    <a href="https://github.com/cemkiy/kafa-react/actions/workflows/node.js.yml"><img src="https://github.com/cemkiy/kafa-react/actions/workflows/node.js.yml/badge.svg"></a>
     <a href="https://img.shields.io/badge/code_style-standard-brightgreen.svg"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"></a>
     <a href="https://snyk.io/test/github/cemkiy/kafa-react"><img src="https://snyk.io/test/github/cemkiy/kafa-react/badge.svg"></a>
     <a href=""><img src="https://badgen.net/dependabot/cemkiy/kafa-react?icon=dependabot" alt="depandabot"></a>
