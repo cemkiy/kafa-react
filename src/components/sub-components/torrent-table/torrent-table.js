@@ -124,7 +124,9 @@ export default class TorrentTable extends Component {
                   <Button.Group>
                     <Button className='action-button'><Icon name='video play' /></Button>
                     <Button.Or />
-                    <Button className='action-button'><Icon name='magnet' /></Button>
+                    <Button className='action-button' onClick={() => { navigator.clipboard.writeText(torrent.magnet_url) }}>
+                      <Icon name='magnet' />
+                    </Button>
                   </Button.Group>
                 </Table.Cell>
               </Table.Row>)

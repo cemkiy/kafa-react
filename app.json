@@ -3,6 +3,6 @@
   "description": "for the 21st Century...Centuries-awaited project...",
   "repository": "https://github.com/cemkiy/kafa-react",
   "logo": "https://cdn.dribbble.com/users/2122208/screenshots/4276520/11-20_tshirt_design-12.png",
-  "keywords": ["node", "react.js", "graphql", "heroku"],
+  "keywords": ["node", "react.js", "heroku"],
   "image": "heroku/nodejs"
 }
