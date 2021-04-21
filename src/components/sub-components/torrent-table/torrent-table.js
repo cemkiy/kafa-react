@@ -13,13 +13,8 @@ export default class TorrentTable extends Component {
     this.state = {
       torrents: props.torrents,
       icons: {
-        musics: 'music',
-        applications: 'bug',
         movies: 'film',
-        'tv/shows': 'tv',
-        games: 'game',
-        documents: 'spy',
-        xxx: 'heart'
+        'tv/shows': 'tv'
       }
     }
   }
@@ -66,11 +61,15 @@ export default class TorrentTable extends Component {
   }
 
   handleNextClick = () => {
-    this.props.onChange('next') // trigger parent page
+    this.props.onChange({ pagination: 'next' }) // trigger parent page
   }
 
   handlePrevClick = () => {
-    this.props.onChange('prev') // trigger parent page
+    this.props.onChange({ pagination: 'prev' }) // trigger parent page
+  }
+
+  handlePlayClick = (magnetURL) => {
+    this.props.onChange({ magnet_url: magnetURL }) // trigger parent page
   }
 
   componentDidReceiveProps (nextProps) {
@@ -101,7 +100,7 @@ export default class TorrentTable extends Component {
             this.props.torrents.map(torrent =>
               <Table.Row key={torrent.id}>
                 <Table.Cell width='4'>
-                  <TorrentSummary torrent={torrent} />
+                  <TorrentSummary as='a' onClick={() => { this.handlePlayClick(torrent.magnet_url) }} torrent={torrent} />
                 </Table.Cell>
                 <Table.Cell width='1'>
                   <Image size='mini' src={yts} href={torrent.source_link} />
@@ -122,7 +121,7 @@ export default class TorrentTable extends Component {
                 </Table.Cell>
                 <Table.Cell width='3' textAlign='center'>
                   <Button.Group>
-                    <Button className='action-button'><Icon name='video play' /></Button>
+                    <Button className='action-button' onClick={() => { this.handlePlayClick(torrent.magnet_url) }}><Icon name='video play' /></Button>
                     <Button.Or />
                     <Button className='action-button' onClick={() => { navigator.clipboard.writeText(torrent.magnet_url) }}>
                       <Icon name='magnet' />

@@ -57,3 +57,7 @@ body {
   background-color: teal !important;
   color: white !important;
 }
+
+.hide {
+  display:none !important;
+}

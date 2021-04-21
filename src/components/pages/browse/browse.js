@@ -16,13 +16,17 @@ export default class Browse extends Component {
         sort_field: 'created_at'
       },
       torrents: [],
-      loading: false,
-      playing: false
+      loading_torrents: false,
+      playing: false,
+      loading_movie: false
     }
   }
 
   getTorrents = () => {
+    this.setState({ loading_torrents: true, torrents: [] })
     YTS.listMovies({ limit: 10, sort_by: 'year' }).then(resp => {
+      this.setState({ loading_torrents: false })
+
       resp.movies.forEach(movie => {
         const torrent = {
           id: movie.id,
@@ -62,47 +66,38 @@ export default class Browse extends Component {
     } else {
       mockFilter.tags = tags
     }
-    this.setState({ filter: mockFilter, loading: false }, () => {
+    this.setState({ filter: mockFilter }, () => {
       this.getTorrents()
     })
   }
 
-  handlePaginatorChange = (type) => {
-    const mockFilter = this.state.filter
-    if (type === 'next' && this.state.torrents.length > 1) {
-      mockFilter.page = mockFilter.page + 1
-      this.setState({ filter: mockFilter, loading: false }, () => {
-        this.getTorrents()
-      })
-    } else if (type === 'prev' && mockFilter.page > 1) {
-      mockFilter.page = mockFilter.page - 1
-      this.setState({ filter: mockFilter, loading: false }, () => {
-        this.getTorrents().bind(this)
-      })
+  handleTorrentTableChange = (action) => {
+    if (action.pagination !== '') {
+      const mockFilter = this.state.filter
+      if (action.pagination === 'next' && this.state.torrents.length > 1) {
+        mockFilter.page = mockFilter.page + 1
+        this.setState({ filter: mockFilter }, () => {
+          this.getTorrents()
+        })
+      } else if (action.pagination === 'prev' && mockFilter.page > 1) {
+        mockFilter.page = mockFilter.page - 1
+        this.setState({ filter: mockFilter }, () => {
+          this.getTorrents().bind(this)
+        })
+      }
+    }
+
+    if (action.magnet_url !== '') {
+      this.setState({ loading_movie: true, playing: true })
+      this.play(this.state.webtorrent, action.magnet_url)
     }
   }
 
-  componentDidMount () {
-    const mockFilter = this.state.filter
-    if (queryString.parse(this.props.location.search).sort_field) {
-      mockFilter.sort_field = queryString.parse(this.props.location.search).sort_field
-    }
-    this.setState({ filter: mockFilter, loading: false }, () => {
-      this.getTorrents()
-    })
-
-
-    let magnetURL = 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent'
-
-    const WebTorrent = require('webtorrent')
-    const client = new WebTorrent()
-    this.setState({ webtorrent: client })
-
-    client.on('error', err => {
-      console.log('[+] Webtorrent error: ' + err.message)
-    })
+  play = (client, magnetURL) => {
+    console.log('magnet', magnetURL)
 
     client.add(magnetURL, (torrent) => {
+      console.log('---', torrent);
       const interval = setInterval(() => {
         console.log('[+] Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
         this.setState({ torrentProgress: (torrent.progress * 100).toFixed(1) + '%' })
@@ -116,19 +111,40 @@ export default class Browse extends Component {
         torrentInfoHash: torrent.infoHash,
         torrentMagnetURI: torrent.magnetURI,
         torrentName: torrent.name,
-        torrentFiles: torrent.files
+        torrentFiles: torrent.files,
+        webtorrent: client
       })
 
       this.state.torrentFiles.map((file, i) => {
-        // console.log(file.torrentFileBlobURL)
+        console.log(file.torrentFileBlobURL)
         if (file.name.endsWith('.mp4')) {
+          this.setState({ loading_movie: false })
           return (
+
             file.appendTo('#video')
           )
         }
 
         return null
       })
+    })
+  }
+
+  componentDidMount () {
+    const mockFilter = this.state.filter
+    if (queryString.parse(this.props.location.search).sort_field) {
+      mockFilter.sort_field = queryString.parse(this.props.location.search).sort_field
+    }
+    this.setState({ filter: mockFilter }, () => {
+      this.getTorrents()
+    })
+
+    const WebTorrent = require('webtorrent')
+    const client = new WebTorrent()
+    this.setState({ webtorrent: client })
+
+    client.on('error', err => {
+      console.log('[+] Webtorrent error: ' + err.message)
     })
   }
 
@@ -149,13 +165,13 @@ export default class Browse extends Component {
   render () {
     return (
       <div id='content'>
-        <Segment id='video' placeholder />
+        <Segment id='video' loading={this.state.loading_movie} placeholder className={(this.state.playing ? '' : 'hide')} />
         <Filter onChange={this.handleFilterChange} />
-        <Segment basic>
-          <Dimmer active={this.state.loading}>
-            <Loader active={this.state.loading}>Just one maybe two, three, four... second</Loader>
+        <Segment loading={this.state.loading_torrents} basic>
+          <Dimmer active={this.state.loading_torrents}>
+            <Loader>Just one maybe two, three, four... second</Loader>
           </Dimmer>
-          <TorrentTable onChange={this.handlePaginatorChange} torrents={this.state.torrents} loading={this.state.loading} />
+          <TorrentTable onChange={this.handleTorrentTableChange} torrents={this.state.torrents} loading={this.state.loading} />
         </Segment>
       </div>
     )

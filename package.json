@@ -12,11 +12,9 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
-    "chromecast-api": "^0.3.4",
     "imdb-api": "^4.4.1",
     "query-string": "^7.0.0",
     "react": "^17.0.2",
-    "react-chromecast": "0.0.5-alpha",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
