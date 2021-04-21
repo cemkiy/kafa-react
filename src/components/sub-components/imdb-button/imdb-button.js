@@ -22,7 +22,8 @@ export default class KafaButton extends Component {
     return (
       <Label
         as='a' target='_blank' className='blacktext shake' href={'https://www.imdb.com/title/' + this.state.imdbCode} size='large'
-          onMouseEnter={this.imdbHover} onMouseLeave={this.imdbHover} >
+        onMouseEnter={this.imdbHover} onMouseLeave={this.imdbHover}
+      >
         IMDb
         <Label.Detail className='blacktext'>{this.state.imdbRate}</Label.Detail>
       </Label>

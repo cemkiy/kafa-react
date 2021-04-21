@@ -16,7 +16,8 @@ export default class Browse extends Component {
         sort_field: 'created_at'
       },
       torrents: [],
-      loading: false
+      loading: false,
+      playing: false
     }
   }
 
@@ -89,6 +90,46 @@ export default class Browse extends Component {
     this.setState({ filter: mockFilter, loading: false }, () => {
       this.getTorrents()
     })
+
+
+    let magnetURL = 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent'
+
+    const WebTorrent = require('webtorrent')
+    const client = new WebTorrent()
+    this.setState({ webtorrent: client })
+
+    client.on('error', err => {
+      console.log('[+] Webtorrent error: ' + err.message)
+    })
+
+    client.add(magnetURL, (torrent) => {
+      const interval = setInterval(() => {
+        console.log('[+] Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
+        this.setState({ torrentProgress: (torrent.progress * 100).toFixed(1) + '%' })
+      }, 5000)
+      torrent.on('done', () => {
+        console.log('Progress: 100%')
+        clearInterval(interval)
+      })
+
+      this.setState({
+        torrentInfoHash: torrent.infoHash,
+        torrentMagnetURI: torrent.magnetURI,
+        torrentName: torrent.name,
+        torrentFiles: torrent.files
+      })
+
+      this.state.torrentFiles.map((file, i) => {
+        // console.log(file.torrentFileBlobURL)
+        if (file.name.endsWith('.mp4')) {
+          return (
+            file.appendTo('#video')
+          )
+        }
+
+        return null
+      })
+    })
   }
 
   componentWillReceiveProps (nextProps) { // watch query params
@@ -108,6 +149,7 @@ export default class Browse extends Component {
   render () {
     return (
       <div id='content'>
+        <Segment id='video' placeholder />
         <Filter onChange={this.handleFilterChange} />
         <Segment basic>
           <Dimmer active={this.state.loading}>
